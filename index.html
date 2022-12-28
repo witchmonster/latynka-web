@@ -3,11 +3,35 @@
   <head>
     <title>Ukrajins'ka latynka</title>
   </head>
+<style>
+.button--plump-purple {
+  font-size: 10px;
+  padding: 10px 24px;
+  border-width: 0;
+  background-color: #583bb6;
+  border-color: #583bb6;
+  color: #fff;
+  font-family: Roboto, fallback-font;
+  text-align: center;
+  text-transform: uppercase;
+  border: 0 solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+}
 
+.text-form {
+  width: 50%;
+  height: 200px;
+  resize: none;
+  padding: 20px 24px;
+  border: 0 solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+}
+
+</style>
   <body>
     <div class="form-group">
       <!-- Введіть текст кирилицею -->
-      <textarea id="inputk" class="form-control" style="width: 400px; height: 250px;">
+      <textarea id="inputk" class="text-form">
 Ніч була темна, як льох.
 
 Вмиваюсь холодною водою на ґанку, коло вікна шелестить листя явора.
@@ -20,7 +44,7 @@
 </textarea>
     </div>
     <div class="form-group" style="text=align: center;">
-      <button type="button" id="submitk" class="btn btn-primary">Перекласти</button>
+      <button type="button" id="submitk" class="button--plump-purple">Перекласти</button>
     </div>
     <link rel="stylesheet" href="https://cdn/jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -171,10 +195,10 @@
       });
 
     </script>
-
+    <br />
     <div class="form-group">
       <!-- Vvedit' tekst latynkoju -->
-      <textarea id="inputl" class="form-control" style="width: 400px; height: 250px;">
+      <textarea id="inputl" class="text-form">
 Nič bula temna, jak ljoh.
 
 Vmyvajus' holodnoju vodoju na ĝanku, kolo vikna šelestyt' lystja javora.
@@ -187,7 +211,7 @@ Aby znyzyty riven' notyfikacijnogo šumu, v Teleĝrami možna vybraty opciju "NE
 </textarea>
     </div>
     <div class="form-group" style="text=align: center;">
-      <button type="button" id="submitl" class="btn btn-primary">Pereklasty</button>
+      <button type="button" id="submitl" class="button--plump-purple">Pereklasty</button>
     </div>
     <link rel="stylesheet" href="https://cdn/jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -386,4 +410,5 @@ Aby znyzyty riven' notyfikacijnogo šumu, v Teleĝrami možna vybraty opciju "NE
 
     </script>
   </body>
+
 </html>
