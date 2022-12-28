@@ -269,11 +269,10 @@ Vvedit' tekst latynkoju</textarea>
     var i = 0;
 
     while (i < word.length) {
-      if (converter[word[i]] == undefined) {
+      if (!converter[word[i]]) {
         answer += word[i];
         i++;
       } else {
-
         if (i + 2 < word.length) { //trigraphs
           var trigraf = word[i] + word[i + 1] + word[i + 2];
           if (trigrafs[trigraf]) {
@@ -298,10 +297,9 @@ Vvedit' tekst latynkoju</textarea>
           }
         }
 
-        if (i < word.length) {
+        if (i < word.length && converter[word[i]]) {
           answer += converter[word[i]];
           i++;
-
         }
       }
     }
