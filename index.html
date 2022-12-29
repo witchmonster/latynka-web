@@ -67,49 +67,10 @@
         });
       </script>
     </div>
-    <div class="divRow">
+    <div style="height: 100px;">
     </div>
     <div class="divRow">
-      <div class="divCell">
-        <h1>Latynka ➡ Кирилиця (EXPERIMENTAL)</h1>
-      </div>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <button type="button" id="latyn1" class="button--plump-purple button--plump-xs-purple">Zapovnyty testovyj tekst
-          latynkoju</button>
-      </div>
-    </div>
-    <div class="divRow">
-      <textarea id="inputl" class="text-form">Vvedit' tekst latynkoju</textarea>
-      <script src="test/js/test_text_latyn1.js"></script>
-      <script>
-        $('#latyn1').click(function () {
-          $('#inputl').val(function (i, val) {
-            return test_text_latyn1();
-          });
-          return false;
-        });
-      </script>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <h2 style="color: red;">EXPERIMENTAL! Bugs expected. Use at your own risk.</h2>
-      </div>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <button type="button" id="submitl" class="button--plump-purple button--plump-m-purple">Pereklasty</button>
-      </div>
-      <script src="reverseLatynka.js"></script>
-      <script>
-        $('#submitl').click(function () {
-          $('#inputl').val(function (i, val) {
-            return kyrylka(val);
-          });
-          return false;
-        });
-      </script>
+      <a href="reverse.html">Zvorotnij perekladač</a>
     </div>
   </div>
 </body>

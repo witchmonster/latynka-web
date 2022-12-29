@@ -22,6 +22,10 @@ h1 {
   font-family: PragmataPro, Helvetica, fallback-font;
 }
 
+a {
+  color: var(--color-primary);
+}
+
 .divTable {
   width: auto;
   border-spacing: 5px;
