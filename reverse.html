@@ -13,6 +13,25 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <div class="divTable">
         <div class="divRow">
+            <div class="divCell">Змінити тему</div>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <label class="switch">
+                    <input type="checkbox" id="theme">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <script>
+                document.getElementById("theme").addEventListener("click", function () {
+                    if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.body.classList.toggle("light-mode");
+                    else document.body.classList.toggle("dark-mode");
+                });
+            </script>
+        </div>
+    </div>
+    <div class="divTable">
+        <div class="divRow">
             <div class="divCell">
                 <h1>Latynka ➡ Кирилиця (EXPERIMENTAL)</h1>
             </div>
@@ -38,11 +57,6 @@
         </div>
         <div class="divRow">
             <div class="divCell">
-                <h2 style="color: red;">EXPERIMENTAL! Bugs expected. Use at your own risk.</h2>
-            </div>
-        </div>
-        <div class="divRow">
-            <div class="divCell">
                 <button type="button" id="submitl"
                     class="button--plump-purple button--plump-m-purple">Pereklasty</button>
             </div>
@@ -56,6 +70,12 @@
                 });
             </script>
         </div>
+        <div class="divRow">
+            <div class="divCell">
+                <h2 style="color: red;">EXPERIMENTAL! Bugs expected. Use at your own risk.</h2>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
