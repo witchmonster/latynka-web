@@ -135,10 +135,3 @@ function latynka(word) {
         }
         return answer;
       }
-
-      $('#submitk').click(function() {
-        $('#inputk').val(function(i, val) {
-          return latynka(val);
-        });
-        return false;
-      });
