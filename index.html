@@ -1,52 +1,8 @@
 <html>
-
   <head>
     <title>Ukrajins'ka latynka</title>
   </head>
-  <style>
-    .button--plump-purple {
-      font-size: 10px;
-      padding: 10px 24px;
-      border-width: 0;
-      background-color: #583bb6;
-      border-color: #583bb6;
-      color: #fff;
-      font-family: Roboto, fallback-font;
-      text-align: center;
-      text-transform: uppercase;
-      border: 0 solid rgba(0, 0, 0, 0);
-      border-radius: 50px;
-    }
-
-    .table {
-      width: 100%;
-      height: 100%;
-      padding: 20px 24px;
-      text-align: center;
-    }
-
-    .form {
-      width: 100%;
-      padding: 20px 24px;
-      text-align: center;
-    }
-
-    .tile {
-      padding: 20px 24px;
-      text-align: center;
-    }
-
-    .text-form {
-      width: 80%;
-      height: 200px;
-      resize: none;
-      padding: 20px 24px;
-      border: 0 solid rgba(0, 0, 0, 0);
-      border-radius: 50px;
-    }
-
-  </style>
-
+  <link rel="stylesheet" href="style.css">
   <body>
     <div class="table">
       <div class="form">
@@ -69,153 +25,14 @@
           <button type="button" id="submitk" class="button--plump-purple">Перекласти</button>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-      <!--   <script src="https://raw.githubusercontent.com/jkramr/latynka/main/latynka.js"></script> -->
+        <script src="latynka.js"></script>
         <script>
-          function latynka(word) {
-            var answer = '';
-            var lowerCase = {
-              'а': 'a',
-              'б': 'b',
-              'в': 'v',
-              'г': 'g',
-              'ґ': 'ĝ',
-              'д': 'd',
-              'е': 'e',
-              'ж': 'ž',
-              'з': 'z',
-              'и': 'y',
-              'і': 'i',
-              'й': 'j',
-              'к': 'k',
-              'л': 'l',
-              'м': 'm',
-              'н': 'n',
-              'о': 'o',
-              'п': 'p',
-              'р': 'r',
-              'с': 's',
-              'т': 't',
-              'у': 'u',
-              'ф': 'f',
-              'х': 'h',
-              'ц': 'c',
-              'ч': 'č',
-              'ш': 'š'
-            };
-
-            var upperCase = {
-              'А': 'A',
-              'Б': 'B',
-              'В': 'V',
-              'Г': 'G',
-              'Ґ': 'Ĝ',
-              'Д': 'D',
-              'Е': 'E',
-              'Ж': 'Ž',
-              'З': 'Z',
-              'И': 'Y',
-              'І': 'I',
-              'Й': 'J',
-              'К': 'K',
-              'Л': 'L',
-              'М': 'M',
-              'Н': 'N',
-              'О': 'O',
-              'П': 'P',
-              'Р': 'R',
-              'С': 'S',
-              'Т': 'T',
-              'У': 'U',
-              'Ф': 'F',
-              'Х': 'H',
-              'Ц': 'C',
-              'Ч': 'Č',
-              'Ш': 'Š',
-            };
-
-            var digraphs = {
-              //ё
-              'йо': 'jo',
-              'ьо': 'jo'
-            };
-
-            var reverseDigraphs = {
-              'є': 'je',
-              'ї': 'ji',
-              'щ': 'šč',
-              'ю': 'ju',
-              'я': 'ja',
-              'Є': 'Je',
-              'Ї': 'Ji',
-              'Щ': 'Šč',
-              'Ю': 'Ju',
-              'Я': 'Ja'
-            };
-
-            var upperCaseReverseDigraphs = {
-              'Є': 'JE',
-              'Ї': 'JI',
-              'Щ': 'ŠČ',
-              'Ю': 'JU',
-              'Я': 'JA'
-            };
-
-            var special = {
-              'Ь': '\'',
-              'ь': '\'',
-              '\'': '\''
-            };
-
-            var converter = {
-              ...lowerCase,
-              ...upperCase,
-              ...reverseDigraphs,
-              ...special,
-              ...digraphs
-            };
-
-            function isUpperCaseReverseDigraph(word, i) {
-              var previousIsUpperCase = i - 1 >= 0 && upperCase[word[i - 1]];
-              var nextIsUpperCase = i + 1 < word.length && upperCase[word[i + 1]];
-              var isAcronym = previousIsUpperCase || nextIsUpperCase;
-              return upperCaseReverseDigraphs[word[i]] && isAcronym;
-            }
-
-            var i = 0;
-            while (i < word.length) {
-              if (converter[word[i]] == undefined) {
-                answer += word[i];
-                i++;
-              } else {
-                if (i + 1 < word.length) {
-                  var digraph = word[i] + word[i + 1];
-                  if (digraphs[digraph]) {
-                    answer += converter[digraph];
-                    i += 2;
-                  }
-                }
-
-                if (i < word.length && isUpperCaseReverseDigraph(word, i)) {
-                  answer += upperCaseReverseDigraphs[word[i]];
-                  i++;
-                }
-
-                if (i < word.length && converter[word[i]]) {
-                  answer += converter[word[i]];
-                  i++;
-                }
-              }
-            }
-            return answer;
-          }
-          
           $('#submitk').click(function() {
             $('#inputk').val(function(i, val) {
               return latynka(val);
             });
             return false;
           });
-
         </script>
       </div>
       <div class="form">
@@ -229,7 +46,7 @@ Vmyvajus' holodnoju vodoju na ĝanku, kolo vikna šelestyt' lystja javora.
 
 Jogo prydileno do l'vivs'kogo garnizonu, pry najblyžčim avansi jogo maly imenuvaty majorom.
 
-U zv’jazku iz podijamy na Jevromajdani svjaščenyky L'vivs'koji arhyjeparhiji UGKC ščogodyny b'jut' u cerkovni dzvony po 5 hvylyn.
+U zv'jazku iz podijamy na Jevromajdani svjaščenyky L'vivs'koji arhyjeparhiji UGKC ščogodyny b'jut' u cerkovni dzvony po 5 hvylyn.
 
 Aby znyzyty riven' notyfikacijnogo šumu, v Teleĝrami možna vybraty opciju "NE SPOVIŠČATY" dlja okremyh kanaliv.
 </textarea>
@@ -239,205 +56,16 @@ Aby znyzyty riven' notyfikacijnogo šumu, v Teleĝrami možna vybraty opciju "NE
         </div>
         <link rel="stylesheet" href="https://cdn/jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js">
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+        <script src="reverseLatynka.js"></script>
         <script>
-          function kyrylka(word) {
-            var answer = '';
-            var lowerCase = {
-              'a': 'а',
-              'b': 'б',
-              'v': 'в',
-              'g': 'г',
-              'ĝ': 'ґ',
-              'd': 'д',
-              'e': 'е',
-              'ž': 'ж',
-              'z': 'з',
-              'y': 'и',
-              'i': 'і',
-              'j': 'й',
-              'k': 'к',
-              'l': 'л',
-              'm': 'м',
-              'n': 'н',
-              'o': 'о',
-              'p': 'п',
-              'r': 'р',
-              's': 'с',
-              't': 'т',
-              'u': 'у',
-              'f': 'ф',
-              'h': 'х',
-              'c': 'ц',
-              'č': 'ч',
-              'š': 'ш'
-            };
-            var upperCase = {
-              'A': 'А',
-              'B': 'Б',
-              'V': 'В',
-              'G': 'Г',
-              'Ĝ': 'Ґ',
-              'D': 'Д',
-              'E': 'Е',
-              'Ž': 'Ж',
-              'Z': 'З',
-              'Y': 'И',
-              'I': 'І',
-              'J': 'Й',
-              'K': 'К',
-              'L': 'Л',
-              'M': 'М',
-              'N': 'Н',
-              'O': 'О',
-              'P': 'П',
-              'R': 'Р',
-              'S': 'С',
-              'T': 'Т',
-              'U': 'У',
-              'F': 'Ф',
-              'H': 'Х',
-              'C': 'Ц',
-              'Č': 'Ч',
-              'Š': 'Ш'
-            };
-
-            var joDigraph = {
-              'jo': 'йо',
-              //'jo': 'ьо',
-            };
-
-            var trigrafs = {
-              '\'ja': '\'я',
-              '\'ji': '\'ї',
-              '\'je': '\'є',
-              '\'ju': '\'ю'
-            }
-
-            var digraphs = {
-              ...joDigraph,
-              'je': 'є',
-              'ji': 'ї',
-              'šč': 'щ',
-              'ju': 'ю',
-              'ja': 'я',
-              'Je': 'Є',
-              'JE': 'Є',
-              'Ji': 'Ї',
-              'JI': 'Ї',
-              'Šč': 'Щ',
-              'ŠČ': 'Щ',
-              'Ju': 'Ю',
-              'JU': 'Ю',
-              'Ja': 'Я',
-              'JA': 'Я'
-            };
-
-            var special = {
-              '\'': 'ь'
-              //'\'': 'Ь'
-            };
-            var converter = {
-              ...lowerCase,
-              ...upperCase,
-              ...digraphs,
-              ...special
-            };
-
-            var i = 0;
-
-            while (i < word.length) {
-              if (!converter[word[i]]) {
-                answer += word[i];
-                i++;
-              } else {
-                if (i + 2 < word.length) { //trigraphs
-                  var trigraf = word[i] + word[i + 1] + word[i + 2];
-                  if (trigrafs[trigraf]) {
-                    answer += trigrafs[trigraf];
-                    i += 3;
-                  }
-                }
-
-                if (i + 1 < word.length) { //digraphs
-                  var digraph = word[i] + word[i + 1];
-                  if (joDigraph[digraph]) {
-                    if (shouldBeJo(word, i)) {
-                      answer += joDigraph[digraph];
-                      i += 2;
-                    } else {
-                      answer += 'ьо';
-                      i += 2;
-                    }
-                  } else if (digraphs[digraph]) {
-                    answer += digraphs[digraph];
-                    i += 2;
-                  }
-                }
-
-                if (i < word.length && converter[word[i]]) {
-                  answer += converter[word[i]];
-                  i++;
-                }
-              }
-            }
-            return answer;
-          }
-
-          function shouldBeJo(word, i) {
-            var isVowel = {
-              'a': true,
-              'e': true,
-              'i': true,
-              'o': true,
-              'u': true
-            };
-            var isGubna = {
-              'b': true,
-              'p': true,
-              'v': true,
-              'm': true,
-              'f': true
-            };
-            var isDelimiter = {
-              ' ': true,
-              '.': true,
-              ',': true,
-              ';': true,
-              '/': true,
-              '\\': true,
-              '(': true,
-              ')': true,
-              '[': true,
-              ']': true,
-              '!': true,
-              '@': true,
-              '#': true,
-              '$': true,
-              '*': true,
-              '-': true,
-              '=': true,
-              '+': true,
-              '_': true,
-              '~': true,
-              '`': true,
-            };
-            var afterDelimiter = i - 1 >= 0 && isDelimiter[word[i - 1]];
-            var afterVowel = i - 1 >= 0 && isVowel[word[i - 1]];
-            return afterVowel || afterDelimiter;
-          }
-
           $('#submitl').click(function() {
             $('#inputl').val(function(i, val) {
               return kyrylka(val);
             });
             return false;
           });
-
         </script>
       </div>
     </div>
-
-
   </body>
-
 </html>
