@@ -4,24 +4,24 @@
         --color-primary-darker: #0d1a1f;
         --color-secondary: #dbdbdb;
     }
-  }
-  
-  @media (prefers-color-scheme: light) {
+}
+
+@media (prefers-color-scheme: light) {
     :root {
         --color-primary: #ffffff;
         --color-primary-darker: #d7dee0;
         --color-secondary: #000000;
     }
-  }
-  
-  .light-mode {
+}
+
+.light-mode {
     --color-primary: #ffffff;
     --color-primary-darker: #d7dee0;
     --color-secondary: #000000;
-  }
-  
-  .dark-mode {
+}
+
+.dark-mode {
     --color-primary: #252f33;
     --color-primary-darker: #0d1a1f;
     --color-secondary: #dbdbdb;
-  }
+}

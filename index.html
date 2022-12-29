@@ -10,37 +10,41 @@
 </head>
 
 <body>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
   <div class="table">
-    <div class="tile">
-      <label class="switch">
-        <input type="checkbox" id="theme">
-        <span class="slider round"></span>
-      </label>
+    <div class="left-tile">
+      <div class="tile">Змінити тему</div>
+      <div class="tile">
+        <label class="switch">
+          <input type="checkbox" id="theme">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <script>
+        document.getElementById("theme").addEventListener("click", function () {
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.body.classList.toggle("light-mode");
+          else document.body.classList.toggle("dark-mode");
+        });
+      </script>
     </div>
     <div class="form">
+      <button type="button" id="test1" class="button--plump-xs-purple">Заповнити тестовий текст кирилицею</button>
       <div class="tile">
-        <!-- Введіть текст кирилицею -->
-        <textarea id="inputk" class="text-form">
-Ніч була темна, як льох.
-
-Вмиваюсь холодною водою на ґанку, коло вікна шелестить листя явора.
-
-Його приділено до львівського гарнізону, при найближчім авансі його мали іменувати майором.
-
-У зв’язку із подіями на Євромайдані священики Львівської архиєпархії УГКЦ щогодини б'ють у церковні дзвони по 5 хвилин.
-
-Аби знизити рівень нотифікаційного шуму, в Телеґрамі можна вибрати опцію "НЕ СПОВІЩАТИ" для окремих каналів.
-        </textarea>
+        <textarea id="inputk" class="text-form">Введіть текст кирилицею</textarea>
       </div>
+      <script src="test/js/test_text_cyrillic1.js"></script>
+      <script>
+        $('#test1').click(function () {
+          $('#inputk').val(function (i, val) {
+            return test_text_cyrillic1();
+          });
+          return false;
+        });
+      </script>
       <div class="tile">
         <button type="button" id="submitk" class="button--plump-purple">Перекласти</button>
       </div>
-      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
       <script src="latynka.js"></script>
-      <script>document.getElementById("theme").addEventListener("click", function () {
-          if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.body.classList.toggle("light-mode");
-          else document.body.classList.toggle("dark-mode");
-        });</script>
       <script>
         $('#submitk').click(function () {
           $('#inputk').val(function (i, val) {
@@ -53,23 +57,11 @@
     <div class="form">
 
       <div class="tile">
-        <!-- Vvedit' tekst latynkoju -->
-        <textarea id="inputl" class="text-form">
-Nič bula temna, jak ljoh.
-
-Vmyvajus' holodnoju vodoju na ĝanku, kolo vikna šelestyt' lystja javora.
-
-Jogo prydileno do l'vivs'kogo garnizonu, pry najblyžčim avansi jogo maly imenuvaty majorom.
-
-U zv'jazku iz podijamy na Jevromajdani svjaščenyky L'vivs'koji arhyjeparhiji UGKC ščogodyny b'jut' u cerkovni dzvony po 5 hvylyn.
-
-Aby znyzyty riven' notyfikacijnogo šumu, v Teleĝrami možna vybraty opciju "NE SPOVIŠČATY" dlja okremyh kanaliv.
-</textarea>
+        <textarea id="inputl" class="text-form">Vvedit' tekst latynkoju</textarea>
       </div>
       <div class="tile">
         <button type="button" id="submitl" class="button--plump-purple">Pereklasty</button>
       </div>
-      <link rel="stylesheet" href="https://cdn/jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js">
       <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
       <script src="reverseLatynka.js"></script>
       <script>
