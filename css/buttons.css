@@ -1,6 +1,8 @@
 @font-face {
   font-family: "PragmataPro";
   src: url(fonts/pragmataPro.ttf) format("truetype");
+  /* I do own a web-site licence for this font. Big thanks for amazing work of Fabrizio Schiavi on this wonderful font.
+  Check it out: https://fsd.it/shop/fonts/pragmatapro/ */
 }
 
 .button--plump-purple {
