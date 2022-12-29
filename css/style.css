@@ -9,7 +9,6 @@ body {
 }
 
 .divTable {
-  display: table;
   width: auto;
   border-spacing:5px;
   padding-top: 20px;
@@ -19,7 +18,6 @@ body {
 }
 
 .divRow {
-  display: table-row;
   width: auto;
   text-align: center;
 }
@@ -31,7 +29,7 @@ body {
 }
 
 .text-form {
-  width: 100%;
+  width: 80%;
   height: 300px;
   font-size: 18px;
   background-color: var(--color-primary-darker);
