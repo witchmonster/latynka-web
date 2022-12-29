@@ -1,0 +1,44 @@
+body {
+  background-color: #252f33;
+  font-family: Roboto, fallback-font;
+}
+
+.button--plump-purple {
+  font-size: 10px;
+  padding: 10px 24px;
+  border-width: 0;
+  background-color: #583bb6;
+  border-color: #583bb6;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  border: 0 solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+}
+
+.table {
+  width: 100%;
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  text-align: center;
+}
+
+.tile {
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.text-form {
+  width: 80%;
+  height: 300px;
+  font-size: 14px;
+  background-color: #0f161a;
+  color: rgb(163, 163, 163);
+  resize: none;
+  padding: 20px 24px;
+  border: 0 solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+}
