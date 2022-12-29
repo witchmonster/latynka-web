@@ -1,5 +1,9 @@
+@import "theme.css";
+@import "slider.css";
+
 body {
-  background-color: #252f33;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
   font-family: Roboto, fallback-font;
 }
 
@@ -35,8 +39,8 @@ body {
   width: 80%;
   height: 300px;
   font-size: 14px;
-  background-color: #0f161a;
-  color: rgb(163, 163, 163);
+  background-color: var(--color-primary-darker);
+  color: var(--color-secondary);
   resize: none;
   padding: 20px 24px;
   border: 0 solid rgba(0, 0, 0, 0);
