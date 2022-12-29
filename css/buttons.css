@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "PragmataPro";
+  src: url(fonts/pragmataPro.ttf) format("truetype");
+}
+
 .button--plump-purple {
     border-width: 0;
     color: #fff;
@@ -7,17 +12,17 @@
     border-color: #583bb6;
     border: 0 solid rgba(0, 0, 0, 0);
     border-radius: 50px;
+    font-family: PragmataPro, Roboto, Helvetica, fallback-font;
   }
   .button--plump-m-purple {
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: .188em;
     padding: 10px 24px;
   }
   
   .button--plump-xs-purple {
-    font-size: 12px;
+    font-size: 14px;
     padding: 5px 12px;
-  
   }
   
   .button--plump-purple:hover {
