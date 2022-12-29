@@ -11,10 +11,12 @@
 
 <body>
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <div class="table">
-    <div class="left-tile">
-      <div class="tile">Змінити тему</div>
-      <div class="tile">
+  <div class="divTable">
+    <div class="divRow">
+      <div class="divCell">Змінити тему</div>
+    </div>
+    <div class="divRow">
+      <div class="divCell">
         <label class="switch">
           <input type="checkbox" id="theme">
           <span class="slider round"></span>
@@ -27,22 +29,33 @@
         });
       </script>
     </div>
-    <div class="form">
-      <button type="button" id="test1" class="button--plump-xs-purple">Заповнити тестовий текст кирилицею</button>
-      <div class="tile">
-        <textarea id="inputk" class="text-form">Введіть текст кирилицею</textarea>
+    <div class="divRow">
+      <div class="divCell">
+        <h1>Кирилиця -> Latynka</h1>
       </div>
+    </div>
+    <div class="divRow">
+      <div class="divCell">
+        <button type="button" id="cyrillic1" class="button--plump-purple button--plump-xs-purple">Заповнити тестовий
+          текст
+          кирилицею</button>
+      </div>
+    </div>
+    <div class="divRow">
+      <textarea id="inputk" class="text-form">Введіть текст кирилицею</textarea>
       <script src="test/js/test_text_cyrillic1.js"></script>
       <script>
-        $('#test1').click(function () {
+        $('#cyrillic1').click(function () {
           $('#inputk').val(function (i, val) {
             return test_text_cyrillic1();
           });
           return false;
         });
       </script>
-      <div class="tile">
-        <button type="button" id="submitk" class="button--plump-purple">Перекласти</button>
+    </div>
+    <div class="divRow">
+      <div class="divCell">
+        <button type="button" id="submitk" class="button--plump-purple button--plump-m-purple">Перекласти</button>
       </div>
       <script src="latynka.js"></script>
       <script>
@@ -54,15 +67,40 @@
         });
       </script>
     </div>
-    <div class="form">
-
-      <div class="tile">
-        <textarea id="inputl" class="text-form">Vvedit' tekst latynkoju</textarea>
+    <div class="divRow">
+    </div>
+    <div class="divRow">
+      <div class="divCell">
+        <h1>Latynka -> Кирилиця (EXPERIMENTAL)</h1>
       </div>
-      <div class="tile">
-        <button type="button" id="submitl" class="button--plump-purple">Pereklasty</button>
+    </div>
+    <div class="divRow">
+      <div class="divCell">
+        <button type="button" id="latyn1" class="button--plump-purple button--plump-xs-purple">Zapovnyty testovyj tekst
+          latynkoju</button>
       </div>
-      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    </div>
+    <div class="divRow">
+      <textarea id="inputl" class="text-form">Vvedit' tekst latynkoju</textarea>
+      <script src="test/js/test_text_latyn1.js"></script>
+      <script>
+        $('#latyn1').click(function () {
+          $('#inputl').val(function (i, val) {
+            return test_text_latyn1();
+          });
+          return false;
+        });
+      </script>
+    </div>
+    <div class="divRow">
+      <div class="divCell">
+        <h2 style="color: red;">EXPERIMENTAL! Bugs expected. Use at your own risk.</h2>
+      </div>
+    </div>
+    <div class="divRow">
+      <div class="divCell">
+        <button type="button" id="submitl" class="button--plump-purple button--plump-m-purple">Pereklasty</button>
+      </div>
       <script src="reverseLatynka.js"></script>
       <script>
         $('#submitl').click(function () {

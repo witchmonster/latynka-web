@@ -96,9 +96,9 @@ function latynka(word) {
   var converter = {
     ...lowerCase,
     ...upperCase,
+    ...digraphs,
     ...reverseDigraphs,
-    ...special,
-    ...digraphs
+    ...special
   };
 
   function isUpperCaseReverseDigraph(word, i) {
@@ -110,27 +110,31 @@ function latynka(word) {
 
   var i = 0;
   while (i < word.length) {
-    if (converter[word[i]] == undefined) {
-      answer += word[i];
-      i++;
-    } else {
+    if (converter[word[i]]) {
+      //process digraphs
       if (i + 1 < word.length) {
         var digraph = word[i] + word[i + 1];
         if (digraphs[digraph]) {
-          answer += converter[digraph];
+          answer += digraphs[digraph];
           i += 2;
         }
       }
 
+      //process uppercase reverse digraphs
       if (i < word.length && isUpperCaseReverseDigraph(word, i)) {
         answer += upperCaseReverseDigraphs[word[i]];
         i++;
       }
 
+      //process single letters
       if (i < word.length && converter[word[i]]) {
         answer += converter[word[i]];
         i++;
       }
+    } else {
+      //skip convertation for unmapped characters
+      answer += word[i];
+      i++;
     }
   }
   return answer;
