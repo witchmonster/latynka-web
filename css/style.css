@@ -55,6 +55,7 @@ body {
 }
 
 .divCell {
+  float:left;
   display:table-column;
   padding: 10px 12px;
   text-align: center;
