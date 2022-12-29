@@ -1,0 +1,31 @@
+.button--plump-purple {
+    border-width: 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #583bb6;
+    border-color: #583bb6;
+    border: 0 solid rgba(0, 0, 0, 0);
+    border-radius: 50px;
+  }
+  .button--plump-m-purple {
+    font-size: 14px;
+    letter-spacing: .188em;
+    padding: 10px 24px;
+  }
+  
+  .button--plump-xs-purple {
+    font-size: 12px;
+    padding: 5px 12px;
+  
+  }
+  
+  .button--plump-purple:hover {
+    background-color: #311c75;
+    transition: 0.1s;
+  }
+  
+  .button--plump-purple:active {
+    background-color: #000000;
+  }
+  
