@@ -90,7 +90,7 @@ function latynka(word) {
   var special = {
     'Ь': '\'',
     'ь': '\'',
-    '\'': '\''
+    '\'': '’'
   };
 
   var converter = {

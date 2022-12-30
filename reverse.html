@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" />
-    <title>Ukrajins'ka latynka</title>
+    <title>Latynka ➡ Кирилиця (EXPERIMENTAL)</title>
 </head>
 
 <body>
@@ -29,8 +29,6 @@
                 });
             </script>
         </div>
-    </div>
-    <div class="divTable">
         <div class="divRow">
             <div class="divCell">
                 <h1>Latynka ➡ Кирилиця (EXPERIMENTAL)</h1>
@@ -39,16 +37,15 @@
         <div class="divRow">
             <div class="divCell">
                 <button type="button" id="latyn1" class="button--plump-purple button--plump-xs-purple">Zapovnyty
-                    testovyj tekst
-                    latynkoju</button>
+                    testovyj tekst latynkoju</button>
             </div>
         </div>
         <div class="divRow">
-            <textarea id="inputl" class="text-form">Vvedit' tekst latynkoju</textarea>
+            <textarea id="input" class="text-form">Vvedit' tekst latynkoju</textarea>
             <script src="test/js/test_text_latyn1.js"></script>
             <script>
                 $('#latyn1').click(function () {
-                    $('#inputl').val(function (i, val) {
+                    $('#input').val(function (i, val) {
                         return test_text_latyn1();
                     });
                     return false;
@@ -57,23 +54,31 @@
         </div>
         <div class="divRow">
             <div class="divCell">
-                <button type="button" id="submitl"
+                <button type="button" id="submit"
                     class="button--plump-purple button--plump-m-purple">Pereklasty</button>
             </div>
             <script src="reverseLatynka.js"></script>
             <script>
-                $('#submitl').click(function () {
-                    $('#inputl').val(function (i, val) {
-                        return kyrylka(val);
+                $('#submit').click(function () {
+                    var text = $('#input').val();
+                    $('#output').val(function (i, val) {
+                        return kyrylka(text);
                     });
+                    $('#arrow').removeClass('hidden');
+                    $('#output').removeClass('hidden');
                     return false;
                 });
             </script>
         </div>
         <div class="divRow">
-            <div class="divCell">
-                <h2 style="color: red;">EXPERIMENTAL! Bugs expected. Use at your own risk.</h2>
+            <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">
+                🡃
             </div>
+        </div>
+        <div class="divRow">
+            <textarea id="output" class="text-form hidden" readonly></textarea>
+        </div>
+        <div style="height: 100px;">
         </div>
     </div>
 </body>

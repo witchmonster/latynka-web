@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" />
-  <title>Ukrajins'ka latynka</title>
+  <title>Кирилиця ➡ Latynka</title>
 </head>
 
 <body>
@@ -42,11 +42,11 @@
       </div>
     </div>
     <div class="divRow">
-      <textarea id="inputk" class="text-form">Введіть текст кирилицею</textarea>
+      <textarea id="input" class="text-form">Введіть текст кирилицею</textarea>
       <script src="test/js/test_text_cyrillic1.js"></script>
       <script>
         $('#cyrillic1').click(function () {
-          $('#inputk').val(function (i, val) {
+          $('#input').val(function (i, val) {
             return test_text_cyrillic1();
           });
           return false;
@@ -55,17 +55,28 @@
     </div>
     <div class="divRow">
       <div class="divCell">
-        <button type="button" id="submitk" class="button--plump-purple button--plump-m-purple">Перекласти</button>
+        <button type="button" id="submit" class="button--plump-purple button--plump-m-purple">Перекласти</button>
       </div>
       <script src="latynka.js"></script>
       <script>
-        $('#submitk').click(function () {
-          $('#inputk').val(function (i, val) {
-            return latynka(val);
+        $('#submit').click(function () {
+          var text = $('#input').val();
+          $('#output').val(function (i, val) {
+            return latynka(text);
           });
+          $('#arrow').removeClass('hidden');
+          $('#output').removeClass('hidden');
           return false;
         });
       </script>
+    </div>
+    <div class="divRow">
+      <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">
+        🡃
+      </div>
+    </div>
+    <div class="divRow">
+      <textarea id="output" class="text-form hidden" readonly></textarea>
     </div>
     <div style="height: 100px;">
     </div>

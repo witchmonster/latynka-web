@@ -1,4 +1,4 @@
-function kyrylka(word) {
+function kyrylka(text) {
   var answer = '';
   var lowerCase = {
     'a': 'а',
@@ -64,11 +64,15 @@ function kyrylka(word) {
     //'jo': 'ьо',
   };
 
-  var trigrafs = {
-    '\'ja': '\'я',
-    '\'ji': '\'ї',
-    '\'je': '\'є',
-    '\'ju': '\'ю'
+  var apostrof = {
+    '’ja': '’я',
+    '’ji': '’ї',
+    '’je': '’є',
+    '’ju': '’ю',
+    '\'ja': '’я',
+    '\'ji': '’ї',
+    '\'je': '’є',
+    '\'ju': '’ю'
   }
 
   var digraphs = {
@@ -91,9 +95,11 @@ function kyrylka(word) {
   };
 
   var special = {
+    '’': '’',
     '\'': 'ь'
     //'\'': 'Ь'
   };
+
   var converter = {
     ...lowerCase,
     ...upperCase,
@@ -101,39 +107,119 @@ function kyrylka(word) {
     ...special
   };
 
+  var exceptions3 = {
+    'Rjo': 'Рьо',
+  };
+
+  var exceptions4 = {
+  };
+
+  var exceptions5 = {
+    'ad\'je': 'адьє',
+    'trjoh': 'трьох',
+  };
+
+  var exceptions6 = {
+    'Got\'je': 'Готьє',
+    'N\'jasa': 'Ньяса',
+    'Ren\'je': 'Реньє'
+  };
+
+  var exceptions7 = {
+    'atel\'je': 'ательє',
+    'N\'juton': 'Ньютон'
+  };
+
+  var exceptions8 = {
+    'pas\'jans': 'пасьянс',
+    'čotyrjoh': 'чотирьох',
+    'mil\'jard': 'мільярд'
+  };
+
+  var exceptions9 = {
+    'barel\'jef': 'барельєф',
+    'vin\'jetka': 'віньєтка',
+    'N\'ju-Jork': 'Нью-Йорк'
+  };
+
+  var exceptions10 = {
+    'monpans\'je': 'монпансьє',
+    'V’jent\'jan': 'В’єнтьян',
+    'V\'jent\'jan': 'В’єнтьян',
+  };
+
+  var exceptions11 = {
+    'buton\'jerka': 'бутоньєрка'
+  };
+
+  var exceptions12 = {
+    'konferans\'je': 'конферансьє',
+  };
+
+  var maxExceptionWordSize = 12;
+
+  var exceptions = {
+    3: exceptions3,
+    4: exceptions4,
+    5: exceptions5,
+    6: exceptions6,
+    7: exceptions7,
+    8: exceptions8,
+    9: exceptions9,
+    10: exceptions10,
+    11: exceptions11,
+    12: exceptions12
+  }
+
   var i = 0;
 
-  while (i < word.length) {
-    if (!converter[word[i]]) {
-      answer += word[i];
+  //todo add case insensitive match
+  function matchSubstring(i, size, dict) {
+    return i + size - 1 < text.length && dict[text.substring(i, i + size)];
+  }
+
+  while (i < text.length) {
+    if (!converter[text[i]]) {
+      answer += text[i];
       i++;
     } else {
-      if (i + 2 < word.length) { //trigraphs
-        var trigraf = word[i] + word[i + 1] + word[i + 2];
-        if (trigrafs[trigraf]) {
-          answer += trigrafs[trigraf];
-          i += 3;
+
+      //process exceptions
+      var j = maxExceptionWordSize - 1;
+      while (j > 1) {
+        while (matchSubstring(i, j + 1, exceptions[j + 1])) {
+          answer += exceptions[j + 1][text.substring(i, i + j + 1)];
+          i += j + 1;
         }
+        j--;
       }
 
-      if (i + 1 < word.length) { //digraphs
-        var digraph = word[i] + word[i + 1];
-        if (joDigraph[digraph]) {
-          if (shouldBeJo(word, i)) {
-            answer += joDigraph[digraph];
-            i += 2;
-          } else {
-            answer += 'ьо';
-            i += 2;
-          }
-        } else if (digraphs[digraph]) {
-          answer += digraphs[digraph];
+      //process apostrophes
+      while (matchSubstring(i, 3, apostrof)) {
+        answer += apostrof[text.substring(i, i + 3)];
+        i += 3;
+      }
+
+      //process jo
+      if (matchSubstring(i, 2, joDigraph)) {
+        if (shouldBeJo(text, i)) {
+          answer += joDigraph[text.substring(i, i + 2)];
+          i += 2;
+        } else {
+          answer += 'ьо';
           i += 2;
         }
       }
 
-      if (i < word.length && converter[word[i]]) {
-        answer += converter[word[i]];
+      //process digraphs
+      while (matchSubstring(i, 2, digraphs)) {
+        answer += digraphs[text.substring(i, i + 2)];
+        i += 2;
+      }
+
+      //process single characters
+      if (i < text.length && converter[text[i]]) {
+        answer += converter[text[i]];
         i++;
       }
     }
@@ -141,7 +227,10 @@ function kyrylka(word) {
   return answer;
 }
 
-function shouldBeJo(word, i) {
+function shouldBeJo(text, i) {
+  var isMjakyjZnak = {
+    '\'': true
+  };
   var isVowel = {
     'a': true,
     'e': true,
@@ -149,12 +238,16 @@ function shouldBeJo(word, i) {
     'o': true,
     'u': true
   };
-  var isGubna = {
+  var isAlwaysHardConsonant = {
     'b': true,
     'p': true,
     'v': true,
     'm': true,
-    'f': true
+    'f': true,
+    'r': true,
+    'ž': true,
+    'č': true,
+    'š': true
   };
   var isDelimiter = {
     ' ': true,
@@ -179,7 +272,10 @@ function shouldBeJo(word, i) {
     '~': true,
     '`': true,
   };
-  var afterDelimiter = i - 1 >= 0 && isDelimiter[word[i - 1]];
-  var afterVowel = i - 1 >= 0 && isVowel[word[i - 1]];
-  return afterVowel || afterDelimiter;
+  var afterMjakyjZnak = i - 1 >= 0 && isMjakyjZnak[text[i - 1]];
+  var afterDelimiter = i - 1 >= 0 && isDelimiter[text[i - 1]];
+  var afterVowel = i - 1 >= 0 && isVowel[text[i - 1]];
+  //see exceptions
+  var afterAlwaysHardConsonant = i - 1 >= 0 && isAlwaysHardConsonant[text[i - 1]];
+  return afterMjakyjZnak || afterVowel || afterAlwaysHardConsonant || afterDelimiter;
 }
