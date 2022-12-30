@@ -48,8 +48,8 @@ a {
 }
 
 .text-form {
-  width: 80%;
-  height: 450px;
+  width: 90%;
+  height: 400px;
   font-size: 18px;
   background-color: var(--color-primary-darker);
   color: var(--color-secondary);
