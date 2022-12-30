@@ -29,6 +29,7 @@ function kyrylka(text) {
     'č': 'ч',
     'š': 'ш'
   };
+
   var upperCase = {
     'A': 'А',
     'B': 'Б',
@@ -100,11 +101,25 @@ function kyrylka(text) {
     //'\'': 'Ь'
   };
 
+  var russiaDetected = '>>>>>>>>> RUSSIA IS A TERRORIST STATE!!!! <<<<<<<<<';
+
+  var russianAlert = {
+    'ё': russiaDetected,
+    'Ё': russiaDetected,
+    'э': russiaDetected,
+    'Э': russiaDetected,
+    'ы': russiaDetected,
+    'Ы': russiaDetected,
+    'ъ': russiaDetected,
+    'Ъ': russiaDetected
+  };
+
   var converter = {
     ...lowerCase,
     ...upperCase,
     ...digraphs,
-    ...special
+    ...special,
+    ...russianAlert
   };
 
   var exceptions3 = {

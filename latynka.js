@@ -1,4 +1,4 @@
-function latynka(word) {
+function latynka(text) {
   var answer = '';
   var lowerCase = {
     'а': 'a',
@@ -93,47 +93,64 @@ function latynka(word) {
     '\'': '’'
   };
 
+  var russiaDetected = '>>>>>>>>> RUSSIA IS A TERRORIST STATE!!! <<<<<<<<<';
+
+  var russianAlert = {
+    'ё': russiaDetected,
+    'Ё': russiaDetected,
+    'э': russiaDetected,
+    'Э': russiaDetected,
+    'ы': russiaDetected,
+    'Ы': russiaDetected,
+    'ъ': russiaDetected,
+    'Ъ': russiaDetected
+  };
+
   var converter = {
     ...lowerCase,
     ...upperCase,
     ...digraphs,
     ...reverseDigraphs,
-    ...special
+    ...special,
+    ...russianAlert
   };
 
-  function isUpperCaseReverseDigraph(word, i) {
-    var previousIsUpperCase = i - 1 >= 0 && upperCase[word[i - 1]];
-    var nextIsUpperCase = i + 1 < word.length && upperCase[word[i + 1]];
+  function isUpperCaseReverseDigraph(text, i) {
+    var previousIsUpperCase = i - 1 >= 0 && upperCase[text[i - 1]];
+    var nextIsUpperCase = i + 1 < text.length && upperCase[text[i + 1]];
     var isAcronym = previousIsUpperCase || nextIsUpperCase;
-    return upperCaseReverseDigraphs[word[i]] && isAcronym;
+    return upperCaseReverseDigraphs[text[i]] && isAcronym;
+  }
+
+  //todo add case insensitive match
+  function matchSubstring(i, size, dict) {
+    return i + size - 1 < text.length && dict[text.substring(i, i + size)];
   }
 
   var i = 0;
-  while (i < word.length) {
-    if (converter[word[i]]) {
+  while (i < text.length) {
+    if (converter[text[i]]) {
+
       //process digraphs
-      if (i + 1 < word.length) {
-        var digraph = word[i] + word[i + 1];
-        if (digraphs[digraph]) {
-          answer += digraphs[digraph];
-          i += 2;
-        }
+      if (matchSubstring(i, 2, digraphs)) {
+        answer += digraphs[text.substring(i, i + 2)];
+        i += 2;
       }
 
       //process uppercase reverse digraphs
-      if (i < word.length && isUpperCaseReverseDigraph(word, i)) {
-        answer += upperCaseReverseDigraphs[word[i]];
+      if (i < text.length && isUpperCaseReverseDigraph(text, i)) {
+        answer += upperCaseReverseDigraphs[text[i]];
         i++;
       }
 
       //process single letters
-      if (i < word.length && converter[word[i]]) {
-        answer += converter[word[i]];
+      if (i < text.length && converter[text[i]]) {
+        answer += converter[text[i]];
         i++;
       }
     } else {
       //skip convertation for unmapped characters
-      answer += word[i];
+      answer += text[i];
       i++;
     }
   }
