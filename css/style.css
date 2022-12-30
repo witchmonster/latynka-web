@@ -63,3 +63,7 @@ a {
 .hidden {
   display: none;
 }
+
+.transparent {
+  color: var(--color-primary);;
+}
