@@ -1,92 +1,94 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" />
+    <title>Кирилиця ➡ Latynka</title>
+    <link rel="icon" href="images/favicon.ico" />
 
-<head>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" />
-  <title>Кирилиця ➡ Latynka</title>
-  <link rel="icon" href="images/favicon.ico">
-</head>
+    <script src="latynka.js"></script>
+    <script src="test/js/test_text_cyrillic1.js"></script>
+  </head>
 
-<body>
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <div class="divTable">
-    <div class="divRow">
-      <div class="divCell">Змінити тему</div>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <label class="switch">
-          <input type="checkbox" id="theme">
-          <span class="slider round"></span>
-        </label>
+  <body>
+    <div class="divTable">
+      <div class="divRow">
+        <div class="divCell">Змінити тему</div>
       </div>
-      <script>
-        document.getElementById("theme").addEventListener("click", function () {
-          if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.body.classList.toggle("light-mode");
-          else document.body.classList.toggle("dark-mode");
-        });
-      </script>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <h1>Кирилиця ➡ Latynka</h1>
+      <div class="divRow">
+        <div class="divCell">
+          <label class="switch">
+            <input type="checkbox" id="theme" />
+            <span class="slider round"></span>
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <button type="button" id="cyrillic1" class="button--plump-purple button--plump-xs-purple">Заповнити тестовий
-          текст
-          кирилицею</button>
+      <div class="divRow">
+        <div class="divCell">
+          <h1>Кирилиця ➡ Latynka</h1>
+        </div>
       </div>
-    </div>
-    <div class="divRow">
-      <textarea id="input" class="text-form">Введіть текст кирилицею</textarea>
-      <script src="test/js/test_text_cyrillic1.js"></script>
-      <script>
-        $('#cyrillic1').click(function () {
-          $('#input').val(function (i, val) {
-            return test_text_cyrillic1();
-          });
-          return false;
-        });
-      </script>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <button type="button" id="submit" class="button--plump-purple button--plump-m-purple">Перекласти</button>
+      <div class="divRow">
+        <div class="divCell">
+          <button
+            type="button"
+            id="cyrillic1"
+            class="button--plump-purple button--plump-xs-purple"
+          >
+            Заповнити тестовий текст кирилицею
+          </button>
+        </div>
       </div>
-      <script src="latynka.js"></script>
-      <script>
-        $('#submit').click(function () {
-          var text = $('#input').val();
-          $('#output').val(function (i, val) {
-            return latynka(text);
-          });
-          $('#arrow').removeClass('hidden');
-          $('#output').removeClass('hidden');
-          return false;
-        });
-      </script>
-    </div>
-    <div class="divRow">
-      <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">
-        🡃
+      <div class="divRow">
+        <textarea id="input" class="text-form">Введіть текст кирилицею</textarea>
       </div>
+      <div class="divRow">
+        <div class="divCell">
+          <button
+            type="button"
+            id="submit"
+            class="button--plump-purple button--plump-m-purple"
+          >
+            Перекласти
+          </button>
+        </div>
+      </div>
+      <div class="divRow">
+        <div id="arrow" class="hidden" style="height: 40px; font-size: 30px">
+          🡃
+        </div>
+      </div>
+      <div class="divRow">
+        <textarea id="output" class="text-form hidden" readonly></textarea>
+      </div>
+      <div style="height: 100px"></div>
+      <div class="divRow">
+        <a href="reverse.html">Latynka ➡ Кирилиця (EXPERIMENTAL)</a>
+      </div>
+      <div style="height: 50px"></div>
     </div>
-    <div class="divRow">
-      <textarea id="output" class="text-form hidden" readonly></textarea>
-    </div>
-    <div style="height: 100px;">
-    </div>
-    <div class="divRow">
-      <a href="reverse.html">Latynka ➡ Кирилиця (EXPERIMENTAL)</a>
-    </div>
-    <div style="height: 50px;">
-    </div>
-  </div>
-</body>
-
+    <script defer>
+      window.onload = () => {
+        document.getElementById('cyrillic1').addEventListener('click', () => {
+          document.getElementById('input').value = test_text_cyrillic1()
+        })
+        document.getElementById('submit').addEventListener('click', () => {
+          document.getElementById('output').value = latynka(
+            document.getElementById('input').value.length > 0
+              ? document.getElementById('input').value
+              : ''
+          )
+          document.getElementById('arrow').classList.remove('hidden')
+          document.getElementById('output').classList.remove('hidden')
+        })
+        document.getElementById('theme').addEventListener('click', () => {
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? document.body.classList.toggle('light-mode')
+            : document.body.classList.toggle('dark-mode')
+        })
+      }
+    </script>
+  </body>
 </html>
