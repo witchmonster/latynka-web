@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "PragmataPro";
+    src: url(fonts/pragmataPro.woff2) format("woff2");
+    /* I do own a web-site licence for this font. Big thanks for amazing work of Fabrizio Schiavi on this wonderful font.
+    Check it out: https://fsd.it/shop/fonts/pragmatapro/ */
+}
+
+@font-face {
+    font-family: "Nure";
+    src: url(fonts/nure.woff2) format("woff2");
+    /* I do own a web-site licence for this font. Big thanks for amazing work of Fabrizio Schiavi on this wonderful font.
+    Check it out: https://fsd.it/shop/fonts/nure/ */
+}
