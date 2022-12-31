@@ -66,6 +66,22 @@ a {
   border: 0 solid #00000000;
   border-radius: 50px;
   font-family: PragmataPro, Helvetica, fallback-font;
+  /* text formatting options (from textarea) */
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  column-count: initial !important;
 }
 
 .hidden {
