@@ -294,3 +294,5 @@ function shouldBeJo(text, i) {
   var afterAlwaysHardConsonant = i - 1 >= 0 && isAlwaysHardConsonant[text[i - 1]];
   return afterMjakyjZnak || afterVowel || afterAlwaysHardConsonant || afterDelimiter;
 }
+
+export { kyrylka }

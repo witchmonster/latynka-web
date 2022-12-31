@@ -5,34 +5,48 @@
   Check it out: https://fsd.it/shop/fonts/pragmatapro/ */
 }
 
-.button--plump-purple {
-    border-width: 0;
-    color: #fff;
-    text-align: center;
-    text-transform: uppercase;
-    background-color: #583bb6;
-    border-color: #583bb6;
-    border: 0 solid rgba(0, 0, 0, 0);
-    border-radius: 50px;
-    font-family: PragmataPro, Roboto, Helvetica, fallback-font;
-  }
-  .button--plump-m-purple {
-    font-size: 16px;
-    letter-spacing: .188em;
-    padding: 10px 24px;
-  }
-  
-  .button--plump-xs-purple {
-    font-size: 14px;
-    padding: 5px 12px;
-  }
-  
-  .button--plump-purple:hover {
-    background-color: #311c75;
-    transition: 0.1s;
-  }
-  
-  .button--plump-purple:active {
-    background-color: #000000;
-  }
-  
+.button--plump {
+  border-width: 0;
+  text-align: center;
+  text-transform: uppercase;
+  border: 0 solid #00000000;
+  border-radius: 50px;
+  font-family: PragmataPro, Roboto, Helvetica, fallback-font;
+}
+
+.button--purple {
+  color: #fff;
+  background-color: #583bb6;
+  border-color: #583bb6;
+}
+
+.button--gray {
+  color: #fff;
+  background-color: #787581;
+  border-color: #787581;
+}
+
+.button--s {
+  font-size: 16px;
+  letter-spacing: .188em;
+  padding: 10px 24px;
+}
+
+.button--xs {
+  font-size: 14px;
+  padding: 5px 12px;
+}
+
+.button--purple:hover {
+  background-color: #311c75;
+  transition: 0.1s;
+}
+
+.button--gray:hover {
+  background-color: #444349;
+  transition: 0.1s;
+}
+
+.button--plump:active {
+  background-color: #000000;
+}
