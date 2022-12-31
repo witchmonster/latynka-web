@@ -54,6 +54,7 @@ a {
 .text-form {
   width: 80%;
   height: 300px;
+  display: inline-block;
   font-size: 18px;
   background-color: var(--color-primary-darker);
   color: var(--color-secondary);

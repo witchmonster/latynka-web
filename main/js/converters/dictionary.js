@@ -1,6 +1,34 @@
 var russiaDetected = '>>>>>>>>> RUSSIA IS A TERRORIST STATE!!! <<<<<<<<<';
 
 //cyrillic to latin
+
+var digraphs = {
+    //ё
+    'йо': 'jo',
+    'ьо': 'jo'
+};
+
+var translatesToDigraph = {
+    'є': 'je',
+    'ї': 'ji',
+    'щ': 'šč',
+    'ю': 'ju',
+    'я': 'ja',
+    'Є': 'Je',
+    'Ї': 'Ji',
+    'Щ': 'Šč',
+    'Ю': 'Ju',
+    'Я': 'Ja'
+};
+
+var translatesToUpperCaseDigraph = {
+    'Є': 'JE',
+    'Ї': 'JI',
+    'Щ': 'ŠČ',
+    'Ю': 'JU',
+    'Я': 'JA'
+};
+
 var lowerCase = {
     'а': 'a',
     'б': 'b',
@@ -28,7 +56,12 @@ var lowerCase = {
     'х': 'h',
     'ц': 'c',
     'ч': 'č',
-    'ш': 'š'
+    'ш': 'š',
+    'є': 'je',
+    'ї': 'ji',
+    'щ': 'šč',
+    'ю': 'ju',
+    'я': 'ja',
 };
 
 var upperCase = {
@@ -59,33 +92,11 @@ var upperCase = {
     'Ц': 'C',
     'Ч': 'Č',
     'Ш': 'Š',
-};
-
-var digraphs = {
-    //ё
-    'йо': 'jo',
-    'ьо': 'jo'
-};
-
-var reverseDigraphs = {
-    'є': 'je',
-    'ї': 'ji',
-    'щ': 'šč',
-    'ю': 'ju',
-    'я': 'ja',
     'Є': 'Je',
     'Ї': 'Ji',
     'Щ': 'Šč',
     'Ю': 'Ju',
     'Я': 'Ja'
-};
-
-var upperCaseReverseDigraphs = {
-    'Є': 'JE',
-    'Ї': 'JI',
-    'Щ': 'ŠČ',
-    'Ю': 'JU',
-    'Я': 'JA'
 };
 
 var special = {
@@ -108,8 +119,7 @@ var russianAlert = {
 var singleLetters = {
     ...lowerCase,
     ...upperCase,
-    ...reverseDigraphs,
-    ...upperCaseReverseDigraphs,
+    ...translatesToDigraph,
     ...special,
     ...russianAlert
 }
@@ -121,8 +131,8 @@ var cyrToLat = {
     //by type
     lowerCase,
     upperCase,
-    reverseDigraphs,
-    upperCaseReverseDigraphs,
+    translatesToDigraph,
+    translatesToUpperCaseDigraph,
     special,
     //detect russian letters
     russianAlert,

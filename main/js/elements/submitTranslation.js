@@ -5,7 +5,7 @@ function addSumbitTranslationEventOnClick(button, input, output, translator, unh
                 ? document.getElementById('input').value
                 : ''
         );
-        document.getElementById('output').value = translatedText;
+        document.getElementById('output').textContent = translatedText;
         if (translatedText) {
             unhideElements.forEach(element => {
                 document.getElementById(element).classList.remove('hidden')

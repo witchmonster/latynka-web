@@ -9,7 +9,7 @@ function latynka(text) {
     var previousIsUpperCase = i - 1 >= 0 && dict.upperCase[text[i - 1]];
     var nextIsUpperCase = i + 1 < text.length && dict.upperCase[text[i + 1]];
     var isAcronym = previousIsUpperCase || nextIsUpperCase;
-    return dict.upperCaseReverseDigraphs[text[i]] && isAcronym;
+    return isAcronym && dict.translatesToDigraph[text[i]];
   }
 
   //todo add case insensitive match
@@ -28,13 +28,13 @@ function latynka(text) {
       }
 
       //process uppercase reverse digraphs
-      if (i < text.length && isUpperCaseReverseDigraph(text, i)) {
-        answer += dict.upperCaseReverseDigraphs[text[i]];
+      if (isUpperCaseReverseDigraph(text, i)) {
+        answer += dict.translatesToUpperCaseDigraph[text[i]];
         i++;
       }
 
       //process single letters
-      if (i < text.length && dict.singleLetters[text[i]]) {
+      if (matchSubstring(i, 1, dict.singleLetters)) {
         answer += dict.singleLetters[text[i]];
         i++;
       }
