@@ -6,15 +6,32 @@
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" />
-    <title>Latynka ➡ Кирилиця (EXPERIMENTAL)</title>
-    <link rel="icon" href="images/favicon.ico">
+    <title>Кирилиця ➡ Latynka</title>
+    <link rel="icon" href="./images/favicon.ico">
+    <script>
+        //translator type
+        const translator = 'latToCyr';
+
+        //UI text elements
+        const initialInputText = 'Vvedit\' tekst latynkoju';
+        const resetText = '';
+
+        //elements
+        const test1Name = 'latin1';
+        const toggleElements = ['output', 'arrow'];
+        const input = 'input';
+        const output = 'output';
+        const submitTranslationButton = 'submit';
+        const resetButton = 'reset';
+        const testText1Button = 'submitTestText1';
+    </script>
+    <script type="module" src="./main/js/index.js"></script>
 </head>
 
 <body>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <div class="divTable">
         <div class="divRow">
-            <div class="divCell">Zminyty temu</div>
+            <div id="changeTheme" class="divCell">Змінити тему</div>
         </div>
         <div class="divRow">
             <div class="divCell">
@@ -23,12 +40,6 @@
                     <span class="slider round"></span>
                 </label>
             </div>
-            <script>
-                document.getElementById("theme").addEventListener("click", function () {
-                    if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.body.classList.toggle("light-mode");
-                    else document.body.classList.toggle("dark-mode");
-                });
-            </script>
         </div>
         <div class="divRow">
             <div class="divCell">
@@ -37,39 +48,23 @@
         </div>
         <div class="divRow">
             <div class="divCell">
-                <button type="button" id="latyn1" class="button--plump-purple button--plump-xs-purple">Zapovnyty
-                    testovyj tekst latynkoju</button>
+                <button type="button" id="submitTestText1"
+                    class="button--plump button--gray button--xs devMode hidden">Заповнити
+                    тестовий
+                    текст</button>
+            </div>
+            <div class="divCell">
+                <button type="button" id="reset" class="button--plump button--gray button--xs">Очистити
+                    поле</button>
             </div>
         </div>
         <div class="divRow">
-            <textarea id="input" class="text-form">Vvedit' tekst latynkoju</textarea>
-            <script src="test/js/test_text_latyn1.js"></script>
-            <script>
-                $('#latyn1').click(function () {
-                    $('#input').val(function (i, val) {
-                        return test_text_latyn1();
-                    });
-                    return false;
-                });
-            </script>
+            <textarea id="input" class="text-form"></textarea>
         </div>
         <div class="divRow">
             <div class="divCell">
-                <button type="button" id="submit"
-                    class="button--plump-purple button--plump-m-purple">Pereklasty</button>
+                <button type="button" id="submit" class="button--plump button--purple button--s">Перекласти</button>
             </div>
-            <script src="reverseLatynka.js"></script>
-            <script>
-                $('#submit').click(function () {
-                    var text = $('#input').val();
-                    $('#output').val(function (i, val) {
-                        return kyrylka(text);
-                    });
-                    $('#arrow').removeClass('hidden');
-                    $('#output').removeClass('hidden');
-                    return false;
-                });
-            </script>
         </div>
         <div class="divRow">
             <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">

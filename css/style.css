@@ -29,9 +29,10 @@ a {
 .divTable {
   width: auto;
   border-spacing: 5px;
-  padding-top: 20px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
   text-align: center;
 }
 
@@ -41,21 +42,27 @@ a {
 }
 
 .divCell {
-  padding: 10px 12px;
   font-size: 18px;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
   text-align: center;
   vertical-align: center;
 }
 
 .text-form {
-  width: 90%;
-  height: 400px;
+  width: 80%;
+  height: 300px;
   font-size: 18px;
   background-color: var(--color-primary-darker);
   color: var(--color-secondary);
   resize: none;
-  padding: 20px 24px;
-  border: 0 solid rgba(0, 0, 0, 0);
+  padding-top: 30px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 30px;
+  border: 0 solid #00000000;
   border-radius: 50px;
   font-family: PragmataPro, Helvetica, fallback-font;
 }
@@ -65,5 +72,6 @@ a {
 }
 
 .transparent {
-  color: var(--color-primary);;
+  color: var(--color-primary);
+  ;
 }

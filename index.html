@@ -7,15 +7,31 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" />
   <title>Кирилиця ➡ Latynka</title>
-  <link rel="icon" href="images/favicon.ico">
-  <script src="latynka.js"></script>
-  <script src="test/js/test_text_cyrillic1.js"></script>
+  <link rel="icon" href="./images/favicon.ico">
+  <script>
+    //translator type
+    const translator = 'cyrToLat';
+
+    //UI text elements
+    const initialInputText = 'Введіть текст кирилицею';
+    const resetText = '';
+
+    //elements
+    const test1Name = 'cyrillic1';
+    const toggleElements = ['output', 'arrow'];
+    const input = 'input';
+    const output = 'output';
+    const submitTranslationButton = 'submit';
+    const resetButton = 'reset';
+    const testText1Button = 'submitTestText1';
+  </script>
+  <script type="module" src="./main/js/index.js"></script>
 </head>
 
 <body>
   <div class="divTable">
     <div class="divRow">
-      <div class="divCell">Змінити тему</div>
+      <div id="changeTheme" class="divCell">Змінити тему</div>
     </div>
     <div class="divRow">
       <div class="divCell">
@@ -32,17 +48,22 @@
     </div>
     <div class="divRow">
       <div class="divCell">
-        <button type="button" id="cyrillic1" class="button--plump-purple button--plump-xs-purple">Заповнити тестовий
-          текст
-          кирилицею</button>
+        <button type="button" id="submitTestText1"
+          class="button--plump button--gray button--xs devMode hidden">Заповнити
+          тестовий
+          текст</button>
+      </div>
+      <div class="divCell">
+        <button type="button" id="reset" class="button--plump button--gray button--xs">Очистити
+          поле</button>
       </div>
     </div>
     <div class="divRow">
-      <textarea id="input" class="text-form">Введіть текст кирилицею</textarea>
+      <textarea id="input" class="text-form"></textarea>
     </div>
     <div class="divRow">
       <div class="divCell">
-        <button type="button" id="submit" class="button--plump-purple button--plump-m-purple">Перекласти</button>
+        <button type="button" id="submit" class="button--plump button--purple button--s">Перекласти</button>
       </div>
     </div>
     <div class="divRow">
@@ -61,27 +82,6 @@
     <div style="height: 50px;">
     </div>
   </div>
-  <script defer>
-    window.onload = () => {
-      document.getElementById('cyrillic1').addEventListener('click', () => {
-        document.getElementById('input').value = test_text_cyrillic1()
-      })
-      document.getElementById('submit').addEventListener('click', () => {
-        document.getElementById('output').value = latynka(
-          document.getElementById('input').value.length > 0
-            ? document.getElementById('input').value
-            : ''
-        )
-        document.getElementById('arrow').classList.remove('hidden')
-        document.getElementById('output').classList.remove('hidden')
-      })
-      document.getElementById('theme').addEventListener('click', () => {
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? document.body.classList.toggle('light-mode')
-          : document.body.classList.toggle('dark-mode')
-      })
-    }
-  </script>
 </body>
 
 </html>
