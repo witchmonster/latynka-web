@@ -5,6 +5,7 @@
     Check it out: https://fsd.it/shop/fonts/pragmatapro/ */
 }
 
+/* This font does not have є, ґ letters, do not use in cyrillic elements until fixed */
 @font-face {
     font-family: "Nure";
     src: url(fonts/nure.woff2) format("woff2");
