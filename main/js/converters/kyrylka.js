@@ -80,7 +80,7 @@ function kyrylka(text) {
     '’ja': '’я',
     '’JA': '’я',
     '’Ja': '’Я',
-    '’ja': '’Я',
+    '’jA': '’Я',
     '’ji': '’ї',
     '’JI': '’ї',
     '’Ji': '’Ї',
@@ -93,10 +93,14 @@ function kyrylka(text) {
     '’JU': '’ю',
     '’Ju': '’Ю',
     '’jU': '’Ю',
+    '’jo': 'йо',
+    '’JO': 'ЙО',
+    '’Jo': 'ЙО',
+    '’jO': 'ЙО',
     '\'ja': '’я',
     '\'JA': '’я',
     '\'Ja': '’Я',
-    '\'ja': '’Я',
+    '\'jA': '’Я',
     '\'ji': '’ї',
     '\'JI': '’ї',
     '\'Ji': '’Ї',
@@ -109,6 +113,10 @@ function kyrylka(text) {
     '\'JU': '’ю',
     '\'Ju': '’Ю',
     '\'jU': '’Ю',
+    '\'jo': 'йо',
+    '\'JO': 'ЙО',
+    '\'Jo': 'ЙО',
+    '\'jO': 'ЙО',
   }
 
   var digraphs = {
@@ -182,7 +190,8 @@ function kyrylka(text) {
 
   var exceptions7 = {
     'atel\'je': 'ательє',
-    'N\'juton': 'Ньютон'
+    'N\'juton': 'Ньютон',
+    'mil\'jon': 'мільйон',
   };
 
   var exceptions8 = {

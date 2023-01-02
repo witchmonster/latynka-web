@@ -8,6 +8,11 @@ var digraphs = {
     'ьо': 'jo'
 };
 
+var joDigraph = {
+    //ё
+    'йо': 'jo'
+};
+
 var translatesToDigraph = {
     'є': 'je',
     'ї': 'ji',
@@ -131,6 +136,7 @@ var cyrToLat = {
     //by type
     lowerCase,
     upperCase,
+    joDigraph,
     translatesToDigraph,
     translatesToUpperCaseDigraph,
     special,
