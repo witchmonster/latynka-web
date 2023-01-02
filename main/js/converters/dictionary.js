@@ -5,12 +5,20 @@ var russiaDetected = '>>>>>>>>> RUSSIA IS A TERRORIST STATE!!! <<<<<<<<<';
 var digraphs = {
     //ё
     'йо': 'jo',
-    'ьо': 'jo'
+    'ЙО': 'JO',
+    'йО': 'jO',
+    'Йо': 'Jo',
+    'ьо': 'jo',
+    'ЬО': 'JO',
+    'ьО': 'jO',
+    'Ьо': 'Jo'
 };
 
 var joDigraph = {
-    //ё
-    'йо': 'jo'
+    'йо': 'jo',
+    'ЙО': 'JO',
+    'йО': 'jO',
+    'Йо': 'Jo'
 };
 
 var translatesToDigraph = {
