@@ -91,7 +91,7 @@ function suite(desc, tests) {
         it(`<b>NABIR TESTIV '${desc}'</b>`, () => {
             assert(status, `Nabir '${desc}' provalyv perevirku. Vypravte vsi pomylky vkazani vyšče i perezapustit'.`);
         })
-        testLog('');
+        testLog('\r\n');
     }
 
     return { status, outPutLog };
