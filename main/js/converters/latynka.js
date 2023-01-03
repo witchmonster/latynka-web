@@ -26,7 +26,7 @@ function latynka(text) {
 
   function shouldAddApostrophe(text, i) {
 
-    var firstLetterInText = i = 0;
+    var firstLetterInText = i == 0;
     var afterConsonant = i - 1 >= 0 && dict.consonants[text[i - 1]]
 
     // due to specifics of cyrrilic scrypt where йо/ьо is a digraph, 
