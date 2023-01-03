@@ -1,12 +1,11 @@
-import { dictionary } from './dictionary.js';
-import { exceptions } from './exceptions.js';
+import { dictionary } from './dictionary/dictionary.js';
+import { exceptions } from './dictionary/exceptions.js';
 
 var dict = dictionary.cyrToLat;
 var exception = exceptions.cyrToLat;
 
-function latynka(text) {
+function cyrToLat(text) {
   var answer = '';
-
 
   //todo add case insensitive match
   function matchSubstring(i, size, dict) {
@@ -82,4 +81,4 @@ function latynka(text) {
   return answer;
 }
 
-export { latynka }
+export { cyrToLat }

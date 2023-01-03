@@ -8,32 +8,25 @@
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" />
-    <title>Кирилиця ➡ Latynka</title>
+    <title>Автоматизована перевірка роботи</title>
     <link rel="icon" href="./images/favicon.ico">
     <script>
-        //translator type
-        const translator = 'latToCyr';
-
         //UI text elements
-        const initialInputText = 'Vvedit\' tekst latynkoju';
-        const resetText = '';
+        const successOutput = 'Testy projdeno ☑';
+        const failOutput = 'Testy ne projdeno ⛔';
 
-        //elements
-        const test1Name = 'latin1';
-        const toggleElements = ['output', 'arrow'];
-        const input = 'input';
+        const statusElement = 'status'
         const output = 'output';
         const submitButton = 'submit';
-        const resetButton = 'reset';
-        const testText1Button = 'submitTestText1';
+        const toggleElements = ['status', 'output', 'arrow'];
     </script>
-    <script type="module" src="./main/js/addJsElements.js"></script>
+    <script type="module" src="test/js/addJsElements.js"></script>
 </head>
 
 <body>
     <div class="divTable">
         <div class="divRow">
-            <div id="changeTheme" class="divCell">Змінити тему</div>
+            <div id="changeTheme" class="divCell">Zminyty temu</div>
         </div>
         <div class="divRow">
             <div class="divCell">
@@ -45,27 +38,12 @@
         </div>
         <div class="divRow">
             <div class="divCell">
-                <h1>Latynka ➡ Кирилиця (EXPERIMENTAL)</h1>
+                <h1>Perevirka roboty</h1>
             </div>
         </div>
         <div class="divRow">
             <div class="divCell">
-                <button type="button" id="submitTestText1"
-                    class="button--plump button--gray button--xs devMode hidden">Заповнити
-                    тестовий
-                    текст</button>
-            </div>
-            <div class="divCell">
-                <button type="button" id="reset" class="button--plump button--gray button--xs">Очистити
-                    поле</button>
-            </div>
-        </div>
-        <div class="divRow">
-            <textarea id="input" class="text-form"></textarea>
-        </div>
-        <div class="divRow">
-            <div class="divCell">
-                <button type="button" id="submit" class="button--plump button--purple button--s">Замінити</button>
+                <button type="button" id="submit" class="button--plump button--purple button--s">Pereviryty</button>
             </div>
         </div>
         <div class="divRow">
@@ -76,10 +54,13 @@
         <div class="divRow">
             <div id="output" class="text-form hidden" style="cursor: default; height: auto;" readonly></div>
         </div>
+        <div class="divRow">
+            <h1 id="status" class="hidden"></h1>
+        </div>
         <div style="height: 100px;">
         </div>
         <div class="divRow">
-            <a href="index.html">Кирилиця ➡ Latynka</a>
+            <a href="reverse.html" class="transparent">Latynka ➡ Кирилиця (EXPERIMENTAL)</a>
         </div>
         <div style="height: 50px;">
         </div>

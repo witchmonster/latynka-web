@@ -2,86 +2,88 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" />
-  <title>Кирилиця ➡ Latynka</title>
-  <link rel="icon" href="./images/favicon.ico">
-  <script>
-    //translator type
-    const translator = 'cyrToLat';
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" />
+    <title>Кирилиця ➡ Latynka</title>
+    <link rel="icon" href="./images/favicon.ico">
+    <script>
+        //translator type
+        const translator = 'cyrToLat';
 
-    //UI text elements
-    const initialInputText = 'Введіть текст кирилицею';
-    const resetText = '';
+        //UI text elements
+        const initialInputText = 'Введіть текст кирилицею';
+        const resetText = '';
 
-    //elements
-    const test1Name = 'cyrillic1';
-    const toggleElements = ['output', 'arrow'];
-    const input = 'input';
-    const output = 'output';
-    const submitTranslationButton = 'submit';
-    const resetButton = 'reset';
-    const testText1Button = 'submitTestText1';
-  </script>
-  <script type="module" src="./main/js/index.js"></script>
+        //elements
+        const test1Name = 'cyrillic1';
+        const toggleElements = ['output', 'arrow'];
+        const input = 'input';
+        const output = 'output';
+        const submitButton = 'submit';
+        const resetButton = 'reset';
+        const testText1Button = 'submitTestText1';
+    </script>
+    <script type="module" src="./main/js/addJsElements.js"></script>
 </head>
 
 <body>
-  <div class="divTable">
-    <div class="divRow">
-      <div id="changeTheme" class="divCell">Змінити тему</div>
+    <div class="divTable">
+        <div class="divRow">
+            <div id="changeTheme" class="divCell">Змінити тему</div>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <label class="switch">
+                    <input type="checkbox" id="theme">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <h1>Кирилиця ➡ Latynka</h1>
+            </div>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <button type="button" id="submitTestText1"
+                    class="button--plump button--gray button--xs devMode hidden">Заповнити
+                    тестовий
+                    текст</button>
+            </div>
+            <div class="divCell">
+                <button type="button" id="reset" class="button--plump button--gray button--xs">Очистити
+                    поле</button>
+            </div>
+        </div>
+        <div class="divRow">
+            <textarea id="input" class="text-form"></textarea>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <button type="button" id="submit" class="button--plump button--purple button--s">Замінити</button>
+            </div>
+        </div>
+        <div class="divRow">
+            <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">
+                🡃
+            </div>
+        </div>
+        <div class="divRow">
+            <div id="output" class="text-form hidden" style="cursor: default; height: auto;" readonly></div>
+        </div>
+        <div style="height: 100px;">
+        </div>
+        <div class="divRow">
+            <a href="reverse.html" class="transparent">Latynka ➡ Кирилиця (EXPERIMENTAL)</a>
+        </div>
+        <div style="height: 50px;">
+        </div>
     </div>
-    <div class="divRow">
-      <div class="divCell">
-        <label class="switch">
-          <input type="checkbox" id="theme">
-          <span class="slider round"></span>
-        </label>
-      </div>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <h1>Кирилиця ➡ Latynka</h1>
-      </div>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <button type="button" id="submitTestText1"
-          class="button--plump button--gray button--xs devMode hidden">Заповнити
-          тестовий
-          текст</button>
-      </div>
-      <div class="divCell">
-        <button type="button" id="reset" class="button--plump button--gray button--xs">Очистити
-          поле</button>
-      </div>
-    </div>
-    <div class="divRow">
-      <textarea id="input" class="text-form"></textarea>
-    </div>
-    <div class="divRow">
-      <div class="divCell">
-        <button type="button" id="submit" class="button--plump button--purple button--s">Замінити</button>
-      </div>
-    </div>
-    <div class="divRow">
-      <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">
-        🡃
-      </div>
-    </div>
-    <div class="divRow">
-      <div id="output" class="text-form hidden" style="cursor: default;" readonly></div>
-    </div>
-    <div style="height: 100px;">
-    </div>
-    <div class="divRow">
-      <a href="reverse.html" class="transparent">Latynka ➡ Кирилиця (EXPERIMENTAL)</a>
-    </div>
-    <div style="height: 50px;">
-    </div>
-  </div>
 </body>
 
 </html>

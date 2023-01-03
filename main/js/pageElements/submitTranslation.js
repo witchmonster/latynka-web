@@ -1,11 +1,11 @@
 function addSumbitTranslationEventOnClick(button, input, output, translator, unhideElements) {
-    document.getElementById('submit').addEventListener('click', () => {
+    document.getElementById(button).addEventListener('click', () => {
         var translatedText = translator(
-            document.getElementById('input').value.length > 0
-                ? document.getElementById('input').value
+            document.getElementById(input).value.length > 0
+                ? document.getElementById(input).value
                 : ''
         );
-        document.getElementById('output').textContent = translatedText;
+        document.getElementById(output).textContent = translatedText;
         if (translatedText) {
             unhideElements.forEach(element => {
                 document.getElementById(element).classList.remove('hidden')
@@ -15,4 +15,3 @@ function addSumbitTranslationEventOnClick(button, input, output, translator, unh
 }
 
 export { addSumbitTranslationEventOnClick };
-

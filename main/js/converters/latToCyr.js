@@ -1,4 +1,4 @@
-function kyrylka(text) {
+function latToCyr(text) {
   var answer = '';
   var lowerCase = {
     'a': 'а',
@@ -175,6 +175,8 @@ function kyrylka(text) {
   };
 
   var exceptions4 = {
+    //todo fix ''
+    '’jo’': '\'йо\''
   };
 
   var exceptions5 = {
@@ -192,6 +194,9 @@ function kyrylka(text) {
     'atel\'je': 'ательє',
     'N\'juton': 'Ньютон',
     'mil\'jon': 'мільйон',
+    'MIL\'JON': 'МІЛЬЙОН',
+    //todo fix rule 'jo
+    'kan\'jon': 'каньйон'
   };
 
   var exceptions8 = {
@@ -203,7 +208,9 @@ function kyrylka(text) {
   var exceptions9 = {
     'barel\'jef': 'барельєф',
     'vin\'jetka': 'віньєтка',
-    'N\'ju-Jork': 'Нью-Йорк'
+    'N\'ju-Jork': 'Нью-Йорк',
+    //todo fix rule 'jo
+    'batal\'jon': 'батальйон'
   };
 
   var exceptions10 = {
@@ -293,14 +300,20 @@ function kyrylka(text) {
 
 function shouldBeJo(text, i) {
   var isMjakyjZnak = {
-    '\'': true
+    '\'': true,
+    '’': true
   };
   var isVowel = {
     'a': true,
     'e': true,
     'i': true,
     'o': true,
-    'u': true
+    'u': true,
+    'A': true,
+    'E': true,
+    'I': true,
+    'O': true,
+    'U': true
   };
   var isAlwaysHardConsonant = {
     'b': true,
@@ -319,6 +332,8 @@ function shouldBeJo(text, i) {
     ',': true,
     ';': true,
     '/': true,
+    '\'': true,
+    '\"': true,
     '\\': true,
     '(': true,
     ')': true,
@@ -337,7 +352,7 @@ function shouldBeJo(text, i) {
     '`': true,
   };
 
-  var firstLetterInText = i = 0;
+  var firstLetterInText = i == 0;
   var afterMjakyjZnak = i - 1 >= 0 && isMjakyjZnak[text[i - 1]];
   var afterDelimiter = i - 1 >= 0 && isDelimiter[text[i - 1]];
   var afterVowel = i - 1 >= 0 && isVowel[text[i - 1]];
@@ -346,4 +361,4 @@ function shouldBeJo(text, i) {
   return firstLetterInText || afterMjakyjZnak || afterVowel || afterAlwaysHardConsonant || afterDelimiter;
 }
 
-export { kyrylka }
+export { latToCyr }
