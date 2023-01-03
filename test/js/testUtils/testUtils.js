@@ -1,4 +1,4 @@
-const logLevel = 'info';
+var logLevel = 'info';
 var success = '\u2714 ';
 var fail = '\u2718 ';
 
@@ -9,6 +9,13 @@ const logLevels = {
 }
 
 var outPutLog = '';
+
+function init(overrideLogLevel) {
+    outPutLog = '';
+    if (overrideLogLevel) {
+        logLevel = overrideLogLevel;
+    }
+}
 
 function testLog(text, status, color) {
     const fontColor = color ? color : status == success ? 'green' : status == fail ? 'red' : '#583bb6';
@@ -43,10 +50,6 @@ var log = {
     debug,
     info,
     error
-}
-
-function init() {
-    outPutLog = '';
 }
 
 function it(desc, fn) {

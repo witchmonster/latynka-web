@@ -4,8 +4,8 @@ import { assertExactTranslation, assertForAllRegisters } from "../testUtils/test
 import { init, it, suite } from "../testUtils/testUtils.js";
 import { testText } from "./testTexts.js";
 
-function runTests() {
-    init();
+function runTests(debug) {
+    init(debug ? 'debug' : undefined);
     return suite('', [
         () => suite(`Kyrylycja => Latynka`, [
             () => it(`"його" => "jogo" na počatku teksta, vsi registry`, function () {

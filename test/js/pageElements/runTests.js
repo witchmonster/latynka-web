@@ -1,8 +1,11 @@
 import { runTests } from "../testcases/testSuite.js";
 
 function addRunTestsOnClick(button, statusElement, output, successOutput, failOutput, unhideElements) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const debug = urlParams.get('debug') != null
     document.getElementById(button).addEventListener('click', () => {
-        var { outPutLog, status } = runTests();
+        var { outPutLog, status } = runTests(debug);
         document.getElementById(output).innerHTML = outPutLog;
         if (outPutLog) {
             document.getElementById(statusElement).textContent = status ? successOutput : failOutput

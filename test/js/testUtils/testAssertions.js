@@ -5,7 +5,7 @@ strUtils.addCustomCases();
 
 function assertExactTranslation(fn, input, expected) {
     const actual = fn(input);
-    log.debug(`${input} => ${actual}`);
+    log.debug(`\r\n[${input}]\r\n 🡃 \r\n[${actual}]`);
     assert(actual == expected, `Input '${input}' maje zaminjatysja na '${expected}', a ne '${actual}'`);
 }
 
