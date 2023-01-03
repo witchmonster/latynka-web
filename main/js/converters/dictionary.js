@@ -129,6 +129,77 @@ var russianAlert = {
     'Ъ': russiaDetected
 };
 
+var vowels = {
+    'а': 'a',
+    'е': 'e',
+    'и': 'y',
+    'і': 'i',
+    'о': 'o',
+    'у': 'u',
+    'є': 'je',
+    'ї': 'ji',
+    'ю': 'ju',
+    'я': 'ja',
+    'А': 'A',
+    'Е': 'E',
+    'И': 'Y',
+    'І': 'I',
+    'О': 'O',
+    'У': 'U',
+    'Є': 'Je',
+    'Ї': 'Ji',
+    'Ю': 'Ju',
+    'Я': 'Ja'
+}
+
+var consonants = {
+    'б': 'b',
+    'в': 'v',
+    'г': 'g',
+    'ґ': 'ĝ',
+    'д': 'd',
+    'ж': 'ž',
+    'з': 'z',
+    'й': 'j',
+    'к': 'k',
+    'л': 'l',
+    'м': 'm',
+    'н': 'n',
+    'п': 'p',
+    'р': 'r',
+    'с': 's',
+    'т': 't',
+    'ф': 'f',
+    'х': 'h',
+    'ц': 'c',
+    'ч': 'č',
+    'ш': 'š',
+    'щ': 'šč',
+    'Б': 'B',
+    'В': 'V',
+    'Г': 'G',
+    'Ґ': 'Ĝ',
+    'Д': 'D',
+    'Ж': 'Ž',
+    'З': 'Z',
+    'Й': 'J',
+    'К': 'K',
+    'Л': 'L',
+    'М': 'M',
+    'Н': 'N',
+    'П': 'P',
+    'Р': 'R',
+    'С': 'S',
+    'Т': 'T',
+    'Ф': 'F',
+    'Х': 'H',
+    'Ц': 'C',
+    'Ч': 'Č',
+    'Ш': 'Š',
+    'Щ': 'Šč'
+};
+
+
 var singleLetters = {
     ...lowerCase,
     ...upperCase,
@@ -148,6 +219,8 @@ var cyrToLat = {
     translatesToDigraph,
     translatesToUpperCaseDigraph,
     special,
+    vowels,
+    consonants,
     //detect russian letters
     russianAlert,
     //match all

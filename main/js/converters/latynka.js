@@ -24,61 +24,15 @@ function latynka(text) {
     return isAcronym && dict.translatesToUpperCaseDigraph[text[i]];
   }
 
-  function shouldAddApostrof(text, i) {
-    var isMjakyjZnak = {
-      'ь': true,
-      'Ь': true
-    };
-
-    var isVowel = {
-      'а': true,
-      'е': true,
-      'і': true,
-      'о': true,
-      'у': true,
-      'А': true,
-      'Е': true,
-      'І': true,
-      'О': true,
-      'У': true
-    };
-
-    //todo make 'not a letter' instead
-    var isDelimiter = {
-      ' ': true,
-      '\'': true,
-      '\"': true,
-      '.': true,
-      ',': true,
-      ';': true,
-      '/': true,
-      '\\': true,
-      '(': true,
-      ')': true,
-      '[': true,
-      ']': true,
-      '!': true,
-      '@': true,
-      '#': true,
-      '$': true,
-      '*': true,
-      '-': true,
-      '=': true,
-      '+': true,
-      '_': true,
-      '~': true,
-      '`': true,
-    };
+  function shouldAddApostrophe(text, i) {
 
     var firstLetterInText = i = 0;
-    var afterMjakyjZnak = i - 1 >= 0 && isMjakyjZnak[text[i - 1]];
-    var afterVowel = i - 1 >= 0 && isVowel[text[i - 1]];
-    var afterDelimiter = i - 1 >= 0 && isDelimiter[text[i - 1]];
+    var afterConsonant = i - 1 >= 0 && dict.consonants[text[i - 1]]
 
     // due to specifics of cyrrilic scrypt where йо/ьо is a digraph, 
     // that leaves no ambiguity about hardness/softness of the previous 
     // consonant, there are no exceptions to this rule
-    return !firstLetterInText && !afterMjakyjZnak && !afterVowel && !afterDelimiter;
+    return !firstLetterInText && afterConsonant;
   }
 
   var i = 0;
@@ -96,7 +50,7 @@ function latynka(text) {
       }
 
       //process joDigraph apostrophes
-      if (matchSubstring(i, 2, dict.joDigraph) && shouldAddApostrof(text, i)) {
+      if (matchSubstring(i, 2, dict.joDigraph) && shouldAddApostrophe(text, i)) {
         answer += '’';
         answer += dict.joDigraph[text.substring(i, i + 2)];
         i += 2;

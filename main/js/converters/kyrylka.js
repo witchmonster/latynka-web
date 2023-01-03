@@ -336,12 +336,14 @@ function shouldBeJo(text, i) {
     '~': true,
     '`': true,
   };
+
+  var firstLetterInText = i = 0;
   var afterMjakyjZnak = i - 1 >= 0 && isMjakyjZnak[text[i - 1]];
   var afterDelimiter = i - 1 >= 0 && isDelimiter[text[i - 1]];
   var afterVowel = i - 1 >= 0 && isVowel[text[i - 1]];
   //see exceptions
   var afterAlwaysHardConsonant = i - 1 >= 0 && isAlwaysHardConsonant[text[i - 1]];
-  return afterMjakyjZnak || afterVowel || afterAlwaysHardConsonant || afterDelimiter;
+  return firstLetterInText || afterMjakyjZnak || afterVowel || afterAlwaysHardConsonant || afterDelimiter;
 }
 
 export { kyrylka }
