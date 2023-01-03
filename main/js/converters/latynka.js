@@ -70,6 +70,7 @@ function latynka(text) {
       '`': true,
     };
 
+    var firstLetterInText = i = 0;
     var afterMjakyjZnak = i - 1 >= 0 && isMjakyjZnak[text[i - 1]];
     var afterVowel = i - 1 >= 0 && isVowel[text[i - 1]];
     var afterDelimiter = i - 1 >= 0 && isDelimiter[text[i - 1]];
@@ -77,7 +78,7 @@ function latynka(text) {
     // due to specifics of cyrrilic scrypt where йо/ьо is a digraph, 
     // that leaves no ambiguity about hardness/softness of the previous 
     // consonant, there are no exceptions to this rule
-    return !afterMjakyjZnak && !afterVowel && !afterDelimiter;
+    return !firstLetterInText && !afterMjakyjZnak && !afterVowel && !afterDelimiter;
   }
 
   var i = 0;
