@@ -1,4 +1,4 @@
-const matchAllUkrainianWords = /(([\wйцукенгґшщзхїфівапролджєячсмитьбю-]+\'?’?[\wйцукенгґшщзхїфівапролджєячсмитьбю’-]+)|([\wйцукенгґшщзхїфівапролджєячсмитьбю-]))/gi;
+const matchAllWords = /((')?)([0-9a-zа-яіїєґčšžĝ’'-]+)(\1)/gi
 
 function setCharToUpperCase(str, i) {
     return setCharAt(str, i, str.charAt(i).toUpperCase())
@@ -15,14 +15,14 @@ function setCharAt(str, i, char) {
 
 function addCustomCases() {
     String.prototype.toProperCase = function () {
-        return this.replace(matchAllUkrainianWords, function (word) {
+        return this.replace(matchAllWords, function (word) {
             return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
         })
     };
 
     // caseArray - array of booleans or binary string '100010'
     String.prototype.toCase = function (caseArray) {
-        return this.replace(matchAllUkrainianWords, function (word) {
+        return this.replace(matchAllWords, function (word) {
             if (!caseArray || caseArray.length != word.length) {
                 return word;
             }

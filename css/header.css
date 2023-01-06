@@ -1,0 +1,8 @@
+@import "css/elements/fonts.css";
+@import "css/elements/theme.css";
+@import "css/elements/slider.css";
+@import "css/elements/common.css";
+
+header-component {
+    min-height: 50px;
+}

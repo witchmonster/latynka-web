@@ -100,8 +100,19 @@ const upperCase = {
 
 const special = {
     'Ь': '\'',
-    'ь': '\'',
-    '\'': '’'
+    'ь': '\''
+};
+
+const apostrophes = {
+    '\'': '\'',
+    'ʼ': '\'',
+    '’': '\'',
+    '`': '\'',
+    '՚': '\'',
+    '＇': '\'',
+    '‘': '\'',
+    'ʹ': '\'',
+    'ꞌ': '\''
 };
 
 const russianAlert = {
@@ -119,6 +130,7 @@ const singleLetters = {
     ...lowerCase,
     ...upperCase,
     ...special,
+    ...apostrophes,
     ...russianAlert
 }
 
@@ -176,6 +188,7 @@ const cyrToLat = {
     upperCaseVowels,
     upperCaseConsonants,
     special,
+    apostrophes,
     joDigraph,
     translatesToDigraph,
     translatesToUpperCaseDigraph,

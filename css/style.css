@@ -1,89 +1,14 @@
-@import "theme.css";
-@import "slider.css";
-@import "buttons.css";
-@import "fonts.css";
+/* deprecated, moved to header */
+@import "elements/theme.css";
+/* deprecated, moved to header */
+@import "elements/slider.css";
 
-body {
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
-  font-family: PragmataPro, Roboto, Helvetica, fallback-font;
-}
 
-h1 {
-  letter-spacing: .108em;
-  border-radius: 50px;
-  padding: 10px 10px;
-  font-family: PragmataPro, Helvetica, fallback-font;
-}
+@import "elements/fonts.css";
+@import "elements/buttons.css";
+@import "elements/common.css";
 
-a {
-  color: var(--color-secondary);
-  font-family: PragmataPro;
-}
-
-.divTable {
-  width: auto;
-  border-spacing: 5px;
-  padding-top: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
-  text-align: center;
-}
-
-.divRow {
-  width: auto;
-  text-align: center;
-}
-
-.divCell {
-  font-size: 18px;
-  padding-top: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
-  text-align: center;
-  vertical-align: center;
-}
-
-.text-form {
-  width: 80%;
-  height: 300px;
-  display: inline-block;
-  font-size: 18px;
-  background-color: var(--color-primary-darker);
-  color: var(--color-secondary);
-  resize: none;
-  padding-top: 30px;
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-bottom: 30px;
-  border: 0 solid #00000000;
-  border-radius: 50px;
-  font-family: PragmataPro, Helvetica, fallback-font;
-  /* text formatting options (from textarea) */
-  text-rendering: auto;
-  letter-spacing: normal;
-  word-spacing: normal;
-  line-height: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: start;
-  appearance: auto;
-  -webkit-rtl-ordering: logical;
-  cursor: text;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-  column-count: initial !important;
-}
-
-.hidden {
-  display: none;
-}
-
-.transparent {
-  color: var(--color-primary);
-  ;
+main {
+  display: flex;
+  flex-direction: column;
 }

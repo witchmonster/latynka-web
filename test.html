@@ -8,11 +8,12 @@
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" />
-    <title>Perevirka roboty</title>
+    <title>Perevirka roboty algorytmiv</title>
     <link rel="icon" href="./images/favicon.ico">
     <script>
         //UI text elements
         const successOutput = 'Testy projdeno ☑';
+        const warningOutput = 'Testy projdeno iz zasterežennjamy ⚠';
         const failOutput = 'Testy ne projdeno ⛔';
 
         const statusElement = 'status'
@@ -40,6 +41,9 @@
             <div class="divCell">
                 <h1>Perevirka roboty</h1>
             </div>
+            <div class="divCell">
+                <h3>Zauvažte, ščo ci testy perevirjajut' vyključno algorytm, a ne UI</h3>
+            </div>
         </div>
         <div class="divRow">
             <div class="divCell">
@@ -52,7 +56,8 @@
             </div>
         </div>
         <div class="divRow">
-            <div id="output" class="text-form hidden" style="cursor: default; height: auto;" readonly></div>
+            <div id="output" class="text-form hidden" style="cursor: default; height: auto; font-weight: bold;"
+                readonly></div>
         </div>
         <div class="divRow">
             <h1 id="status" class="hidden"></h1>

@@ -1,0 +1,6 @@
+@import "css/elements/fonts.css";
+@import "css/elements/common.css";
+
+translator-component {
+    flex: 1;
+}
