@@ -15,7 +15,10 @@ const texts = {
     Osoblyvi vypadky na "jo" (m'jakyj znak + "o"): p’jatjoh, trjoh, jogo, "jogurt", (Jorkšyr), /joga/, [Jogannesburg], _Jovovyč_.`,
 
     cyrToLatUvaga: `
-    Увага! Це тестова версія. Про помилки та баги пишіть <a href="https://github.com/jkramr/latynka/issues/new">Сюди</a>.`,
+    Увага! Це тестова версія. Про помилки та баги пишіть <a href="https://github.com/jkramr/latynka/issues/new">Сюди</a>.
+    
+    Наразі слова, написані болгарською та іншими мовами,  також перекладатимуться латинкою: Черноризец Храбър => Černoryzec Hrabъr. Аби запобігти перекладу слова, ви можете загорнути потрібне слово або речення подвійним знаком "@": 
+    @@Черноризец Храбър@@ => Черноризец Храбър`,
 
     latToCyrUvaga: `
     Увага! Це тестова версія. Про помилки та баги пишіть <a href="https://github.com/jkramr/latynka/issues/new">Сюди</a>.
@@ -28,4 +31,4 @@ function getText(testName) {
     return texts[testName];
 }
 
-export { texts, getText }
+export { texts, getText } 

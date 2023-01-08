@@ -124,8 +124,6 @@ const russianAlert = {
     'Э': russiaDetected,
     'ы': russiaDetected,
     'Ы': russiaDetected,
-    'ъ': russiaDetected,
-    'Ъ': russiaDetected
 };
 
 const singleLetters = {

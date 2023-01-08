@@ -178,8 +178,6 @@ function latToCyr(text) {
     'Э': russiaDetected,
     'ы': russiaDetected,
     'Ы': russiaDetected,
-    'ъ': russiaDetected,
-    'Ъ': russiaDetected
   };
 
   var converter = {
