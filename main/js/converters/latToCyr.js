@@ -265,9 +265,9 @@ function latToCyr(text) {
     return i + size - 1 < text.length && matcher.regex.test(text.substring(i, i + size));
   }
 
-  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}, а-яіїєґčšžĝ’'—-]+)'([^\wа-яіїєґčšžĝ’'])/gi;
-  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}, а-яіїєґčšžĝ’'—-]+)»([^\wа-яіїєґčšžĝ’'])/gi;
-  var skipWords = /@@([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}, а-яіїєґčšžĝ’'—-]+)@@/gi;
+  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\), а-яіїєґčšžĝ’'—-]+)'([^\wа-яіїєґčšžĝ’'])/gi;
+  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\), а-яіїєґčšžĝ’'—-]+)»([^\wа-яіїєґčšžĝ’'])/gi;
+  var skipWords = /@@([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\), а-яіїєґčšžĝ’'—-]+?)@@/gi;
 
   // add trailing spaces to simplify regex, will be removed after
   text = ' ' + text;
