@@ -41,7 +41,7 @@ const latToCyrExperimentalSuite = {
     
     V inšomovnyh slovah apostrof pered ja, ju, je, ji stavyt'sja ne til'ky pislja gubnyh (b, p, v, m, f) ta r, a j pislja šypljačyh ta zadnjorotovyh (g, k, h, ž, č, š), jakščo pislja nyh čujet'sja zvuk [j]: komp'juter [-pju-], Dansm'jur [-mjur], bar'jer [-rjer], myš'jak [-šja-], Ruž'je [-žje], H'juston (@@Huston@@) [hju-], Rejk'javik (@@Reykjavik@@) [-kja-], G'jata [gja-].
     
-    @@Grand Beatbox Battle@@ (zazvyčaj skoročeno @@GBB@@) — ščorične mižnarodne zmagannja z beatboxingu, jake provodyt' @@Swissbeatbox@@. Konkurs provodyt' kil'ka turniriv dlja riznyh form i kategorij beatboxingu, zokrema: @@solo@@ (abo @@showcase@@), @@Loopstation@@, @@Tag Team@@, @@Tag Team Loopstation@@ i @@Crew@@.`,
+    @@Grand Beatbox Battle@@ (zazvyčaj skoročeno @@GBB@@) — ščorične mižnarodne zmagannja z @@beatboxing@@u, jake provodyt' @@Swissbeatbox@@. Konkurs provodyt' kil'ka turniriv dlja riznyh form i kategorij @@beatboxing@@u, zokrema: @@solo@@ (abo @@showcase@@), @@Loopstation@@, @@Tag Team@@, @@Tag Team Loopstation@@ i @@Crew@@.`,
 
                 expected: `"йо"
 
@@ -69,7 +69,7 @@ const latToCyrExperimentalSuite = {
     
     В іншомовних словах апостроф перед я, ю, є, ї ставиться не тільки після губних (б, п, в, м, ф) та р, а й після шиплячих та задньоротових (г, к, х, ж, ч, ш), якщо після них чується звук [й]: комп'ютер [-пю-], Дансм'юр [-мюр], бар'єр [-рєр], миш'як [-шя-], Руж'є [-жє], Х'юстон (Huston) [хю-], Рейк'явік (Reykjavik) [-кя-], Г'ята [гя-].
     
-    Grand Beatbox Battle (зазвичай скорочено GBB) — щорічне міжнародне змагання з беатбоxінгу, яке проводить Swissbeatbox. Конкурс проводить кілька турнірів для різних форм і категорій беатбоxінгу, зокрема: solo (або showcase), Loopstation, Tag Team, Tag Team Loopstation і Crew.`}
+    Grand Beatbox Battle (зазвичай скорочено GBB) — щорічне міжнародне змагання з beatboxingу, яке проводить Swissbeatbox. Конкурс проводить кілька турнірів для різних форм і категорій beatboxingу, зокрема: solo (або showcase), Loopstation, Tag Team, Tag Team Loopstation і Crew.`}
         },
         {
             name: `apostrofopodibni symvoly za mežamy sliv NE majut' zaminjatysja na znak "'"`,
