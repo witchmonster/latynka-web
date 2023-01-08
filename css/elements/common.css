@@ -67,6 +67,39 @@ a {
   column-count: initial !important;
 }
 
+.text {
+  width: 60%;
+  height: auto;
+  display: inline-block;
+  font-size: 14px;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  resize: none;
+  padding-top: 30px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 30px;
+  border: 0 solid #00000000;
+  border-radius: 50px;
+  font-family: PragmataPro, Helvetica, fallback-font;
+  /* text formatting options (from textarea) */
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  column-count: initial !important;
+}
+
 .hidden {
   display: none;
 }

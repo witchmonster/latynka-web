@@ -19,13 +19,15 @@
         const resetText = '';
 
         //elements
-        const test1Name = 'latin1';
+        const test1Name = 'latToCyrTest1';
         const toggleElements = ['output', 'arrow'];
         const input = 'input';
         const output = 'output';
+        const uvaga = 'uvaga';
         const submitButton = 'submit';
         const resetButton = 'reset';
         const testText1Button = 'submitTestText1';
+        const uvagaText = 'latToCyrUvaga';
     </script>
     <script type="module" src="./main/js/addJsElements.js"></script>
 </head>
@@ -76,15 +78,15 @@
         <div class="divRow">
             <div id="output" class="text-form hidden" style="cursor: default; height: auto;" readonly></div>
         </div>
-        <div class="divRow">
-            <h4>*Зауважте, що наразі слова, написані англійською та іншими мовами також
-                перекладатимуться кирилицею: New York => Неw Иорк. Аби запобігти перекладу слова, ви можете
-                загорнути потрібне слово або речення подвійним знаком "@":</br> @@New York@@ => New York</h4>
-        </div>
         <div style="height: 100px;">
         </div>
         <div class="divRow">
-            <a href="reverse.html">Кирилиця ➡ Latynka</a>
+            <div id="uvaga" class="text" style="cursor: default; height: auto; color: orangered;" readonly></div>
+        </div>
+        <div style="height: 50px;">
+        </div>
+        <div class="divRow">
+            <a href="index.html">Кирилиця ➡ Latynka</a>
         </div>
         <div style="height: 50px;">
         </div>

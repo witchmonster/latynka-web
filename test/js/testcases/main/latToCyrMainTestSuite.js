@@ -1,5 +1,5 @@
 import { latToCyr } from "../../../../main/js/converters/latToCyr.js";
-import { testTexts } from "../testText.js";
+import { testTexts } from "../../../../main/js/pageElements/texts.js";
 
 // for tests:
 // set optional: true if you want a test to fail with a WARNING (yellow) instead of an ERROR (red)
