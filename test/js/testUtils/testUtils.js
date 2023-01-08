@@ -1,3 +1,5 @@
+import { assertTestCase, assertTestCaseAllRegisters } from "./testAssertions.js";
+
 var logLevel = 'nolog';
 
 var successSymbol = '\u2714 ';
@@ -8,12 +10,16 @@ var successStatus = true;
 var failStatus = false;
 var warningStatus = 'warn';
 
+const testRoot = '[root]';
+
 const logLevels = {
     'nolog': 0,
     'error': 1,
     'warning': 2,
-    'info': 3,
-    'debug': 4
+    'important': 3,
+    'info': 4,
+    'debug': 5,
+    'trace': 6
 }
 
 var outPutLog = '';
@@ -46,6 +52,13 @@ var log = {
             console.log(` ${infoStatus} ${text}`)
         }
     },
+    important: function (text) {
+        const infoStatus = '';
+        if (logLevels[logLevel] >= logLevels['important']) {
+            testLog(text, infoStatus, '#583bb6');
+            console.log(` ${infoStatus} ${text}`)
+        }
+    },
     warn: function (text) {
         const errorStatus = '--------- LOG.WARNING --------- ';
         if (logLevels[logLevel] >= logLevels['warning']) {
@@ -70,19 +83,20 @@ function warn(desc, fn) {
     return test(desc, true, fn);
 }
 
-function test(desc, warning, fn) {
+function test(desc, optional, fn) {
+    optional = optional ? optional : false;
     try {
         fn();
         testLog(desc, successSymbol);
         console.log('\x1b[32m%s\x1b[0m', successSymbol + desc);
         return { status: successStatus };
     } catch (error) {
-        testLog(desc, warning ? warningSymbol : failSymbol, warning ? "darkorange" : "red");
-        warning ? log.warn(error) : log.error(error);
+        testLog(desc, optional ? warningSymbol : failSymbol, optional ? "darkorange" : "red");
+        optional ? log.warn(error) : log.error(error);
         console.log('\n');
-        console.log('\x1b[31m%s\x1b[0m', warning ? warningSymbol + desc : failSymbol + desc);
+        console.log('\x1b[31m%s\x1b[0m', optional ? warningSymbol + desc : failSymbol + desc);
         console.error(error);
-        return { status: warning ? warningStatus : failStatus };
+        return { status: optional ? warningStatus : failStatus };
     }
 }
 
@@ -100,24 +114,10 @@ function optionalSuite(desc, tests) {
     return testSuite(desc, true, tests);
 }
 
-function testSuite(desc, warningSuccess, tests) {
-    if (desc != '') {
-        testLog(`<h3>NABIR TESTIV '${desc}':</h3>`);
-    }
-    var status = successStatus;
-    for (var i = 0; i < tests.length; i++) {
-        var testStatus = tests[i]();
-        if (testStatus.status == warningStatus && status != failStatus) {
-            status = testStatus.status;
-        }
-        if (testStatus.status == failStatus) {
-            status = testStatus.status;
-        }
-    };
-
-    if (desc != '') {
+function outputSuiteResult(desc, optional, status) {
+    if (desc != testRoot) {
         testLog('_________________________________________________________');
-        if (warningSuccess) {
+        if (optional) {
             it(`<b>NABIR TESTIV '${desc}'</b>`, () => {
                 assert(status == successStatus, `Opcionalnyj nabir testiv '${desc}' provalyv perevirku'.`);
             })
@@ -126,17 +126,82 @@ function testSuite(desc, warningSuccess, tests) {
                 warn(`<b>NABIR TESTIV '${desc}'</b>`, () => {
                     assert(false, `Nabir testiv '${desc}' provalyv perevirku.'.`);
                 })
-            }
-            if (status == failStatus) {
+            } else {
                 it(`<b>NABIR TESTIV '${desc}'</b>`, () => {
-                    assert(false, `Nabir testiv '${desc}' provalyv perevirku.'.`);
+                    assert(status == successStatus, `Nabir testiv '${desc}' provalyv perevirku.'.`);
                 })
             }
         }
         testLog('\r\n');
     }
-
-    return { status: warningSuccess ? status != failStatus : status, outPutLog };
 }
 
-export { init, it, warn, assert, suite, optionalSuite, log }
+function runAll(optional, testPayload) {
+    return testSuite(testRoot, optional, testPayload, {});
+}
+
+function testSuite(desc, optional, testPayload, inherited) {
+    optional = optional ? optional : false;
+
+    if (!testPayload || testPayload.length == 0) {
+        log.debug(JSON.stringify(testPayload, null, 2));
+        log.warn(`Empty test payload for ${desc}`)
+        return { status: warningStatus, outPutLog };
+    }
+
+    //if payload is suite of tests
+    if (Array.isArray(testPayload)) {
+        if (desc != testRoot) {
+            testLog(`<h3>NABIR TESTIV '${desc}':</h3>`);
+        }
+
+        //run all subsuites/subtests
+        var status = successStatus;
+        for (var i = 0; i < testPayload.length; i++) {
+            var testStatus = testSuite(
+                testPayload[i].name,
+                testPayload[i].optional,
+                testPayload[i].testPayload,
+                {
+                    fn: testPayload[i].fn ? testPayload[i].fn :
+                        testPayload.fn ? testPayload.fn : inherited.fn
+                }
+            );
+            if (testStatus.status == warningStatus && status != failStatus) {
+                status = testStatus.status;
+            }
+            if (testStatus.status == failStatus) {
+                status = testStatus.status;
+            }
+        };
+
+        outputSuiteResult(desc, optional, status);
+
+        return { status: optional ? status != failStatus : status, outPutLog };
+    } else {
+        if (typeof testPayload === 'object' &&
+            testPayload.input &&
+            testPayload.expected &&
+            (testPayload.fn || inherited.fn)
+        ) {
+            const assertFn = testPayload.allRegisters ? assertTestCaseAllRegisters : assertTestCase;
+            if (testPayload.off) {
+                return { status: successStatus, outPutLog };
+            }
+            return test(desc,
+                optional,
+                testPayload.fn ? () => assertFn(testPayload.fn, testPayload) :
+                    inherited.fn ? () => assertFn(inherited.fn, testPayload) :
+                        assert(false, `No test function available`)
+            );
+        } else {
+            log.warn(`Malformed test payload for ${desc}`)
+            log.debug(`Payload:\r\n${JSON.stringify(testPayload)}`)
+            log.debug(`inherited.fn :\r\n${inherited.fn}`)
+            return { status: warningStatus, outPutLog };
+        }
+    }
+}
+
+
+export { init, runAll, assert, log }

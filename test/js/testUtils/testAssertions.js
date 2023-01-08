@@ -4,6 +4,14 @@ import { strUtils } from "../../../main/js/utils/stringUtils.js";
 
 strUtils.addCustomCases();
 
+function assertTestCase(fn, testObject) {
+    assertExactTranslation(fn, testObject.input, testObject.expected);
+}
+
+function assertTestCaseAllRegisters(fn, testObject) {
+    assertForAllRegisters(fn, testObject.input, testObject.expected);
+}
+
 function assertExactTranslation(fn, input, expected) {
     const actual = fn(input);
     log.debug(`\r\n[${input}]\r\n 🡃 \r\n[${actual}]`);
@@ -20,4 +28,4 @@ function assertForAllRegisters(fn, input, expected) {
     assertExactTranslation(fn, input.toProperCase(), expected.toProperCase());
 }
 
-export { assertExactTranslation, assertForAllRegisters }
+export { assertTestCase, assertTestCaseAllRegisters }

@@ -100,7 +100,9 @@ const upperCase = {
 
 const special = {
     'Ь': '\'',
-    'ь': '\''
+    'ь': '\'',
+    '@': '@',
+    '"': '"'
 };
 
 const apostrophes = {

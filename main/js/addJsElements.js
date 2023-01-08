@@ -1,6 +1,6 @@
 import { addToggleThemeEvent } from './pageElements/theme.js';
 import { addTestTextEventOnClick } from './pageElements/addTest.js';
-import { testText } from '../../test/js/testcases/testTexts.js';
+import { getTestText } from '../../test/js/testcases/testText.js';
 import { addSumbitTranslationEventOnClick } from './pageElements/submitTranslation.js';
 import { addResetEventOnClick } from './pageElements/reset.js';
 import { addTextToElement } from './pageElements/addTextToElement.js';
@@ -23,7 +23,7 @@ window.onload = () => {
         toggleElements //hide elements
     );
 
-    addTestTextEventOnClick(testText1Button, input, testText(test1Name));
+    addTestTextEventOnClick(testText1Button, input, getTestText(test1Name));
 
     addSumbitTranslationEventOnClick(
         submitButton,

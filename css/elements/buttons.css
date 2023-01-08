@@ -12,8 +12,8 @@
 
 .button--purple {
   color: #fff;
-  background-color: #583bb6;
-  border-color: #583bb6;
+  background-color: var(--color-purple);
+  border-color: var(--color-purple);
 }
 
 .button--gray {
@@ -34,7 +34,7 @@
 }
 
 .button--purple:hover {
-  background-color: #311c75;
+  background-color: var(--color-purple-darker);
   transition: 0.1s;
 }
 

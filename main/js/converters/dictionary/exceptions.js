@@ -1,6 +1,9 @@
 const exceptions = {
-    maxLength: 20,
     cyrToLat: {
+        maxLength: 4,
+        4: {
+            '\"ьо\"': '\"\'o\"',
+        }
     },
     latToCyr: {
     }

@@ -1,4 +1,4 @@
-import { runTests } from "../testSuite.js";
+import { runTests } from "../testSuiteRunner.js";
 
 function addRunTestsOnClick(button, statusElement, output, successOutput, failOutput, unhideElements) {
     const queryString = window.location.search;

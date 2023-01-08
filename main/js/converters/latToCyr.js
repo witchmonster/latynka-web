@@ -164,7 +164,8 @@ function latToCyr(text) {
     '’': '\'',
     '’': '\'',
     '’': '\'',
-    '\'': 'ь'
+    '\'': 'ь',
+    '@': '@',
     //'\'': 'Ь'
   };
 
@@ -191,7 +192,6 @@ function latToCyr(text) {
   };
 
   var unicodeCharacterSymbols = /0x[0-9A-Z]{4}/g;
-  var hasQuotes = /([^\wа-яіїєґčšžĝ’'])?'([\w\.\:, а-яіїєґčšžĝ’'-]+)'([^\wа-яіїєґčšžĝ’'])/gi;
 
   var skipMatchers = {
     6: { regex: unicodeCharacterSymbols }
@@ -251,9 +251,6 @@ function latToCyr(text) {
 
   var maxExceptionWordSize = 12;
 
-  var i = 0;
-
-  //todo add case insensitive match
   function exactMatchSubstring(i, size, dict) {
     if (!dict) {
       return false;
@@ -268,10 +265,24 @@ function latToCyr(text) {
     return i + size - 1 < text.length && matcher.regex.test(text.substring(i, i + size));
   }
 
-  //preprocess single quotes so they don't clash with "ь"
-  text += ' '; //simplifies regex, will be removed after
-  text = text.replace(hasQuotes, '$1"$2"$3')
+  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}, а-яіїєґčšžĝ’'—-]+)'([^\wа-яіїєґčšžĝ’'])/gi;
+  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}, а-яіїєґčšžĝ’'—-]+)»([^\wа-яіїєґčšžĝ’'])/gi;
+  var skipWords = /@@([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}, а-яіїєґčšžĝ’'—-]+)@@/gi;
 
+  // add trailing spaces to simplify regex, will be removed after
+  text = ' ' + text;
+  text += ' ';
+
+  //preprocess single quotes so they don't clash with "ь"
+  text = text.replace(hasSingleQuotes, '$1"$2"$3')
+  //preprocess single quotes so they don't clash with "ь"
+  text = text.replace(hasTriangleQuotes, '$1"$2"$3')
+
+  const skips = text.match(skipWords, '$1')
+  text = text.replace(skipWords, '@@ @@');
+
+  var nextSkip = 0;
+  var i = 0;
   while (i < text.length) {
     if (!converter[text[i]]) {
       answer += text[i];
@@ -279,6 +290,14 @@ function latToCyr(text) {
     } else {
 
       //process skips
+      while (matchSubstring(i, 5, { regex: skipWords })) {
+        const restoreWord = skips[nextSkip].replace(skipWords, '$1');
+        answer += text.substring(i, i + 5).replace(skipWords, restoreWord);
+        nextSkip++;
+        i += 5;
+      }
+
+      //process fixed size skip matchers
       var j = maxSkipSize - 1;
       while (j > 1) {
         while (matchSubstring(i, j + 1, skipMatchers[j + 1])) {
@@ -329,6 +348,7 @@ function latToCyr(text) {
     }
   }
 
+  answer = answer.replace(/^ /, ''); //remove preprossesing space at the beginning
   answer = answer.replace(/ $/, ''); //remove preprossesing space at the end
   return answer;
 }
