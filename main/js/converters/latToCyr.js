@@ -169,24 +169,12 @@ function latToCyr(text) {
     //'\'': 'Ь'
   };
 
-  var russiaDetected = '>>>>>>>>> RUSSIA IS A TERRORIST STATE!!!! <<<<<<<<<';
-
-  var russianAlert = {
-    'ё': russiaDetected,
-    'Ё': russiaDetected,
-    'э': russiaDetected,
-    'Э': russiaDetected,
-    'ы': russiaDetected,
-    'Ы': russiaDetected,
-  };
-
   var converter = {
     ...digits,
     ...lowerCase,
     ...upperCase,
     ...digraphs,
-    ...special,
-    ...russianAlert
+    ...special
   };
 
   var unicodeCharacterSymbols = /0x[0-9A-Z]{4}/g;
@@ -263,9 +251,9 @@ function latToCyr(text) {
     return i + size - 1 < text.length && matcher.regex.test(text.substring(i, i + size));
   }
 
-  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\), а-яіїєґčšžĝ’'—-]+)'([^\wа-яіїєґčšžĝ’'])/gi;
-  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\), а-яіїєґčšžĝ’'—-]+)»([^\wа-яіїєґčšžĝ’'])/gi;
-  var skipWords = /@@([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\), а-яіїєґčšžĝ’'—-]+?)@@/gi;
+  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\"\…\—а-яіїєґčšžĝ’'-]+?)'([^\wа-яіїєґčšžĝ’'])/gi;
+  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\…\"\—а-яіїєґčšžĝ’'-]+?)»([^\wа-яіїєґčšžĝ’'])/gi;
+  var skipWords = /@@([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\", а-яіїєґčšžĝ’'—-]+?)@@/gi;
 
   // add trailing spaces to simplify regex, will be removed after
   text = ' ' + text;
@@ -273,7 +261,11 @@ function latToCyr(text) {
 
   //preprocess single quotes so they don't clash with "ь"
   text = text.replace(hasSingleQuotes, '$1"$2"$3')
-  //preprocess single quotes so they don't clash with "ь"
+  //remove leftover nested single quotes
+  text = text.replace(hasSingleQuotes, '$1"$2"$3')
+  //preprocess triangle quotes
+  text = text.replace(hasTriangleQuotes, '$1"$2"$3')
+  //remove leftover nested triangle quotes
   text = text.replace(hasTriangleQuotes, '$1"$2"$3')
 
   const skips = text.match(skipWords, '$1')

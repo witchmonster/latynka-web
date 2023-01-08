@@ -17,7 +17,7 @@ const latToCyrExperimentalSuite = {
 
                 input: `'jo'
 
-    'Slova inšomovnogo pohodžennja': ad'je, konferans'je, monpans'je, pas'jans, atel'je, barel'jef, batal'jon, mil'jard, buton'jerka, vin'jetka, kan'jon, Got'je, N'ju-Jork, N'juton, N'jasa, Ren'je toščo. Ale V’jent'jan.
+    'Slova "inšomovnogo" pohodžennja': ad'je, konferans'je, monpans'je, pas'jans, atel'je, barel'jef, batal'jon, mil'jard, buton'jerka, vin'jetka, kan'jon, Got'je, N'ju-Jork, N'juton, N'jasa, Ren'je toščo. Ale V’jent'jan.
     'Himični spoluky: a-ftorsul'fo-nyloksyalkanperftorkarbonova kyslota'.
     V latynci pravyl'no pysaty apostrof pered "jo" pislja prygolosnyh: ser’jozno, kur’joz, ale rajon, mil'jon.
     Osoblyvi vypadky na dygrafy: sjogodni, ljoh (ale major), svjaščennyk, pracjuju.
@@ -41,11 +41,13 @@ const latToCyrExperimentalSuite = {
     
     V inšomovnyh slovah apostrof pered ja, ju, je, ji stavyt'sja ne til'ky pislja gubnyh (b, p, v, m, f) ta r, a j pislja šypljačyh ta zadnjorotovyh (g, k, h, ž, č, š), jakščo pislja nyh čujet'sja zvuk [j]: komp'juter [-pju-], Dansm'jur [-mjur], bar'jer [-rjer], myš'jak [-šja-], Ruž'je [-žje], H'juston (@@Huston@@) [hju-], Rejk'javik (@@Reykjavik@@) [-kja-], G'jata [gja-].
     
-    @@Grand Beatbox Battle@@ (zazvyčaj skoročeno @@GBB@@) — ščorične mižnarodne zmagannja z @@beatboxing@@u, jake provodyt' @@Swissbeatbox@@. Konkurs provodyt' kil'ka turniriv dlja riznyh form i kategorij @@beatboxing@@u, zokrema: @@solo@@ (abo @@showcase@@), @@Loopstation@@, @@Tag Team@@, @@Tag Team Loopstation@@ i @@Crew@@.`,
+    @@Grand Beatbox Battle@@ (zazvyčaj skoročeno @@GBB@@) — ščorične mižnarodne zmagannja z @@beatboxing@@u, jake provodyt' @@Swissbeatbox@@. Konkurs provodyt' kil'ka turniriv dlja riznyh form i kategorij @@beatboxing@@u, zokrema: @@solo@@ (abo @@showcase@@), @@Loopstation@@, @@Tag Team@@, @@Tag Team Loopstation@@ i @@Crew@@.
+    
+    Сам гуморист у «Моїй автобіографії» (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних «одіссей» писав: «Як ударила революція — завертівся. Будував Україну. Бігав з Центральної ради в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до «Просвіти», а з «Просвіти» на мітинг, з мітингу на збори…»`,
 
                 expected: `"йо"
 
-    "Слова іншомовного походження": адьє, конферансьє, монпансьє, пасьянс, ательє, барельєф, батальйон, мільярд, бутоньєрка, віньєтка, каньйон, Готьє, Нью-Йорк, Ньютон, Ньяса, Реньє тощо. Але В’єнтьян.
+    "Слова "іншомовного" походження": адьє, конферансьє, монпансьє, пасьянс, ательє, барельєф, батальйон, мільярд, бутоньєрка, віньєтка, каньйон, Готьє, Нью-Йорк, Ньютон, Ньяса, Реньє тощо. Але В’єнтьян.
     "Хімічні сполуки: а-фторсульфо-нилоксиалканперфторкарбонова кислота".
     В латинці правильно писати апостроф перед "йо" після приголосних: серйозно, курйоз, але район, мільйон.
     Особливі випадки на диграфи: сьогодні, льох (але майор), священник, працюю.
@@ -69,7 +71,9 @@ const latToCyrExperimentalSuite = {
     
     В іншомовних словах апостроф перед я, ю, є, ї ставиться не тільки після губних (б, п, в, м, ф) та р, а й після шиплячих та задньоротових (г, к, х, ж, ч, ш), якщо після них чується звук [й]: комп'ютер [-пю-], Дансм'юр [-мюр], бар'єр [-рєр], миш'як [-шя-], Руж'є [-жє], Х'юстон (Huston) [хю-], Рейк'явік (Reykjavik) [-кя-], Г'ята [гя-].
     
-    Grand Beatbox Battle (зазвичай скорочено GBB) — щорічне міжнародне змагання з beatboxingу, яке проводить Swissbeatbox. Конкурс проводить кілька турнірів для різних форм і категорій beatboxingу, зокрема: solo (або showcase), Loopstation, Tag Team, Tag Team Loopstation і Crew.`}
+    Grand Beatbox Battle (зазвичай скорочено GBB) — щорічне міжнародне змагання з beatboxingу, яке проводить Swissbeatbox. Конкурс проводить кілька турнірів для різних форм і категорій beatboxingу, зокрема: solo (або showcase), Loopstation, Tag Team, Tag Team Loopstation і Crew.
+    
+    Сам гуморист у "Моїй автобіографії" (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних "одіссей" писав: "Як ударила революція — завертівся. Будував Україну. Бігав з Центральної ради в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до "Просвіти", а з "Просвіти" на мітинг, з мітингу на збори…"`}
         },
         {
             name: `apostrofopodibni symvoly za mežamy sliv NE majut' zaminjatysja na znak "'"`,

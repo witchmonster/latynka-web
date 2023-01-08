@@ -1,5 +1,3 @@
-const russiaDetected = '>>>>>>>>> RUSSIA IS A TERRORIST STATE!!! <<<<<<<<<';
-
 // ------------------------------------ cyrillic to latin ------------------------------------ 
 
 const lowerCaseVowels = {
@@ -118,12 +116,12 @@ const apostrophes = {
 };
 
 const russianAlert = {
-    'ё': russiaDetected,
-    'Ё': russiaDetected,
-    'э': russiaDetected,
-    'Э': russiaDetected,
-    'ы': russiaDetected,
-    'Ы': russiaDetected,
+    'ё': 'jo',
+    'Ё': 'Jo',
+    'э': 'e',
+    'Э': 'E',
+    'ы': 'y',
+    'Ы': 'Y',
 };
 
 const singleLetters = {
@@ -171,7 +169,9 @@ const translatesToUpperCaseDigraph = {
     'Ї': 'JI',
     'Щ': 'ŠČ',
     'Ю': 'JU',
-    'Я': 'JA'
+    'Я': 'JA',
+    //russian for consistency of combined texts
+    'Ё': 'JO',
 };
 
 const cyrToLat = {
