@@ -70,6 +70,18 @@ const latToCyrMainTestSuite = {
                 expected: `його`
 
             }
+        },
+        {
+            name: `"його" => "jogo" na počatku teksta, vsi registry`,
+            optional: false,
+            testPayload: {
+                allRegisters: true,
+
+                input: `\r\njogo`,
+
+                expected: `\r\nйого`
+
+            }
         }
     ]
 }

@@ -405,6 +405,8 @@ function shouldBeJo(text, i) {
     '_': true,
     '~': true,
     '`': true,
+    '\r': true,
+    '\n': true
   };
 
   var firstLetterInText = i == 0;

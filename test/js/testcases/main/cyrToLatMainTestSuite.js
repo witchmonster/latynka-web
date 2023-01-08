@@ -96,6 +96,18 @@ const cyrToLatMainTestSuite = {
                 expected: `jogo`
 
             }
+        },
+        {
+            name: `"jogo" => "його" na počatku rjadku, vsi registry`,
+            optional: false,
+            testPayload: {
+                allRegisters: true,
+
+                input: `\r\nйого`,
+
+                expected: `\r\njogo`
+
+            }
         }
     ]
 }
