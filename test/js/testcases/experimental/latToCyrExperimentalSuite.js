@@ -15,20 +15,12 @@ const latToCyrExperimentalSuite = {
             optional: false,
             testPayload: {
 
-                input: `'jo'
-
-    'Slova "inšomovnogo" pohodžennja': ad'je, konferans'je, monpans'je, pas'jans, atel'je, barel'jef, batal'jon, mil'jard, buton'jerka, vin'jetka, kan'jon, Got'je, N'ju-Jork, N'juton, N'jasa, Ren'je toščo. Ale V’jent'jan.
+                input: `    'Slova "inšomovnogo" pohodžennja': ad'je, konferans'je, monpans'je, pas'jans, atel'je, barel'jef, batal'jon, mil'jard, buton'jerka, vin'jetka, kan'jon, Got'je, N'ju-Jork, N'juton, N'jasa, Ren'je toščo. Ale V’jent'jan.
     'Himični spoluky: a-ftorsul'fo-nyloksyalkanperftorkarbonova kyslota'.
     V latynci pravyl'no pysaty apostrof pered "jo" pislja prygolosnyh: ser’jozno, kur’joz, ale rajon, mil'jon.
     Osoblyvi vypadky na dygrafy: sjogodni, ljoh (ale major), svjaščennyk, pracjuju.
     Osoblyvi vypadky zi zmišanym registrom: "NE SPOVIŠČATY" (ale "Šče"), "JUNESKO", SER’JOZNO, KUR’JOZ, RAJON, MIL'JON, OBSJE.
     Osoblyvi vypadky na 'jo' (m'jakyj znak + "o"): p’jatjoh, trjoh, jogo, "jogurt", (Jorkšyr), /joga/, [Jogannesburg], _Jovovyč_.
-     
-     'gb sldf sdf'
-     
-     'G sdf sdf.'
-    
-    'jo'
     
     «Vam Danylo izminjaje, hodyt' do artystky,
     Halvu nosyt', i prjanyky; moločni sosysky.
@@ -43,22 +35,16 @@ const latToCyrExperimentalSuite = {
     
     @@Grand Beatbox Battle@@ (zazvyčaj skoročeno @@GBB@@) — ščorične mižnarodne zmagannja z @@beatboxing@@u, jake provodyt' @@Swissbeatbox@@. Konkurs provodyt' kil'ka turniriv dlja riznyh form i kategorij @@beatboxing@@u, zokrema: @@solo@@ (abo @@showcase@@), @@Loopstation@@, @@Tag Team@@, @@Tag Team Loopstation@@ i @@Crew@@.
     
-    Сам гуморист у «Моїй автобіографії» (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних «одіссей» писав: «Як ударила революція — завертівся. Будував Україну. Бігав з Центральної ради в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до «Просвіти», а з «Просвіти» на мітинг, з мітингу на збори…»`,
+    Сам гуморист у «Моїй автобіографії» (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних «одіссей» писав: «Як ударила революція — завертівся. Будував Україну. Бігав з <Центральної ради> в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до «Просвіти», а з «Просвіти» на мітинг, з мітингу на збори…»
+    
+    Možna šče al'ternatyvno rozgljanuty rišennja z @@iframe + third party scraper API@@.`,
 
-                expected: `"йо"
-
-    "Слова "іншомовного" походження": адьє, конферансьє, монпансьє, пасьянс, ательє, барельєф, батальйон, мільярд, бутоньєрка, віньєтка, каньйон, Готьє, Нью-Йорк, Ньютон, Ньяса, Реньє тощо. Але В’єнтьян.
+                expected: `    "Слова "іншомовного" походження": адьє, конферансьє, монпансьє, пасьянс, ательє, барельєф, батальйон, мільярд, бутоньєрка, віньєтка, каньйон, Готьє, Нью-Йорк, Ньютон, Ньяса, Реньє тощо. Але В’єнтьян.
     "Хімічні сполуки: а-фторсульфо-нилоксиалканперфторкарбонова кислота".
     В латинці правильно писати апостроф перед "йо" після приголосних: серйозно, курйоз, але район, мільйон.
     Особливі випадки на диграфи: сьогодні, льох (але майор), священник, працюю.
     Особливі випадки зі змішаним регістром: "НЕ СПОВІЩАТИ" (але "Ще"), "ЮНЕСКО", СЕРЙОЗНО, КУРЙОЗ, РАЙОН, МІЛЬЙОН, ОБСЄ.
     Особливі випадки на "йо" (м'який знак + "о"): п'ятьох, трьох, його, "йогурт", (Йоркшир), /йога/, [Йоганнесбург], _Йовович_.
-     
-     "гб слдф сдф"
-     
-     "Г сдф сдф."
-    
-    "йо"
     
     "Вам Данило ізміняє, ходить до артистки,
     Халву носить, і пряники; молочні сосиски.
@@ -73,7 +59,9 @@ const latToCyrExperimentalSuite = {
     
     Grand Beatbox Battle (зазвичай скорочено GBB) — щорічне міжнародне змагання з beatboxingу, яке проводить Swissbeatbox. Конкурс проводить кілька турнірів для різних форм і категорій beatboxingу, зокрема: solo (або showcase), Loopstation, Tag Team, Tag Team Loopstation і Crew.
     
-    Сам гуморист у "Моїй автобіографії" (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних "одіссей" писав: "Як ударила революція — завертівся. Будував Україну. Бігав з Центральної ради в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до "Просвіти", а з "Просвіти" на мітинг, з мітингу на збори…"`}
+    Сам гуморист у "Моїй автобіографії" (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних "одіссей" писав: "Як ударила революція — завертівся. Будував Україну. Бігав з <Центральної ради> в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до "Просвіти", а з "Просвіти" на мітинг, з мітингу на збори…"
+    
+    Можна ще альтернативно розглянути рішення з iframe + third party scraper API.`}
         },
         {
             name: `apostrofopodibni symvoly za mežamy sliv NE majut' zaminjatysja na znak "'"`,

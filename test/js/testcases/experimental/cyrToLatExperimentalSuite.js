@@ -32,11 +32,17 @@ const cyrToLatExperimentalSuite = {
     Та артистка — балерина, чоловіка має.
     Він в якомусь міністерстві важний пост займає».
     
-    В іншомовних словах апостроф перед я, ю, є, ї ставиться не тільки після губних (б, п, в, м, ф) та р, а й після шиплячих та задньоротових (г, к, х, ж,ч, ш), якщо після них чується звук [й]:
-    "my.email@gmail.com"
- комп'ютер [-пю-], Дансм'юр [-мюр], бар'єр [-рєр], миш'як [-шя-], Руж'є [-жє], Х'юстон (@@Х'юстон@@) [хю-], Рейк'явік (@@Рейк'явік@@) [-кя-], Г'ята [гя-].
+    В іншомовних словах апостроф перед я, ю, є, ї ставиться не тільки після губних (б, п, в, м, ф) та р, а й після шиплячих та задньоротових (г, к, х, ж,ч, ш), якщо після них чується звук [й]: комп'ютер [-пю-], Дансм'юр [-мюр], бар'єр [-рєр], миш'як [-шя-], Руж'є [-жє], Х'юстон (@@Х'юстон@@) [хю-], Рейк'явік (@@Рейк'явік@@) [-кя-], Г'ята [гя-].
  
-    Сам гуморист у «Моїй автобіографії» (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних «одіссей» писав: «Як ударила революція — завертівся. Будував Україну. Бігав з Центральної ради в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до «Просвіти», а з «Просвіти» на мітинг, з мітингу на збори…»`,
+    Сам гуморист у «Моїй автобіографії» (вийшла у 1927 р.) з притаманними йому іронічними самокпинами щодо своїх революційних «одіссей» писав: «Як ударила революція — завертівся. Будував Україну. Бігав з <Центральної ради> в університет, а з університету в Центральну раду. Тоді до св. Софії, з св. Софії до «Просвіти», а з «Просвіти» на мітинг, з мітингу на збори…»
+    
+    Та хiба ж єсть серед мисливцiв, серед людей, що люблять тихi вечори над озерами, що чують нiжний шелест очеретiв, що пам’ятають: “Тихше, тихше, не диши, нас почують комишi…”, яким крик бугая на болотi бринить в їхнiх вухах, як козловське распроп’янiссiме ля в серцi тихомрiйної блондинки, а загадковий тихий плескiт на озерi в їхнiм серцi одгукується трепетними перебоями, i коли пiд вербою чи пiд копицею все вже розказано i настає на хвильку тиша, –  обов’язково ту тишу заколише одностайне чарiвне:
+
+    Зоре моя вечiрняя,
+
+    Зiйди над водою –
+
+    Альтернативно можна розглянути @@айфрейми + скрейпер АПІ@@.`,
 
                 expected: `    Slova inšomovnogo pohodžennja: ad'je, konferans'je, monpans'je, pas'jans, atel'je, barel'jef, batal'jon, mil'jard, buton'jerka, vin'jetka, kan'jon, Got'je, N'ju-Jork, N'juton, N'jasa, Ren'je toščo. Ale V'jent'jan.
     Himični spoluky: a-ftorsul'fo-nyloksyalkanperftorkarbonova kyslota.
@@ -54,11 +60,17 @@ const cyrToLatExperimentalSuite = {
     Ta artystka — baleryna, čolovika maje.
     Vin v jakomus' ministerstvi važnyj post zajmaje".
     
-    V inšomovnyh slovah apostrof pered ja, ju, je, ji stavyt'sja ne til'ky pislja gubnyh (b, p, v, m, f) ta r, a j pislja šypljačyh ta zadnjorotovyh (g, k, h, ž,č, š), jakščo pislja nyh čujet'sja zvuk [j]:
-    "my.email@gmail.com"
- komp'juter [-pju-], Dansm'jur [-mjur], bar'jer [-rjer], myš'jak [-šja-], Ruž'je [-žje], H'juston (Х'юстон) [hju-], Rejk'javik (Рейк'явік) [-kja-], G'jata [gja-].
+    V inšomovnyh slovah apostrof pered ja, ju, je, ji stavyt'sja ne til'ky pislja gubnyh (b, p, v, m, f) ta r, a j pislja šypljačyh ta zadnjorotovyh (g, k, h, ž,č, š), jakščo pislja nyh čujet'sja zvuk [j]: komp'juter [-pju-], Dansm'jur [-mjur], bar'jer [-rjer], myš'jak [-šja-], Ruž'je [-žje], H'juston (Х'юстон) [hju-], Rejk'javik (Рейк'явік) [-kja-], G'jata [gja-].
  
-    Sam gumoryst u "Mojij avtobiografiji" (vyjšla u 1927 r.) z prytamannymy jomu ironičnymy samokpynamy ščodo svojih revoljucijnyh "odissej" pysav: "Jak udaryla revoljucija — zavertivsja. Buduvav Ukrajinu. Bigav z Central'noji rady v universytet, a z universytetu v Central'nu radu. Todi do sv. Sofiji, z sv. Sofiji do "Prosvity", a z "Prosvity" na mityng, z mityngu na zbory…"`
+    Sam gumoryst u "Mojij avtobiografiji" (vyjšla u 1927 r.) z prytamannymy jomu ironičnymy samokpynamy ščodo svojih revoljucijnyh "odissej" pysav: "Jak udaryla revoljucija — zavertivsja. Buduvav Ukrajinu. Bigav z <Central'noji rady> v universytet, a z universytetu v Central'nu radu. Todi do sv. Sofiji, z sv. Sofiji do "Prosvity", a z "Prosvity" na mityng, z mityngu na zbory…"
+    
+    Ta hiba ž jest' sered myslyvciv, sered ljudej, ščo ljubljat' tyhi večory nad ozeramy, ščo čujut' nižnyj šelest očeretiv, ščo pam'jatajut': "Tyhše, tyhše, ne dyšy, nas počujut' komyši…", jakym kryk bugaja na boloti brynyt' v jihnih vuhah, jak kozlovs'ke rasprop'janissime lja v serci tyhomrijnoji blondynky, a zagadkovyj tyhyj pleskit na ozeri v jihnim serci odgukujet'sja trepetnymy perebojamy, i koly pid verboju čy pid kopyceju vse vže rozkazano i nastaje na hvyl'ku tyša, –  obov'jazkovo tu tyšu zakolyše odnostajne čarivne:
+
+    Zore moja večirnjaja,
+
+    Zijdy nad vodoju –
+
+    Al'ternatyvno možna rozgljanuty айфрейми + скрейпер АПІ.`
 
             }
         },

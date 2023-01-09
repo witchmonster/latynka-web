@@ -251,9 +251,10 @@ function latToCyr(text) {
     return i + size - 1 < text.length && matcher.regex.test(text.substring(i, i + size));
   }
 
-  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\"\…\—а-яіїєґčšžĝ’'-]+?)'([^\wа-яіїєґčšžĝ’'])/gi;
-  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\…\"\—а-яіїєґčšžĝ’'-]+?)»([^\wа-яіїєґčšžĝ’'])/gi;
-  var skipWords = /@@([\w\.\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\", а-яіїєґčšžĝ’'—-]+?)@@/gi;
+  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\<\>\…\"\—\+\=а-яіїєґčšžĝ’'-]+?)'([^\wа-яіїєґčšžĝ’'])/gi;
+  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\<\>\…\"\—\+\=а-яіїєґčšžĝ’'-]+?)»([^\wа-яіїєґčšžĝ’'])/gi;
+  var hasWeirdQuotes = /([^\wа-яіїєґčšžĝ’'])“([\r\n\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\<\>\…\"\—\+\=а-яіїєґčšžĝ’'-]+?)”([^\wа-яіїєґčšžĝ’'])/gi;
+  var skipWords = /@@([\w\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\"\—\+\= а-яіїєґčšžĝ’'-]+?)@@/gi;
 
   // add trailing spaces to simplify regex, will be removed after
   text = ' ' + text;
@@ -267,6 +268,10 @@ function latToCyr(text) {
   text = text.replace(hasTriangleQuotes, '$1"$2"$3')
   //remove leftover nested triangle quotes
   text = text.replace(hasTriangleQuotes, '$1"$2"$3')
+  //preprocess weird quotes
+  text = text.replace(hasWeirdQuotes, '$1"$2"$3')
+  //remove leftover nested weird quotes
+  text = text.replace(hasWeirdQuotes, '$1"$2"$3')
 
   const skips = text.match(skipWords, '$1')
   text = text.replace(skipWords, '@@ @@');
