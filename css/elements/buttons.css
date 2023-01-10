@@ -34,7 +34,7 @@
 }
 
 .button--purple:hover {
-  background-color: var(--color-purple-darker);
+  background-color: #311c75;
   transition: 0.1s;
 }
 

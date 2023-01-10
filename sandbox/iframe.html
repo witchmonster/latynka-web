@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" />
+    <title>Кирилиця ➡ Latynka</title>
+    <link rel="icon" href="../images/favicon.ico">
+</head>
+
+<body>
+    <div class="divTable">
+        <div class="divRow">
+            <div id="changeTheme" class="divCell">Змінити тему</div>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <label class="switch">
+                    <input type="checkbox" id="theme">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <h2>Кирилиця ➡ Latynka</h2>
+            </div>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+            </div>
+        </div>
+        <div class="divRow">
+            <script>
+                function get_iframe(ifr_id) {
+                    // gets the object that refers to the iframe, uasing its id
+                    var myIFrame = document.getElementById(ifr_id);
+
+                    // Apply the property "contentWindow" to myIFrame object
+                    // In this way we get the iframe content
+                    var content = myIFrame.contentWindow.document.body.innerHTML;
+                    alert("Content: \n" + content); // Displays an Alert with the data from iframe
+
+                    // Define a new text that will replace the content of the iframe
+                    content = '<font color="blue">Text added with Javascript, from the main page</font>';
+
+                    // Modify the iframe content
+                    myIFrame.contentWindow.document.head.remove();
+                    myIFrame.contentWindow.document.body.remove();
+                    myIFrame.contentWindow.document.body.innerHTML = content;
+                }
+            </script>
+            <iframe src="https://ru.wikipedia.org/wiki/%D0%91%D0%BE%D1%80%D1%89" id="ifr" name="ifr"
+                style="width: 90%; height: 800px;"></iframe>
+        </div>
+        <div class="divRow">
+            <div class="divCell">
+                <button type="button" onclick="get_iframe('ifr')"
+                    class="button--plump button--purple button--s">Замінити</button>
+                <!-- <button type="button" id="submit" class="button--plump button--purple button--s">Замінити</button> -->
+            </div>
+        </div>
+        <div class="divRow">
+            <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">
+                🡃
+            </div>
+        </div>
+        <div class="divRow">
+            <div id="output" class="text-form hidden" style="cursor: default; height: auto;" readonly></div>
+        </div>
+        <div style="height: 20px;">
+        </div>
+        <div class="divRow">
+            <div id="uvaga" class="text" style="cursor: default; height: auto;" readonly></div>
+        </div>
+        <div style="height: 50px;">
+        </div>
+        <div class="divRow">
+            <a href="reverse.html">Latynka ➡ Кирилиця (EXPERIMENTAL)</a>
+        </div>
+        <div style="height: 50px;">
+        </div>
+    </div>
+</body>
+
+</html>
