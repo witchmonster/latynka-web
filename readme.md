@@ -6,7 +6,7 @@ Ostannja versija perekladača dostupna tut:
 
 https://jkramr.github.io/latynka-web/ (lyše perekladač)
 
-Oficijna stabil'na versija sajtu latynky: https://github.com/ukr-latynka/website
+Oficijna stabil'na versija sajtu latynky:
 
 https://ukr-latynka.org/
 
