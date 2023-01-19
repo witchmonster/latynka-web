@@ -4,14 +4,18 @@ Perekladač Кирилиця ➡ Latynka bazujet'sja na ideji Maksyma Prudeusa j
 
 [video]: https://youtu.be/nHeE2x2UNw4 "Video na kanali Maksyma Prudeusa"
 
-# FAQ
+# Časti zapytannja
 
-Časti zapytannja:
 1. Jak pereklasty tekst z kyrylyci na latynku?
+
 Ce možna zrobyty tut: 
+
 https://ukr-latynka.org/
+
 abo tut:
+
 https://jkramr.github.io/latynka-web/ (lyše perekladač)
+
 abo v Teleĝram boti @ukr_lat_bot
 2. Čy potriben apostrof, jakščo my pyšemo "Я" jak "JA" (Є - JE, Ё (ЙО/ЬО) - JO, Ї - JI, Ю - JU)?
 3. Čy možna peredavaty literu "Я" (ta inši podibni) dvoma variantamy (ja - ia abo ja - 'a; jo - io abo jo - 'o toščo)?
