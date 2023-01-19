@@ -4,7 +4,7 @@ Perekladač Кирилиця ➡ Latynka bazujet'sja na ideji Maksyma Prudeusa j
 
 [video]: https://youtu.be/nHeE2x2UNw4 "Video na kanali Maksyma Prudeusa"
 
-# Časti zapytannja
+# Časti zapytannja (vidpovidaje Maksym Prudeus)
 
 ## 1. Jak pereklasty tekst z kyrylyci na latynku?
 
