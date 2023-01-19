@@ -1,6 +1,7 @@
-# Перекладач Кирилиця ➡ Latynka
+# Perekladač Кирилиця ➡ Latynka
 
-[Перекладач Кирилиця ➡ Latynka][latynka] базується на ідеї Максима Прудеуса яку він описав у відео [Українська латинка: усі "за" та "проти" | Кирилиця чи латиниця | Абетка та розкладка клавіатури][video]
+[Perekladač Кирилиця ➡ Latynka][latynka] bazujet'sja na ideji Maksyma Prudeusa jaku vin opysav u video [Ukrajins'ka latynka: usi "za" ta "proty" | Kyrylycja čy latynycja | Abetka ta rozkladka klaviatury][video]
 
-[latynka]: https://jkramr.github.io/latynka-web/ "Онлайн версія перекладача"
-[video]: https://youtu.be/nHeE2x2UNw4 "Відео на каналі Максима Прудеуса"
+[latynka]: https://jkramr.github.io/latynka-web/ "Onlajn versija perekladača"
+[video]: https://youtu.be/nHeE2x2UNw4 "Video na kanali Maksyma Prudeusa"
+
