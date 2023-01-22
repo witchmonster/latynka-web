@@ -1,128 +1,99 @@
 import { dictionary } from './dictionary/dictionary.js';
-import { exceptions } from './dictionary/exceptions.js';
+import { common } from './common.js';
 
 var dict = dictionary.cyrToLat;
-var exception = exceptions.cyrToLat;
+var exceptions = dictionary.exceptions.cyrToLat;
 
 function cyrToLat(text) {
+
+  // -----------------------------------------------------------
+
   var answer = '';
 
-  //todo add case insensitive match
-  function exactMatchSubstring(i, size, dict) {
-    if (!dict) {
+  var { skips, text } = common.preprocessTextWithSkips(text, [
+    { from: common.quotes.single, to: common.quotes.double, excludeMiddle: true },
+    { from: common.quotes.triangle, to: common.quotes.double },
+    { from: common.quotes.pretty, to: common.quotes.double }
+  ], 5);
+
+  var fn = common.fn(text); //init fn functions on processed text
+
+  processAlphabetCharacterByCharacter();
+
+  return answer;
+
+  // -----------------------------------------------------------
+
+  function processAlphabetCharacterByCharacter() {
+    var nextSkip = 0;
+    var i = 0;
+    while (i < text.length) {
+
+      if (!dict.matchingSingleLetters[text[i]]) {
+        //skip convertation for unmapped characters
+        answer += text[i];
+        i++;
+      } else {
+
+        //process skips
+        while (fn.matchSubstring(i, 5, { regex: common.skipWordsMatcher })) {
+          const restoreWord = skips[nextSkip].replace(common.skipWordsMatcher, '$1');
+          answer += text.substring(i, i + 5).replace(common.skipWordsMatcher, restoreWord);
+          nextSkip++;
+          i += 5;
+        }
+
+        //process exceptions
+        var j = exceptions.maxLength;
+        while (j > 1) {
+          while (fn.exactMatchSubstring(i, j + 1, exceptions[j + 1])) {
+            answer += exceptions[j + 1][text.substring(i, i + j + 1)];
+            i += j + 1;
+          }
+          j--;
+        }
+
+        //process joDigraph apostrophes
+        while (shouldAddApostrophe(i, 2, dict.joDigraph)) {
+          answer += '\'';
+          answer += dict.joDigraph[text.substring(i, i + 2)];
+          i += 2;
+        }
+
+        //process digraphs
+        while (fn.exactMatchSubstring(i, 2, dict.digraphs)) {
+          answer += dict.digraphs[text.substring(i, i + 2)];
+          i += 2;
+        }
+
+        //process uppercase reverse digraphs
+        while (fn.shouldBeUpperCase(i, 1, dict.translatesToUpperCaseDigraph)) {
+          answer += dict.translatesToUpperCaseDigraph[text[i]];
+          i++;
+        }
+
+        //process single letters
+        if (fn.exactMatchSubstring(i, 1, dict.singleLetters)) {
+          answer += dict.singleLetters[text[i]];
+          i++;
+        }
+      }
+    }
+  }
+
+  function shouldAddApostrophe(i, size, machingDict) {
+    if (!fn.exactMatchSubstring(i, size, machingDict)) {
       return false;
     }
-    return i + size - 1 < text.length && dict[text.substring(i, i + size)];
-  }
-
-  function matchSubstring(i, size, matcher) {
-    if (!matcher) {
-      return false;
-    }
-    return i + size - 1 < text.length && matcher.regex.test(text.substring(i, i + size));
-  }
-
-  function isTranslatesToUpperCaseDigraph(text, i) {
-    var previousIsUpperCase = i - 1 >= 0 && dict.upperCase[text[i - 1]];
-    var nextIsUpperCase = i + 1 < text.length && dict.upperCase[text[i + 1]];
-    var isAcronym = previousIsUpperCase || nextIsUpperCase;
-    return isAcronym && dict.translatesToUpperCaseDigraph[text[i]];
-  }
-
-  function shouldAddApostrophe(text, i) {
 
     var firstLetterInText = i == 0;
-    var afterConsonant = i - 1 >= 0 && dict.consonants[text[i - 1]]
+    var afterConsonant = i - 1 >= 0 && dict.consonants[text[i - 1]];
 
     // due to specifics of cyrrilic scrypt where йо/ьо is a digraph, 
     // that leaves no ambiguity about hardness/softness of the previous 
     // consonant, there are no exceptions to this rule
     return !firstLetterInText && afterConsonant;
   }
-
-  var hasSingleQuotes = /([^\wа-яіїєґčšžĝ’'])'([\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\<\>\…\"\—\+\=а-яіїєґčšžĝ’'-]+?)'([^\wа-яіїєґčšžĝ’'])/gi;
-  var hasTriangleQuotes = /([^\wа-яіїєґčšžĝ’'])«([\r\n\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\<\>\…\"\—\+\=а-яіїєґčšžĝ’'-]+?)»([^\wа-яіїєґčšžĝ’'])/gi;
-  var hasWeirdQuotes = /([^\wа-яіїєґčšžĝ’'])“([\r\n\w\s\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\<\>\…\"\—\+\=а-яіїєґčšžĝ’'-]+?)”([^\wа-яіїєґčšžĝ’'])/gi;
-  var skipWords = /@@([\w\.\,\:\;\@\#\$\%\*\!\?\~\<\>\[\]\{\}\(\)\"\—\+\= а-яіїєґčšžĝ’'-]+?)@@/gi;
-
-  // add trailing spaces to simplify regex, will be removed after
-  text = ' ' + text;
-  text += ' ';
-
-  //preprocess single quotes so they don't clash with "ь"
-  text = text.replace(hasSingleQuotes, '$1"$2"$3')
-  //remove leftover nested single quotes
-  text = text.replace(hasSingleQuotes, '$1"$2"$3')
-  //preprocess triangle quotes
-  text = text.replace(hasTriangleQuotes, '$1"$2"$3')
-  //remove leftover nested triangle quotes
-  text = text.replace(hasTriangleQuotes, '$1"$2"$3')
-  //preprocess weird quotes
-  text = text.replace(hasWeirdQuotes, '$1"$2"$3')
-  //remove leftover nested weird quotes
-  text = text.replace(hasWeirdQuotes, '$1"$2"$3')
-
-  const skips = text.match(skipWords, '$1')
-  text = text.replace(skipWords, '@@ @@');
-
-  var nextSkip = 0;
-  var i = 0;
-  while (i < text.length) {
-
-    if (dict.singleLetters[text[i]]) {
-
-      //process skips
-      while (matchSubstring(i, 5, { regex: skipWords })) {
-        const restoreWord = skips[nextSkip].replace(skipWords, '$1');
-        answer += text.substring(i, i + 5).replace(skipWords, restoreWord);
-        nextSkip++;
-        i += 5;
-      }
-
-      //process exceptions
-      var j = exception.maxLength;
-      while (j > 1) {
-        while (exactMatchSubstring(i, j + 1, exception[j + 1])) {
-          answer += exception[j + 1][text.substring(i, i + j + 1)];
-          i += j + 1;
-        }
-        j--;
-      }
-
-      //process joDigraph apostrophes
-      if (exactMatchSubstring(i, 2, dict.joDigraph) && shouldAddApostrophe(text, i)) {
-        answer += '\'';
-        answer += dict.joDigraph[text.substring(i, i + 2)];
-        i += 2;
-      }
-
-      //process digraphs
-      if (exactMatchSubstring(i, 2, dict.digraphs)) {
-        answer += dict.digraphs[text.substring(i, i + 2)];
-        i += 2;
-      }
-
-      //process uppercase reverse digraphs
-      if (isTranslatesToUpperCaseDigraph(text, i)) {
-        answer += dict.translatesToUpperCaseDigraph[text[i]];
-        i++;
-      }
-
-      //process single letters
-      if (exactMatchSubstring(i, 1, dict.singleLetters)) {
-        answer += dict.singleLetters[text[i]];
-        i++;
-      }
-    } else {
-      //skip convertation for unmapped characters
-      answer += text[i];
-      i++;
-    }
-  }
-
-  answer = answer.replace(/^ /, ''); //remove preprossesing space at the beginning
-  answer = answer.replace(/ $/, ''); //remove preprossesing space at the end
-  return answer;
 }
 
 export { cyrToLat }

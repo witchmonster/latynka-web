@@ -106,19 +106,11 @@ function assert(isTrue, desc) {
     }
 }
 
-function suite(desc, tests) {
-    return testSuite(desc, false, tests);
-}
-
-function optionalSuite(desc, tests) {
-    return testSuite(desc, true, tests);
-}
-
 function outputSuiteResult(desc, optional, status) {
     if (desc != testRoot) {
         testLog('_________________________________________________________');
         if (optional) {
-            it(`<b>NABIR TESTIV '${desc}'</b>`, () => {
+            warn(`<b>NABIR TESTIV '${desc}'</b>`, () => {
                 assert(status == successStatus, `Opcionalnyj nabir testiv '${desc}' provalyv perevirku'.`);
             })
         } else {
@@ -186,6 +178,7 @@ function testSuite(desc, optional, testPayload, inherited) {
         ) {
             const assertFn = testPayload.allRegisters ? assertTestCaseAllRegisters : assertTestCase;
             if (testPayload.off) {
+                testLog(`\u26A0 ${desc}: skipped for the following reason: ${testPayload.off}`, '', 'darkorange');
                 return { status: successStatus, outPutLog };
             }
             return test(desc,

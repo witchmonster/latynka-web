@@ -53,6 +53,6 @@ const strUtils = {
     setCharToLowerCase,
     setCharToUpperCase,
     setCharAt
-}
+};
 
 export { strUtils }

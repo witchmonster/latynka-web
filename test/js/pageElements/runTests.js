@@ -5,8 +5,9 @@ function addRunTestsOnClick(button, statusElement, output, successOutput, failOu
     const urlParams = new URLSearchParams(queryString);
     const logLevel = urlParams.get('logLevel')
     const experimental = urlParams.get('experimental') != null
+    const future = urlParams.get('future') != null
     document.getElementById(button).addEventListener('click', () => {
-        var { outPutLog, status } = runTests(logLevel, experimental);
+        var { outPutLog, status } = runTests(logLevel, experimental, future);
         document.getElementById(output).innerHTML = outPutLog;
         if (outPutLog) {
             document.getElementById(statusElement).textContent = status == 'warn' ? warningOutput : status ? successOutput : failOutput
