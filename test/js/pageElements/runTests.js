@@ -1,12 +1,13 @@
-import { runTests } from "../testSuiteRunner.js";
+import { klatinoid } from "../../../node_modules/@juliakramr/latynka/index.js"
 
 function addRunTestsOnClick(button, statusElement, output, successOutput, failOutput, unhideElements) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const logLevel = urlParams.get('logLevel')
     const experimental = urlParams.get('experimental') != null
+    const future = urlParams.get('future') != null
     document.getElementById(button).addEventListener('click', () => {
-        var { outPutLog, status } = runTests(logLevel, experimental);
+        var { outPutLog, status } = klatinoid.runTests(logLevel, experimental, future);
         document.getElementById(output).innerHTML = outPutLog;
         if (outPutLog) {
             document.getElementById(statusElement).textContent = status == 'warn' ? warningOutput : status ? successOutput : failOutput
