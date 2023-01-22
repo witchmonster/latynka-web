@@ -1,4 +1,33 @@
 {
-    "name": "klatinoid-web",
-    "version": "1.1"
+    "name": "latynka-web",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Perekladač Кирилиця ➡ Latynka bazujet'sja na ideji Maksyma Prudeusa jaku vin opysav u video Ukrajins'ka latynka: usi \"za\" ta \"proty\" | Kyrylycja čy latynycja | Abetka ta rozkladka klaviatury",
+    "main": "index.html",
+    "directories": {
+        "lib": "lib",
+        "test": "test"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jkramr/latynka-web.git"
+    },
+    "keywords": [
+        "latynka",
+        "ukr",
+        "ukraine",
+        "ukrajinska"
+    ],
+    "author": "Julia Kramarenko",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/jkramr/latynka-web/issues"
+    },
+    "homepage": "https://github.com/jkramr/latynka-web#readme",
+    "dependencies": {
+        "@juliakramr/latynka": "^1.1.6"
+    }
 }

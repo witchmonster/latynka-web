@@ -110,16 +110,16 @@ function outputSuiteResult(desc, optional, status) {
     if (desc != testRoot) {
         testLog('_________________________________________________________');
         if (optional) {
-            warn(`<b>NABIR TESTIV '${desc}'</b>`, () => {
+            warn(`NABIR TESTIV '${desc}'`, () => {
                 assert(status == successStatus, `Opcionalnyj nabir testiv '${desc}' provalyv perevirku'.`);
             })
         } else {
             if (status == warningStatus) {
-                warn(`<b>NABIR TESTIV '${desc}'</b>`, () => {
+                warn(`NABIR TESTIV '${desc}'`, () => {
                     assert(false, `Nabir testiv '${desc}' provalyv perevirku.'.`);
                 })
             } else {
-                it(`<b>NABIR TESTIV '${desc}'</b>`, () => {
+                it(`NABIR TESTIV '${desc}'`, () => {
                     assert(status == successStatus, `Nabir testiv '${desc}' provalyv perevirku.'.`);
                 })
             }
@@ -128,8 +128,8 @@ function outputSuiteResult(desc, optional, status) {
     }
 }
 
-function runAll(optional, testPayload) {
-    return testSuite(testRoot, optional, testPayload, {});
+function runAll(optional, testPayload, name) {
+    return testSuite(name ? name : testRoot, optional, testPayload, {});
 }
 
 function testSuite(desc, optional, testPayload, inherited) {

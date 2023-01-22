@@ -5,7 +5,7 @@ import { addSumbitTranslationEventOnClick } from './pageElements/submitTranslati
 import { addResetEventOnClick } from './pageElements/reset.js';
 import { addTextToElement } from './pageElements/addTextToElement.js';
 import { addDevMode } from './pageElements/devMode.js';
-import { converterMap } from './converters/converters.js';
+import { klatinoid } from "../../../node_modules/@juliakramr/latynka/index.js"
 import { addHtmlToElement } from './pageElements/addHtmlToElement.js';
 
 window.onload = () => {
@@ -32,7 +32,7 @@ window.onload = () => {
         submitButton,
         input,
         output,
-        converterMap[translator],
+        klatinoid[translator],
         toggleElements //unhide elements
     );
 }

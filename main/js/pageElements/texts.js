@@ -1,11 +1,10 @@
-import { cyrToLatTestSuite } from "../../../test/js/testcases/1.0/cyrToLatTestSuite.js";
-import { latToCyrTestSuite } from "../../../test/js/testcases/1.0/latToCyrTestSuite.js";
+import { klatinoid } from "../../../node_modules/@juliakramr/latynka/index.js"
 
 const texts = {
-    cyrToLatTest1: cyrToLatTestSuite.testPayload[0].testPayload.input,
+    cyrToLatTest1: klatinoid.tests.cyrToLatExperimentalSuite.testPayload[0].testPayload.input,
 
 
-    latToCyrTest1: latToCyrTestSuite.testPayload[0].testPayload.input,
+    latToCyrTest1: klatinoid.tests.latToCyrExperimentalSuite.testPayload[0].testPayload.input,
 
     cyrToLatUvaga: `
     Увага! Це тестова версія. Про помилки та баги пишіть <a href="https://github.com/jkramr/latynka/issues/new">Сюди</a>.

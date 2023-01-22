@@ -1,6 +1,6 @@
 import { diff_match_patch } from "../../../lib/js/diff/diff_match_patch.js";
-import { assert, log } from "../testUtils/testUtils.js";
-import { strUtils } from "../../../main/js/utils/stringUtils.js";
+import { assert, log } from "./testUtils.js";
+import { strUtils } from "./stringUtils.js";
 
 strUtils.addCustomCases();
 
