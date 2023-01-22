@@ -2,19 +2,23 @@
 
 Perekladač Кирилиця ➡ Latynka bazujet'sja na ideji Maksyma Prudeusa jaku vin opysav u video [Ukrajins'ka latynka: usi "za" ta "proty" | Kyrylycja čy latynycja | Abetka ta rozkladka klaviatury][video]
 
+Ostannja versija perekladača dostupna tut:
+
+https://jkramr.github.io/latynka-web/ (lyše perekladač)
+
+Oficijna stabil'na versija sajtu latynky:
+
+https://ukr-latynka.org/
+
 [video]: https://youtu.be/nHeE2x2UNw4 "Video na kanali Maksyma Prudeusa"
 
-# Časti zapytannja
+# Časti zapytannja (vidpovidaje Maksym Prudeus)
 
 ## 1. Jak pereklasty tekst z kyrylyci na latynku?
 
 Ce možna zrobyty tut: 
 
 https://ukr-latynka.org/
-
-abo tut:
-
-https://jkramr.github.io/latynka-web/ (lyše perekladač)
 
 abo v Teleĝram boti @ukr_lat_bot
 
