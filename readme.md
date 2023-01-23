@@ -12,6 +12,16 @@ https://ukr-latynka.org/
 
 [video]: https://youtu.be/nHeE2x2UNw4 "Video na kanali Maksyma Prudeusa"
 
+# Installation
+
+Run the following commands:
+
+```
+$npm install
+
+$browserify .\index.js -p esmify -o .\generated\addJsElements.js
+```
+
 # Časti zapytannja (vidpovidaje Maksym Prudeus)
 
 ## 1. Jak pereklasty tekst z kyrylyci na latynku?
