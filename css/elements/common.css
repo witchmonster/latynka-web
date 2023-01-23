@@ -10,14 +10,19 @@ body {
 }
 
 h2 {
-  /* font-family: PragmataPro, Roboto, Helvetica, fallback-font; */
-  font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif;
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
 }
 
 a {
-  color: var(--color-secondary);
-  /* font-family: PragmataPro, Roboto, Helvetica, fallback-font; */
-  font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif;
+  text-decoration: none;
 }
 
 .divTable {
@@ -30,26 +35,11 @@ a {
   text-align: center;
 }
 
-.divRow {
-  width: auto;
-  text-align: center;
-}
-
-.divCell {
-  font-size: 16px;
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
-  text-align: center;
-  vertical-align: center;
-}
-
 .text-form {
   width: 80%;
   height: 350px;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
   background-color: var(--color-primary-darker);
   color: var(--color-secondary);
   resize: none;
@@ -86,7 +76,7 @@ a {
   width: 60%;
   height: auto;
   display: inline-block;
-  font-size: 14px;
+  font-size: 18px;
   background-color: var(--color-primary);
   color: var(--color-secondary);
   resize: none;
@@ -122,5 +112,4 @@ a {
 
 .transparent {
   color: var(--color-primary);
-  ;
 }

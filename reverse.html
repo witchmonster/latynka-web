@@ -20,7 +20,7 @@
 
         //elements
         const test1Name = 'latToCyrTest1';
-        const toggleElements = ['output', 'arrow'];
+        const toggleElements = ['output', 'copy'];
         const input = 'input';
         const output = 'output';
         const uvaga = 'uvaga';
@@ -36,63 +36,70 @@
 
 <body>
     <div class="divTable">
-        <div class="divRow">
-            <div id="changeTheme" class="divCell">Змінити тему</div>
-        </div>
-        <div class="divRow">
-            <div class="divCell">
+        <div>
+            <div>
                 <label class="switch">
                     <input type="checkbox" id="theme">
                     <span class="slider round"></span>
                 </label>
             </div>
         </div>
-        <div class="divRow">
+        <div>
             <h3>Українська латинка - сучасно, зручно, інтуїтивно.</h3>
-            <h4>Проєкт української латинки Максима Прудеуса</h4>
         </div>
-        <div class="divRow">
-            <div class="divCell">
-                <h2>Latynka ➡ Кирилиця (EXPERIMENTAL)</h2>
-            </div>
+        <div style="height: 5px;">
         </div>
-        <div class="divRow">
-            <div class="divCell">
-                <button type="button" id="submitTestText1"
-                    class="button--plump button--gray button--xs devMode hidden">Заповнити
-                    тестовий
-                    текст</button>
-            </div>
-            <div class="divCell">
-                <button type="button" id="reset" class="button--plump button--gray button--xs">Очистити
-                    поле</button>
-            </div>
+        <div>
+            <h2>
+                Latynka
+                <span class="transparent">.....</span>
+                <a class="button--plump button--gray button--xs" href="index.html">⇄</a>
+                <span class="transparent">..</span>
+                Кирилиця
+            </h2>
         </div>
-        <div class="divRow">
+        <div>
+            <button type="button" id="reset" class="button--plump button--gray button--xs">
+                &#8634; Очистити поле
+            </button>
+        </div>
+        <div style="height: 10px;">
+        </div>
+        <div>
             <textarea id="input" class="text-form"></textarea>
         </div>
-        <div class="divRow">
-            <div class="divCell">
-                <button type="button" id="submit" class="button--plump button--purple button--s">Замінити</button>
-            </div>
+        <div style="height: 5px;">
         </div>
-        <div class="divRow">
-            <div id="arrow" class="hidden" style="height: 40px; font-size: 30px;">
-                🡃
-            </div>
+        <div>
+            <button type="button" id="submitTestText1" class="button--plump button--gray button--xs devMode hidden">
+                Заповнити тестовий текст
+            </button>
         </div>
-        <div class="divRow">
+        <div style="height: 5px;">
+        </div>
+        <div>
+            <button type="button" id="submit" class="button--plump button--purple button--s">🡃 Замінити</button>
+        </div>
+        <div style="height: 10px;">
+        </div>
+        <div>
             <div id="output" class="text-form hidden" style="cursor: default; height: auto;" readonly></div>
         </div>
-        <div style="height: 20px;">
+        <div style="height: 10px;">
         </div>
-        <div class="divRow">
-            <div id="uvaga" class="text" style="cursor: default; height: auto; color: orangered;" readonly></div>
+        <div>
+            <button type="button" id="copy" onclick="copyText()" class="button--plump button--gray button--xs hidden">
+                ⧉ Копіювати
+            </button>
+            <script src="./main/js/pageElements/copyText.js"></script>
         </div>
         <div style="height: 50px;">
         </div>
-        <div class="divRow">
-            <a href="index.html">Кирилиця ➡ Latynka</a>
+        <div>
+            <h4>Проєкт української латинки Максима Прудеуса © 2023</h4>
+        </div>
+        <div>
+            <div id="uvaga" class="text" style="cursor: default; height: auto;" readonly></div>
         </div>
         <div style="height: 50px;">
         </div>
