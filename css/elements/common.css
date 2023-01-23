@@ -1,12 +1,23 @@
 body {
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  font-family: PragmataPro, Roboto, Helvetica, fallback-font;
+  /* font-family: PragmataPro, Roboto, Helvetica, fallback-font; */
+  font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif;
+  font-weight: 100;
+  font-style: normal;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+h2 {
+  /* font-family: PragmataPro, Roboto, Helvetica, fallback-font; */
+  font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif;
 }
 
 a {
   color: var(--color-secondary);
-  font-family: PragmataPro;
+  /* font-family: PragmataPro, Roboto, Helvetica, fallback-font; */
+  font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif;
 }
 
 .divTable {
@@ -48,7 +59,11 @@ a {
   padding-bottom: 30px;
   border: 0 solid #00000000;
   border-radius: 50px;
-  font-family: PragmataPro, Helvetica, fallback-font;
+  font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif;
+  font-weight: 300;
+  font-style: normal;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   /* text formatting options (from textarea) */
   text-rendering: auto;
   letter-spacing: normal;
@@ -81,7 +96,8 @@ a {
   padding-bottom: 30px;
   border: 0 solid #00000000;
   border-radius: 50px;
-  font-family: PragmataPro, Helvetica, fallback-font;
+  /* font-family: PragmataPro, Helvetica, fallback-font; */
+  font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif;
   /* text formatting options (from textarea) */
   text-rendering: auto;
   letter-spacing: normal;

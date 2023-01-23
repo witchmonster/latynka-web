@@ -1,5 +1,3 @@
-@import "fonts.css";
-
 .button--plump {
   border-width: 0;
   text-align: center;
@@ -7,6 +5,7 @@
   border: 0 solid #00000000;
   border-radius: 50px;
   font-family: PragmataPro, Roboto, Helvetica, fallback-font;
+  /* font-family: Skolar PE Web, Georgia, 'Times New Roman', Times, serif; */
   font-weight: lighter;
 }
 
