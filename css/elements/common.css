@@ -9,20 +9,27 @@ body {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
-h2 {
-  font-size: 24px;
+.haslo {
+  font-size: 22px;
+  font-weight: 300;
 }
 
-h3 {
+.translatorTitle {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   font-size: 20px;
+  font-weight: 600;
+  font-family: PragmataPro, Roboto, Helvetica, fallback-font;
 }
 
-h4 {
-  font-size: 19px;
+.footer {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: PragmataPro, Roboto, Helvetica, fallback-font;
 }
 
 a {
-  text-decoration: none;
+  color: var(--color-secondary);
 }
 
 .divTable {
@@ -73,7 +80,7 @@ a {
 }
 
 .text {
-  width: 60%;
+  width: 80%;
   height: auto;
   display: inline-block;
   font-size: 18px;

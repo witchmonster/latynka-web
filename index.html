@@ -36,30 +36,29 @@
 
 <body>
     <div class="divTable">
-        <!-- <div>
-            <div id="changeTheme">Змінити тему</div>
-        </div> -->
-        <div>
-            <div>
-                <label class="switch">
-                    <input type="checkbox" id="theme">
-                    <span class="slider round"></span>
-                </label>
-            </div>
+        <div class="theme">
+            <div class="changeTheme">Змінити тему</div>
+            <label class="switch">
+                <input type="checkbox" id="theme">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div style="height: 20px;">
         </div>
         <div>
-            <h2>Українська латинка - сучасно, зручно, інтуїтивно.</h2>
+            <span class="haslo">Українська латинка - сучасно, зручно, інтуїтивно.</span>
         </div>
-        <div style="height: 5px;">
+        <div style="height: 25px;">
         </div>
         <div>
-            <h3>
-                Кирилиця
-                <span class="transparent">..</span>
-                <a class="button--plump button--gray button--xs" href="reverse.html">⇄</a>
-                <span class="transparent">.....</span>
-                Latynka
-            </h3>
+            <span class="translatorTitle">
+                <div style="text-align: right;">Кирилиця</div>
+                <div style="margin-left: 10px; margin-right: 10px;"><a class="button--plump button--gray button--xs"
+                        href="reverse.html">⇄</a></div>
+                <div style="text-align: left;">Latynka</div>
+            </span>
+        </div>
+        <div style="height: 15px;">
         </div>
         <div>
             <button type="button" id="reset" class="button--plump button--gray button--xs">
@@ -99,7 +98,10 @@
         <div style="height: 50px;">
         </div>
         <div>
-            <h4>Проєкт української латинки Максима Прудеуса © 2022-2023</h4>
+            <span class="footer">Проєкт української латинки Максима Прудеуса</span>
+        </div>
+        <div>
+            <span class="footer">© 2022-2023</span>
         </div>
         <div>
             <div id="uvaga" class="text" style="cursor: default; height: auto;" readonly></div>
