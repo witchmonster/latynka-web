@@ -11,23 +11,88 @@ var _devMode = require("./main/js/pageElements/devMode.js");
 var _index = require("./node_modules/@juliakramr/latynka/index.js");
 var _addHtmlToElement = require("./main/js/pageElements/addHtmlToElement.js");
 var _runTests = require("./test/js/pageElements/runTests.js");
+const common = {
+  from: 'from',
+  to: 'to',
+  resetText: '',
+  toggleElements: ['output', 'copy'],
+  input: 'input',
+  output: 'output',
+  uvaga: 'uvaga',
+  submitButton: 'submit',
+  resetButton: 'reset',
+  testText1Button: 'submitTestText1',
+  isTest: false
+};
+const latToCyr = {
+  fromText: 'Latynka',
+  toText: 'Кирилиця',
+  //translator type
+  translator: 'latToCyr',
+  //UI text elements
+  initialInputText: 'Vvedit\' tekst latynkoju',
+  //elements
+  test1Name: 'latToCyrTest1',
+  uvagaText: 'latToCyrUvaga'
+};
+const cytToLat = {
+  fromText: 'Кирилиця',
+  toText: 'Latynka',
+  //translator type
+  translator: 'cyrToLat',
+  //UI text elements
+  initialInputText: 'Введіть текст кирилицею',
+  //elements
+  test1Name: 'cyrToLatTest1',
+  uvagaText: 'cyrToLatUvaga'
+};
+var variables = {
+  ...common,
+  ...cytToLat
+};
+var current = 'cytToLat';
+var switchFrom = {
+  'cytToLat': latToCyr,
+  'latToCyr': cytToLat
+};
+var switchCurrent = {
+  'cytToLat': 'latToCyr',
+  'latToCyr': 'cytToLat'
+};
+window.switchConverter = function () {
+  var switched = switchFrom[current];
+  current = switchCurrent[current];
+  variables = {
+    ...common,
+    ...switched
+  };
+  loadElements(variables);
+};
 window.onload = () => {
   (0, _theme.addToggleThemeEvent)();
-  if (!isTest) {
-    (0, _addTextToElement.addTextToElement)(input, initialInputText);
-    (0, _addHtmlToElement.addHtmlToElement)(uvaga, (0, _texts.getText)(uvagaText));
+  if (isTest) {
+    variables.isTest = isTest;
+  }
+  loadElements(variables);
+};
+function loadElements(arg) {
+  if (!arg.isTest) {
+    (0, _addTextToElement.addTextToElement)(arg.input, arg.initialInputText);
+    (0, _addTextToElement.addTextToElement)(arg.from, arg.fromText);
+    (0, _addTextToElement.addTextToElement)(arg.to, arg.toText);
+    (0, _addHtmlToElement.addHtmlToElement)(arg.uvaga, (0, _texts.getText)(arg.uvagaText));
     (0, _devMode.addDevMode)();
-    (0, _reset.addResetEventOnClick)(resetButton, input, output, resetText, toggleElements //hide elements
+    (0, _reset.addResetEventOnClick)(arg.resetButton, arg.input, arg.output, arg.resetText, arg.initialInputText, arg.toggleElements //hide elements
     );
 
-    (0, _addTest.addTestTextEventOnClick)(testText1Button, input, (0, _texts.getText)(test1Name));
-    (0, _submitTranslation.addSumbitTranslationEventOnClick)(submitButton, input, output, _index.klatinoid[translator], toggleElements //unhide elements
+    (0, _addTest.addTestTextEventOnClick)(arg.testText1Button, arg.input, (0, _texts.getText)(arg.test1Name));
+    (0, _submitTranslation.addSumbitTranslationEventOnClick)(arg.submitButton, arg.input, arg.output, _index.klatinoid[arg.translator], arg.toggleElements //unhide elements
     );
   } else {
     (0, _runTests.addRunTestsOnClick)(submitButton, statusElement, output, successOutput, failOutput, toggleElements //unhide elements
     );
   }
-};
+}
 
 },{"./main/js/pageElements/addHtmlToElement.js":2,"./main/js/pageElements/addTest.js":3,"./main/js/pageElements/addTextToElement.js":4,"./main/js/pageElements/devMode.js":5,"./main/js/pageElements/reset.js":6,"./main/js/pageElements/submitTranslation.js":7,"./main/js/pageElements/texts.js":8,"./main/js/pageElements/theme.js":9,"./node_modules/@juliakramr/latynka/index.js":10,"./test/js/pageElements/runTests.js":31}],2:[function(require,module,exports){
 "use strict";
@@ -62,6 +127,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.addTextToElement = addTextToElement;
 function addTextToElement(element, text) {
   document.getElementById(element).value = text;
+  document.getElementById(element).textContent = text;
 }
 
 },{}],5:[function(require,module,exports){
@@ -75,7 +141,6 @@ function addDevMode() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const isDevMode = urlParams.get('devMode') != null;
-  console.log("DevMode enabled: " + isDevMode);
   if (isDevMode) {
     let devModeElements = document.getElementsByClassName('devMode');
     if (devModeElements.length != 0) {
@@ -93,14 +158,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.addResetEventOnClick = addResetEventOnClick;
-function addResetEventOnClick(button, input, output, resetInputText, hideElements) {
+function addResetEventOnClick(button, input, output, resetInputText, initialInputText, hideElements) {
+  doHide(input, output, initialInputText, hideElements);
   document.getElementById(button).addEventListener('click', () => {
+    doHide(input, output, resetInputText, hideElements);
+  });
+  function doHide(input, output, resetInputText, hideElements) {
     document.getElementById(input).value = resetInputText;
     document.getElementById(output).value = '';
     hideElements.forEach(element => {
       document.getElementById(element).classList.add('hidden');
     });
-  });
+  }
 }
 
 },{}],7:[function(require,module,exports){
@@ -144,10 +213,10 @@ const texts = {
     Аби запобігти перекладу слова, ви можете загорнути потрібне слово або речення подвійним знаком "@": 
     @@Черноризец Храбър@@ ➡ Черноризец Храбър
     
-    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.8" target="_blank">@juliakramr/latynka:1.1.8</a>`,
+    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.9" target="_blank">@juliakramr/latynka:1.1.9</a>`,
   latToCyrUvaga: `
     Дізнатись більше про цю версію латинки: <a href="https://www.youtube.com/watch?v=nHeE2x2UNw4">Українська латинка: усі "за" та "проти"</a>
-    
+
     Увага! Це тестова версія. Про помилки та баги пишіть <a href="https://github.com/jkramr/latynka/issues/new">Сюди</a>.
 
     Наразі слова, написані англійською та іншими мовами також перекладатимуться кирилицею: 
@@ -155,7 +224,7 @@ const texts = {
     Аби запобігти перекладу слова, ви можете загорнути потрібне слово або речення подвійним знаком "@": 
     @@New York@@ ➡ New York
     
-    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.8" target="_blank">@juliakramr/latynka:1.1.8</a>`
+    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.9" target="_blank">@juliakramr/latynka:1.1.9</a>`
 };
 exports.texts = texts;
 function getText(testName) {
@@ -184,16 +253,16 @@ Object.defineProperty(exports, "__esModule", {
 exports.klatinoid = void 0;
 var _cyrToLat = require("./main/js/converters/cyrToLat.js");
 var _latToCyr = require("./main/js/converters/latToCyr.js");
-var _test = require("./test/js/test.js");
+var _runTests = require("./test/js/testcases/runTests.js");
 const klatinoid = {
   cyrToLat: _cyrToLat.cyrToLat,
   latToCyr: _latToCyr.latToCyr,
-  runTests: _test.runTests,
-  tests: _test.tests
+  runTests: _runTests.runTests,
+  tests: _runTests.tests
 };
 exports.klatinoid = klatinoid;
 
-},{"./main/js/converters/cyrToLat.js":13,"./main/js/converters/latToCyr.js":18,"./test/js/test.js":19}],11:[function(require,module,exports){
+},{"./main/js/converters/cyrToLat.js":13,"./main/js/converters/latToCyr.js":18,"./test/js/testcases/runTests.js":27}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2436,7 +2505,7 @@ function cyrToLat(text) {
     var nextSkip = 0;
     var i = 0;
     while (i < text.length) {
-      if (!dict.matchingSingleLetters[text[i]]) {
+      if (!dict.singleLetters[text[i]]) {
         //skip convertation for unmapped characters
         answer += text[i];
         i++;
@@ -2718,13 +2787,6 @@ const russianAlert = {
   'ы': 'y',
   'Ы': 'Y'
 };
-const matchingSingleLetters = {
-  ...lowerCase,
-  ...upperCase,
-  ...special,
-  ...apostrophes,
-  ...russianAlert
-};
 const singleLetters = {
   ...lowerCase,
   ...upperCase,
@@ -2788,7 +2850,6 @@ const cyrToLatDict = {
   joDigraph,
   translatesToDigraph,
   translatesToUpperCaseDigraph,
-  matchingSingleLetters,
   //detect russian letters
   russianAlert,
   //match all
@@ -3029,14 +3090,8 @@ var delimiters = {
   '\r': '\r',
   '\n': '\n'
 };
-const matchingSingleLetters = {
-  ...digits,
-  ...lowerCase,
-  ...upperCase,
-  ...special,
-  ...mjakyjZnak
-};
 const singleLetters = {
+  ...digits,
   ...lowerCase,
   ...upperCase,
   ...special,
@@ -3059,7 +3114,6 @@ const latToCyrDict = {
   delimiters,
   joDigraph,
   ioDigraph,
-  matchingSingleLetters,
   //match all
   all: {
     singleLetters,
@@ -3133,7 +3187,7 @@ function latToCyr(text) {
     var nextSkip = 0;
     var i = 0;
     while (i < text.length) {
-      if (!dict.matchingSingleLetters[text[i]]) {
+      if (!dict.singleLetters[text[i]]) {
         answer += text[i];
         i++;
       } else {
@@ -3218,84 +3272,6 @@ function latToCyr(text) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.runTests = runTests;
-exports.tests = void 0;
-var _cyrToLatTestSuite = require("./testcases/0.9/cyrToLatTestSuite.js");
-var _latToCyrTestSuite = require("./testcases/0.9/latToCyrTestSuite.js");
-var _cyrToLatTestSuite2 = require("./testcases/1.0/cyrToLatTestSuite.js");
-var _latToCyrTestSuite2 = require("./testcases/1.0/latToCyrTestSuite.js");
-var _cyrToLatTestSuite3 = require("./testcases/1.1/cyrToLatTestSuite.js");
-var _latToCyrTestSuite3 = require("./testcases/1.1/latToCyrTestSuite.js");
-var _cyrToLatTestSuite4 = require("./testcases/future/cyrToLatTestSuite.js");
-var _latToCyrTestSuite4 = require("./testcases/future/latToCyrTestSuite.js");
-var _testUtils = require("./utils/testUtils.js");
-const supportedVersions = ['0.9', '1.0'];
-const experimentalVersion = '1.1';
-const futureVersion = 'future';
-
-// for (let i = 0; i < supportedVersions.length; i++) {
-//     import(`./testcases/${supportedVersions[i]}/cyrToLatTestSuite.js`)
-//         .then()
-//     import(`./testcases/${supportedVersions[i]}/latToCyrTestSuite.js`)
-//         .then()
-// }
-
-// import(`./testcases/${experimentalVersion}/cyrToLatTestSuite.js`)
-//     .then()
-// import(`./testcases/${experimentalVersion}/latToCyrTestSuite.js`)
-//     .then()
-
-// import(`./testcases/${futureVersion}/cyrToLatTestSuite.js`)
-//     .then()
-// import(`./testcases/${futureVersion}/latToCyrTestSuite.js`)
-//     .then()
-
-function runTests(loglevel = 'debug', experimental = false, future = false, name = "ALL TESTS") {
-  // process.argv.forEach(function (val, index, array) {
-  //     console.log(index + ': ' + val);
-  // });
-  (0, _testUtils.init)(loglevel ? loglevel : undefined);
-  var tests = {
-    cyrToLat0_9TestSuite: _cyrToLatTestSuite.cyrToLatTestSuite,
-    latToCyr0_9TestSuite: _latToCyrTestSuite.latToCyrTestSuite,
-    cyrToLat1_0TestSuite: _cyrToLatTestSuite2.cyrToLatTestSuite,
-    latToCyr1_0TestSuite: _latToCyrTestSuite2.latToCyrTestSuite
-  };
-  var experimentalTests = {
-    cyrToLatExperimentalSuite: _cyrToLatTestSuite3.cyrToLatTestSuite,
-    latToCyrExperimentalSuite: _latToCyrTestSuite3.latToCyrTestSuite
-  };
-  var futureTests = {
-    cyrToLatFutureSuite: _cyrToLatTestSuite4.cyrToLatTestSuite,
-    latToCyrFutureSuite: _latToCyrTestSuite4.latToCyrTestSuite
-  };
-  if (experimental) {
-    tests = {
-      ...tests,
-      ...experimentalTests
-    };
-  }
-  if (future) {
-    tests = {
-      ...tests,
-      ...futureTests
-    };
-  }
-  const allTests = typeof tests === 'object' ? Object.values(tests) : tests;
-  return (0, _testUtils.runAll)(true, allTests, name);
-}
-const tests = {
-  cyrToLatExperimentalSuite: _cyrToLatTestSuite3.cyrToLatTestSuite,
-  latToCyrExperimentalSuite: _latToCyrTestSuite3.latToCyrTestSuite
-};
-exports.tests = tests;
-
-},{"./testcases/0.9/cyrToLatTestSuite.js":20,"./testcases/0.9/latToCyrTestSuite.js":21,"./testcases/1.0/cyrToLatTestSuite.js":22,"./testcases/1.0/latToCyrTestSuite.js":23,"./testcases/1.1/cyrToLatTestSuite.js":24,"./testcases/1.1/latToCyrTestSuite.js":25,"./testcases/future/cyrToLatTestSuite.js":26,"./testcases/future/latToCyrTestSuite.js":27,"./utils/testUtils.js":30}],20:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.cyrToLatTestSuite = void 0;
 var _cyrToLat = require("../../../../main/js/converters/cyrToLat.js");
 // for tests:
@@ -3363,7 +3339,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],21:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":13}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3418,7 +3394,7 @@ const latToCyrTestSuite = {
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],22:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":18}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3534,7 +3510,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],23:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":13}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3609,7 +3585,7 @@ const latToCyrTestSuite = {
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],24:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":18}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3637,7 +3613,7 @@ const cyrToLatTestSuite = {
     Особливі випадки зі змішаним регістром: «НЕ СПОВІЩАТИ» (але "Ще"), "ЮНЕСКО", СЕРЙОЗНО, КУРЙОЗ, РАЙОН, МІЛЬЙОН, ОБСЄ.
     Особливі випадки на 'йо'/'ьо' (м'який знак + "о"): п’ятьох, трьох, його, "йогурт", (Йоркшир), /йога/, [Йоганнесбург], _Йовович_.
     В іншомовних словах апостроф перед я, ю, є, ї ставиться не тільки після губних (б, п, в, м, ф) та р, а й після шиплячих та задньоротових (г, к, х, ж, ч, ш), якщо після них чується звук [й]: комп'ютер [-пю-], Дансм'юр [-мюр], бар'єр [-рєр], миш'як [-шя-], Руж'є [-жє], Х'юстон (@@Х'юстон@@) [хю-], Рейк'явік (@@Рейк'явік@@) [-кя-], Г'ята [гя-].
-    Болга́рія (заст. укр. @@Болгарщина@@[5], болг. @@България@@), офіційна назва: Респу́бліка Болга́рія (болг. @@Република България@@)
+    Болга́рія (заст. укр. @@Болгарщина@@[5], болг. @@България@@), офіційна назва: Респу́бліка Болга́рія (болг. @@Република България@@), (1948)
     Булга́ри (лат. @@Bulgares@@, грец. @@Βoύλγαρoί@@, староболг. @@Блъгарє@@, дав.-рус. @@българы@@, тат. @@болгарлар@@, чув. @@Пӑлха́рсем@@, болг. @@прабългари@@) — група тюркських (огурських) кочових племен.`,
       expected: `    Slova inšomovnogo pohodžennja: ad'je, konferans'je, monpans'je, pas'jans, atel'je, barel'jef, batal'jon, mil'jard, buton'jerka, vin'jetka, kan'jon, Got'je, N'ju-Jork, N'juton, N'jasa, Ren'je toščo. Ale V'jent'jan.
     Himični spoluky: a-ftorsul'fo-nyloksyalkanperftorkarbonova kyslota.
@@ -3646,7 +3622,7 @@ const cyrToLatTestSuite = {
     Osoblyvi vypadky zi zmišanym registrom: "NE SPOVIŠČATY" (ale "Šče"), "JUNESKO", SER'JOZNO, KUR'JOZ, RAJON, MIL'JON, OBSJE.
     Osoblyvi vypadky na "jo"/"'o" (m'jakyj znak + "o"): p'jatjoh, trjoh, jogo, "jogurt", (Jorkšyr), /joga/, [Jogannesburg], _Jovovyč_.
     V inšomovnyh slovah apostrof pered ja, ju, je, ji stavyt'sja ne til'ky pislja gubnyh (b, p, v, m, f) ta r, a j pislja šypljačyh ta zadnjorotovyh (g, k, h, ž, č, š), jakščo pislja nyh čujet'sja zvuk [j]: komp'juter [-pju-], Dansm'jur [-mjur], bar'jer [-rjer], myš'jak [-šja-], Ruž'je [-žje], H'juston (Х'юстон) [hju-], Rejk'javik (Рейк'явік) [-kja-], G'jata [gja-].
-    Bolgárija (zast. ukr. Болгарщина[5], bolg. България), oficijna nazva: Respúblika Bolgárija (bolg. Република България)
+    Bolgárija (zast. ukr. Болгарщина[5], bolg. България), oficijna nazva: Respúblika Bolgárija (bolg. Република България), (1948)
     Bulgáry (lat. Bulgares, grec. Βoύλγαρoί, starobolg. Блъгарє, dav.-rus. българы, tat. болгарлар, čuv. Пӑлха́рсем, bolg. прабългари) — grupa tjurks'kyh (ogurs'kyh) kočovyh plemen.`
     }
   }, {
@@ -3736,7 +3712,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],25:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":13}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3764,7 +3740,7 @@ const latToCyrTestSuite = {
     Osoblyvi vypadky zi zmišanym registrom: "NE SPOVIŠČATY" (ale "Šče"), "JUNESKO", SER'JOZNO, KUR’JOZ, RAJON, MIL'JON, OBSJE.
     Osoblyvi vypadky na 'jo' (m'jakyj znak + "o"): p'jatjoh, trjoh, jogo, "jogurt", (Jorkšyr), /joga/, [Jogannesburg], _Jovovyč_.
     V inšomovnyh slovah apostrof pered ja, ju, je, ji stavyt'sja ne til'ky pislja gubnyh (b, p, v, m, f) ta r, a j pislja šypljačyh ta zadnjorotovyh (g, k, h, ž, č, š), jakščo pislja nyh čujet'sja zvuk [j]: komp'juter [-pju-], Dansm'jur [-mjur], bar'jer [-rjer], myš'jak [-šja-], Ruž'je [-žje], H'juston (@@Huston@@) [hju-], Rejk'javik (@@Reykjavik@@) [-kja-], G'jata [gja-].
-    @@Grand Beatbox Battle@@ (zazvyčaj skoročeno @@GBB@@) — ščorične mižnarodne zmagannja z @@beatboxing@@u, jake provodyt' @@Swissbeatbox@@. Konkurs provodyt' kil'ka turniriv dlja riznyh form i kategorij @@beatboxing@@u, zokrema: @@solo@@ (abo @@showcase@@), @@Loopstation@@, @@Tag Team@@, @@Tag Team Loopstation@@ i @@Crew@@.
+    @@Grand Beatbox Battle@@ (zazvyčaj skoročeno @@GBB@@) — ščorične mižnarodne zmagannja z @@beatboxing@@u, jake provodyt' @@Swissbeatbox@@ (2022). Konkurs provodyt' kil'ka turniriv dlja riznyh form i kategorij @@beatboxing@@u, zokrema: @@solo@@ (abo @@showcase@@), @@Loopstation@@, @@Tag Team@@, @@Tag Team Loopstation@@ i @@Crew@@.
     Možna šče al'ternatyvno rozgljanuty rišennja z @@iframe + third party scraper API@@.`,
       expected: `    Слова іншомовного походження: адьє, конферансьє, монпансьє, пасьянс, ательє, барельєф, батальйон, мільярд, бутоньєрка, віньєтка, каньйон, Готьє, Нью-Йорк, Ньютон, Ньяса, Реньє тощо. Але В’єнтьян.
     Хімічні сполуки: «а-фторсульфо-нилоксиалканперфторкарбонова кислота».
@@ -3773,7 +3749,7 @@ const latToCyrTestSuite = {
     Особливі випадки зі змішаним регістром: «НЕ СПОВІЩАТИ» (але «Ще»), «ЮНЕСКО», СЕРЙОЗНО, КУРЙОЗ, РАЙОН, МІЛЬЙОН, ОБСЄ.
     Особливі випадки на «йо» (м’який знак + «о»): п’ятьох, трьох, його, «йогурт», (Йоркшир), /йога/, [Йоганнесбург], _Йовович_.
     В іншомовних словах апостроф перед я, ю, є, ї ставиться не тільки після губних (б, п, в, м, ф) та р, а й після шиплячих та задньоротових (г, к, х, ж, ч, ш), якщо після них чується звук [й]: комп’ютер [-пю-], Дансм’юр [-мюр], бар’єр [-рєр], миш’як [-шя-], Руж’є [-жє], Х’юстон (Huston) [хю-], Рейк’явік (Reykjavik) [-кя-], Г’ята [гя-].
-    Grand Beatbox Battle (зазвичай скорочено GBB) — щорічне міжнародне змагання з beatboxingу, яке проводить Swissbeatbox. Конкурс проводить кілька турнірів для різних форм і категорій beatboxingу, зокрема: solo (або showcase), Loopstation, Tag Team, Tag Team Loopstation і Crew.
+    Grand Beatbox Battle (зазвичай скорочено GBB) — щорічне міжнародне змагання з beatboxingу, яке проводить Swissbeatbox (2022). Конкурс проводить кілька турнірів для різних форм і категорій beatboxingу, зокрема: solo (або showcase), Loopstation, Tag Team, Tag Team Loopstation і Crew.
     Можна ще альтернативно розглянути рішення з iframe + third party scraper API.`
     }
   }, {
@@ -3850,7 +3826,7 @@ const latToCyrTestSuite = {
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],26:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":18}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3898,7 +3874,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],27:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":13}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4024,7 +4000,76 @@ latynꞌ 0xA78C`,
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],28:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":18}],27:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.runTests = runTests;
+exports.tests = void 0;
+var _cyrToLatTestSuite = require("./0.9/cyrToLatTestSuite.js");
+var _latToCyrTestSuite = require("./0.9/latToCyrTestSuite.js");
+var _cyrToLatTestSuite2 = require("./1.0/cyrToLatTestSuite.js");
+var _latToCyrTestSuite2 = require("./1.0/latToCyrTestSuite.js");
+var _cyrToLatTestSuite3 = require("./1.1/cyrToLatTestSuite.js");
+var _latToCyrTestSuite3 = require("./1.1/latToCyrTestSuite.js");
+var _cyrToLatTestSuite4 = require("./future/cyrToLatTestSuite.js");
+var _latToCyrTestSuite4 = require("./future/latToCyrTestSuite.js");
+var _testUtils = require("../utils/testUtils.js");
+//------------------------- STABLE -------------------------
+
+//------------------------- STABLE -------------------------
+
+//------------------------- LATEST -------------------------
+
+//------------------------- LATEST -------------------------
+
+//------------------------- FUTURE -------------------------
+
+//------------------------- FUTURE -------------------------
+
+const supportedVersions = ['0.9', '1.0'];
+const experimentalVersion = '1.1';
+const futureVersion = 'future';
+function runTests(loglevel = 'debug', experimental = false, future = false, name = "ALL TESTS") {
+  (0, _testUtils.init)(loglevel ? loglevel : undefined);
+  var tests = {
+    cyrToLat0_9TestSuite: _cyrToLatTestSuite.cyrToLatTestSuite,
+    latToCyr0_9TestSuite: _latToCyrTestSuite.latToCyrTestSuite,
+    cyrToLat1_0TestSuite: _cyrToLatTestSuite2.cyrToLatTestSuite,
+    latToCyr1_0TestSuite: _latToCyrTestSuite2.latToCyrTestSuite
+  };
+  var experimentalTests = {
+    cyrToLatExperimentalSuite: _cyrToLatTestSuite3.cyrToLatTestSuite,
+    latToCyrExperimentalSuite: _latToCyrTestSuite3.latToCyrTestSuite
+  };
+  var futureTests = {
+    cyrToLatFutureSuite: _cyrToLatTestSuite4.cyrToLatTestSuite,
+    latToCyrFutureSuite: _latToCyrTestSuite4.latToCyrTestSuite
+  };
+  if (experimental) {
+    tests = {
+      ...tests,
+      ...experimentalTests
+    };
+  }
+  if (future) {
+    tests = {
+      ...tests,
+      ...futureTests
+    };
+  }
+  const allTests = typeof tests === 'object' ? Object.values(tests) : tests;
+  return (0, _testUtils.runAll)(true, allTests, name);
+}
+const tests = {
+  cyrToLatExperimentalSuite: _cyrToLatTestSuite3.cyrToLatTestSuite,
+  latToCyrExperimentalSuite: _latToCyrTestSuite3.latToCyrTestSuite
+};
+exports.tests = tests;
+
+},{"../utils/testUtils.js":30,"./0.9/cyrToLatTestSuite.js":19,"./0.9/latToCyrTestSuite.js":20,"./1.0/cyrToLatTestSuite.js":21,"./1.0/latToCyrTestSuite.js":22,"./1.1/cyrToLatTestSuite.js":23,"./1.1/latToCyrTestSuite.js":24,"./future/cyrToLatTestSuite.js":25,"./future/latToCyrTestSuite.js":26}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

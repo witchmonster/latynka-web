@@ -10,28 +10,10 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" />
     <title>Українська латинка</title>
     <link rel="icon" href="./images/favicon.ico">
+    <script type="module" src="./generated/addJsElements.js"></script>
     <script>
-        //translator type
-        const translator = 'cyrToLat';
-
-        //UI text elements
-        const initialInputText = 'Введіть текст кирилицею';
-        const resetText = '';
-
-        //elements
-        const test1Name = 'cyrToLatTest1';
-        const toggleElements = ['output', 'copy'];
-        const input = 'input';
-        const output = 'output';
-        const uvaga = 'uvaga';
-        const submitButton = 'submit';
-        const resetButton = 'reset';
-        const testText1Button = 'submitTestText1';
-        const uvagaText = 'cyrToLatUvaga';
-
         const isTest = false;
     </script>
-    <script type="module" src="./generated/addJsElements.js"></script>
 </head>
 
 <body>
@@ -52,10 +34,13 @@
         </div>
         <div>
             <span class="translatorTitle">
-                <div style="text-align: right;">Кирилиця</div>
-                <div style="margin-left: 10px; margin-right: 10px;"><a class="button--plump button--gray button--xs"
-                        href="reverse.html">⇄</a></div>
-                <div style="text-align: left;">Latynka</div>
+                <div id="from" style="text-align: right;">Кирилиця</div>
+                <!-- <div style="margin-left: 10px; margin-right: 10px;">➡</div> -->
+                <!-- <div style="margin-left: 10px; margin-right: 10px;"><a class="button--plump button--gray button--xs"
+                        href="reverse.html">⇄</a></div> -->
+                <div style="margin-left: 10px; margin-right: 10px;"><button
+                        class="button--plump button--gray button--xs" onclick="switchConverter()">⇄</button></div>
+                <div id="to" style="text-align: left;">Latynka</div>
             </span>
         </div>
         <div style="height: 15px;">

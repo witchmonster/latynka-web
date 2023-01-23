@@ -12,6 +12,7 @@
 }
 
 .theme {
+  margin-right: 10px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   list-style-type: none;

@@ -16,11 +16,11 @@ const texts = {
     Аби запобігти перекладу слова, ви можете загорнути потрібне слово або речення подвійним знаком "@": 
     @@Черноризец Храбър@@ ➡ Черноризец Храбър
     
-    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.8" target="_blank">@juliakramr/latynka:1.1.8</a>`,
+    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.9" target="_blank">@juliakramr/latynka:1.1.9</a>`,
 
     latToCyrUvaga: `
     Дізнатись більше про цю версію латинки: <a href="https://www.youtube.com/watch?v=nHeE2x2UNw4">Українська латинка: усі "за" та "проти"</a>
-    
+
     Увага! Це тестова версія. Про помилки та баги пишіть <a href="https://github.com/jkramr/latynka/issues/new">Сюди</a>.
 
     Наразі слова, написані англійською та іншими мовами також перекладатимуться кирилицею: 
@@ -28,7 +28,7 @@ const texts = {
     Аби запобігти перекладу слова, ви можете загорнути потрібне слово або речення подвійним знаком "@": 
     @@New York@@ ➡ New York
     
-    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.8" target="_blank">@juliakramr/latynka:1.1.8</a>`,
+    Версія конвертера: <a href="https://www.npmjs.com/package/@juliakramr/latynka/v/1.1.9" target="_blank">@juliakramr/latynka:1.1.9</a>`,
 
 }
 
