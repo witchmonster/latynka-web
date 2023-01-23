@@ -17,9 +17,9 @@ https://ukr-latynka.org/
 Run the following commands:
 
 ```
-$npm install
+$ npm install
 
-$browserify .\index.js -p esmify -o .\generated\addJsElements.js
+$ browserify .\index.js -p esmify -o .\generated\addJsElements.js
 ```
 
 # Časti zapytannja (vidpovidaje Maksym Prudeus)
