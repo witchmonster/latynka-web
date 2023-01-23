@@ -3271,7 +3271,6 @@ function runTests(loglevel = 'debug', experimental = false, future = false, name
   const allTests = typeof tests === 'object' ? Object.values(tests) : tests;
   return (0, _testUtils.runAll)(true, allTests, name);
 }
-runTests();
 const tests = {
   cyrToLatExperimentalSuite: _cyrToLatTestSuite3.cyrToLatTestSuite,
   latToCyrExperimentalSuite: _latToCyrTestSuite3.latToCyrTestSuite

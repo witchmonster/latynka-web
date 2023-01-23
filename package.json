@@ -28,7 +28,7 @@
     },
     "homepage": "https://github.com/jkramr/latynka-web#readme",
     "dependencies": {
-        "@juliakramr/latynka": "^1.1.7"
+        "@juliakramr/latynka": "^1.1.8"
     },
     "devDependencies": {
         "browser-resolve": "^2.0.0",
