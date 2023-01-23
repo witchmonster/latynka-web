@@ -12,11 +12,11 @@ var _index = require("./node_modules/@juliakramr/latynka/index.js");
 var _addHtmlToElement = require("./main/js/pageElements/addHtmlToElement.js");
 var _runTests = require("./test/js/pageElements/runTests.js");
 window.onload = () => {
+  (0, _theme.addToggleThemeEvent)();
   if (!isTest) {
     (0, _addTextToElement.addTextToElement)(input, initialInputText);
     (0, _addHtmlToElement.addHtmlToElement)(uvaga, (0, _texts.getText)(uvagaText));
     (0, _devMode.addDevMode)();
-    (0, _theme.addToggleThemeEvent)();
     (0, _reset.addResetEventOnClick)(resetButton, input, output, resetText, toggleElements //hide elements
     );
 

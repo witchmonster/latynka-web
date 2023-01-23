@@ -11,6 +11,8 @@ import { addRunTestsOnClick } from "./test/js/pageElements/runTests.js";
 
 window.onload = () => {
 
+    addToggleThemeEvent();
+
     if (!isTest) {
 
         addTextToElement(input, initialInputText);
@@ -18,8 +20,6 @@ window.onload = () => {
         addHtmlToElement(uvaga, getText(uvagaText))
 
         addDevMode();
-
-        addToggleThemeEvent();
 
         addResetEventOnClick(
             resetButton,
