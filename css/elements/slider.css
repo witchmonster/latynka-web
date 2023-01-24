@@ -39,6 +39,7 @@
 .changeTheme {
   margin-left: 10px;
   margin-right: 10px;
+  /* font-family: e-Ukraine, Roboto, Helvetica, fallback-font; */
   font-family: PragmataPro, Roboto, Helvetica, fallback-font;
 }
 

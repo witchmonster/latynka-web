@@ -3,7 +3,7 @@
 /* deprecated, moved to header */
 @import "elements/slider.css";
 
-
+@import "elements/fonts.css";
 @import "https://jkramr.github.io/fonts/fonts.css";
 @import "elements/buttons.css";
 @import "elements/common.css";

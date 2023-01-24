@@ -4,6 +4,7 @@ import { getText } from './main/js/pageElements/texts.js';
 import { addSumbitTranslationEventOnClick } from './main/js/pageElements/submitTranslation.js';
 import { addResetEventOnClick } from './main/js/pageElements/reset.js';
 import { addTextToElement } from './main/js/pageElements/addTextToElement.js';
+import { addPlaceholderText } from './main/js/pageElements/addPlaceholderText.js';
 import { addDevMode } from './main/js/pageElements/devMode.js';
 import { klatinoid } from "./node_modules/@juliakramr/latynka/index.js"
 import { addHtmlToElement } from './main/js/pageElements/addHtmlToElement.js';
@@ -12,7 +13,6 @@ import { addRunTestsOnClick } from "./test/js/pageElements/runTests.js";
 const common = {
     from: 'from',
     to: 'to',
-    resetText: '',
     toggleElements: ['output', 'copy'],
     input: 'input',
     output: 'output',
@@ -94,7 +94,7 @@ window.onload = () => {
 function loadElements(arg) {
     if (!arg.isTest) {
 
-        addTextToElement(arg.input, arg.initialInputText);
+        addPlaceholderText(arg.input, arg.initialInputText);
         addTextToElement(arg.from, arg.fromText);
         addTextToElement(arg.to, arg.toText);
 
@@ -106,7 +106,6 @@ function loadElements(arg) {
             arg.resetButton,
             arg.input,
             arg.output,
-            arg.resetText,
             arg.initialInputText,
             arg.toggleElements //hide elements
         );

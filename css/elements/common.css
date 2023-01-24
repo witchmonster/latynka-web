@@ -20,11 +20,13 @@ body {
   font-size: 20px;
   font-weight: 600;
   font-family: PragmataPro, Roboto, Helvetica, fallback-font;
+  /* font-family: e-Ukraine, Roboto, Helvetica, fallback-font; */
 }
 
 .footer {
   font-size: 16px;
   font-weight: 600;
+  /* font-family: e-Ukraine, Roboto, Helvetica, fallback-font; */
   font-family: PragmataPro, Roboto, Helvetica, fallback-font;
 }
 

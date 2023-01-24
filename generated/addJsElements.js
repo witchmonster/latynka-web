@@ -7,6 +7,7 @@ var _texts = require("./main/js/pageElements/texts.js");
 var _submitTranslation = require("./main/js/pageElements/submitTranslation.js");
 var _reset = require("./main/js/pageElements/reset.js");
 var _addTextToElement = require("./main/js/pageElements/addTextToElement.js");
+var _addPlaceholderText = require("./main/js/pageElements/addPlaceholderText.js");
 var _devMode = require("./main/js/pageElements/devMode.js");
 var _index = require("./node_modules/@juliakramr/latynka/index.js");
 var _addHtmlToElement = require("./main/js/pageElements/addHtmlToElement.js");
@@ -14,7 +15,6 @@ var _runTests = require("./test/js/pageElements/runTests.js");
 const common = {
   from: 'from',
   to: 'to',
-  resetText: '',
   toggleElements: ['output', 'copy'],
   input: 'input',
   output: 'output',
@@ -77,12 +77,12 @@ window.onload = () => {
 };
 function loadElements(arg) {
   if (!arg.isTest) {
-    (0, _addTextToElement.addTextToElement)(arg.input, arg.initialInputText);
+    (0, _addPlaceholderText.addPlaceholderText)(arg.input, arg.initialInputText);
     (0, _addTextToElement.addTextToElement)(arg.from, arg.fromText);
     (0, _addTextToElement.addTextToElement)(arg.to, arg.toText);
     (0, _addHtmlToElement.addHtmlToElement)(arg.uvaga, (0, _texts.getText)(arg.uvagaText));
     (0, _devMode.addDevMode)();
-    (0, _reset.addResetEventOnClick)(arg.resetButton, arg.input, arg.output, arg.resetText, arg.initialInputText, arg.toggleElements //hide elements
+    (0, _reset.addResetEventOnClick)(arg.resetButton, arg.input, arg.output, arg.initialInputText, arg.toggleElements //hide elements
     );
 
     (0, _addTest.addTestTextEventOnClick)(arg.testText1Button, arg.input, (0, _texts.getText)(arg.test1Name));
@@ -94,7 +94,7 @@ function loadElements(arg) {
   }
 }
 
-},{"./main/js/pageElements/addHtmlToElement.js":2,"./main/js/pageElements/addTest.js":3,"./main/js/pageElements/addTextToElement.js":4,"./main/js/pageElements/devMode.js":5,"./main/js/pageElements/reset.js":6,"./main/js/pageElements/submitTranslation.js":7,"./main/js/pageElements/texts.js":8,"./main/js/pageElements/theme.js":9,"./node_modules/@juliakramr/latynka/index.js":10,"./test/js/pageElements/runTests.js":31}],2:[function(require,module,exports){
+},{"./main/js/pageElements/addHtmlToElement.js":2,"./main/js/pageElements/addPlaceholderText.js":3,"./main/js/pageElements/addTest.js":4,"./main/js/pageElements/addTextToElement.js":5,"./main/js/pageElements/devMode.js":6,"./main/js/pageElements/reset.js":7,"./main/js/pageElements/submitTranslation.js":8,"./main/js/pageElements/texts.js":9,"./main/js/pageElements/theme.js":10,"./node_modules/@juliakramr/latynka/index.js":11,"./test/js/pageElements/runTests.js":32}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -111,6 +111,17 @@ function addHtmlToElement(element, text) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.addPlaceholderText = addPlaceholderText;
+function addPlaceholderText(element, text) {
+  document.getElementById(element).placeholder = text;
+}
+
+},{}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.addTestTextEventOnClick = addTestTextEventOnClick;
 function addTestTextEventOnClick(button, output, text) {
   document.getElementById(button).addEventListener('click', () => {
@@ -118,7 +129,7 @@ function addTestTextEventOnClick(button, output, text) {
   });
 }
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -130,7 +141,7 @@ function addTextToElement(element, text) {
   document.getElementById(element).textContent = text;
 }
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -151,20 +162,21 @@ function addDevMode() {
   }
 }
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.addResetEventOnClick = addResetEventOnClick;
-function addResetEventOnClick(button, input, output, resetInputText, initialInputText, hideElements) {
+function addResetEventOnClick(button, input, output, initialInputText, hideElements) {
   doHide(input, output, initialInputText, hideElements);
   document.getElementById(button).addEventListener('click', () => {
-    doHide(input, output, resetInputText, hideElements);
+    doHide(input, output, initialInputText, hideElements);
   });
-  function doHide(input, output, resetInputText, hideElements) {
-    document.getElementById(input).value = resetInputText;
+  function doHide(input, output, initialInputText, hideElements) {
+    document.getElementById(input).placeholder = initialInputText;
+    document.getElementById(input).value = '';
     document.getElementById(output).value = '';
     hideElements.forEach(element => {
       document.getElementById(element).classList.add('hidden');
@@ -172,7 +184,7 @@ function addResetEventOnClick(button, input, output, resetInputText, initialInpu
   }
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -191,7 +203,7 @@ function addSumbitTranslationEventOnClick(button, input, output, translator, unh
   });
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -231,7 +243,7 @@ function getText(testName) {
   return texts[testName];
 }
 
-},{"../../../node_modules/@juliakramr/latynka/index.js":10}],9:[function(require,module,exports){
+},{"../../../node_modules/@juliakramr/latynka/index.js":11}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -244,7 +256,7 @@ function addToggleThemeEvent() {
   });
 }
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -262,7 +274,7 @@ const klatinoid = {
 };
 exports.klatinoid = klatinoid;
 
-},{"./main/js/converters/cyrToLat.js":13,"./main/js/converters/latToCyr.js":18,"./test/js/testcases/runTests.js":27}],11:[function(require,module,exports){
+},{"./main/js/converters/cyrToLat.js":14,"./main/js/converters/latToCyr.js":19,"./test/js/testcases/runTests.js":28}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2352,7 +2364,7 @@ diff_match_patch.patch_obj.prototype.toString = function () {
 // /** @suppress {globalThis} */
 // this['DIFF_EQUAL'] = DIFF_EQUAL;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2465,7 +2477,7 @@ const common = {
 };
 exports.common = common;
 
-},{"./dictionary/dictionary.js":14}],13:[function(require,module,exports){
+},{"./dictionary/dictionary.js":15}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2571,7 +2583,7 @@ function cyrToLat(text) {
   }
 }
 
-},{"./common.js":12,"./dictionary/dictionary.js":14}],14:[function(require,module,exports){
+},{"./common.js":13,"./dictionary/dictionary.js":15}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2588,7 +2600,7 @@ const dictionary = {
 };
 exports.dictionary = dictionary;
 
-},{"./exceptions/exceptions.js":15,"./src/cyrToLatDict.js":16,"./src/latToCyrDict.js":17}],15:[function(require,module,exports){
+},{"./exceptions/exceptions.js":16,"./src/cyrToLatDict.js":17,"./src/latToCyrDict.js":18}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2663,7 +2675,7 @@ const exceptions = {
 };
 exports.exceptions = exceptions;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2860,7 +2872,7 @@ const cyrToLatDict = {
 };
 exports.cyrToLatDict = cyrToLatDict;
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3123,7 +3135,7 @@ const latToCyrDict = {
 };
 exports.latToCyrDict = latToCyrDict;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3266,7 +3278,7 @@ function latToCyr(text) {
   }
 }
 
-},{"./common.js":12,"./dictionary/dictionary.js":14}],19:[function(require,module,exports){
+},{"./common.js":13,"./dictionary/dictionary.js":15}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3339,7 +3351,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],20:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":14}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3394,7 +3406,7 @@ const latToCyrTestSuite = {
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],21:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":19}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3510,7 +3522,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],22:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":14}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3585,7 +3597,7 @@ const latToCyrTestSuite = {
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],23:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":19}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3712,7 +3724,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],24:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":14}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3826,7 +3838,7 @@ const latToCyrTestSuite = {
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],25:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":19}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3874,7 +3886,7 @@ const cyrToLatTestSuite = {
 };
 exports.cyrToLatTestSuite = cyrToLatTestSuite;
 
-},{"../../../../main/js/converters/cyrToLat.js":13}],26:[function(require,module,exports){
+},{"../../../../main/js/converters/cyrToLat.js":14}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4000,7 +4012,7 @@ latynꞌ 0xA78C`,
 };
 exports.latToCyrTestSuite = latToCyrTestSuite;
 
-},{"../../../../main/js/converters/latToCyr.js":18}],27:[function(require,module,exports){
+},{"../../../../main/js/converters/latToCyr.js":19}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4069,7 +4081,7 @@ const tests = {
 };
 exports.tests = tests;
 
-},{"../utils/testUtils.js":30,"./0.9/cyrToLatTestSuite.js":19,"./0.9/latToCyrTestSuite.js":20,"./1.0/cyrToLatTestSuite.js":21,"./1.0/latToCyrTestSuite.js":22,"./1.1/cyrToLatTestSuite.js":23,"./1.1/latToCyrTestSuite.js":24,"./future/cyrToLatTestSuite.js":25,"./future/latToCyrTestSuite.js":26}],28:[function(require,module,exports){
+},{"../utils/testUtils.js":31,"./0.9/cyrToLatTestSuite.js":20,"./0.9/latToCyrTestSuite.js":21,"./1.0/cyrToLatTestSuite.js":22,"./1.0/latToCyrTestSuite.js":23,"./1.1/cyrToLatTestSuite.js":24,"./1.1/latToCyrTestSuite.js":25,"./future/cyrToLatTestSuite.js":26,"./future/latToCyrTestSuite.js":27}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4128,7 +4140,7 @@ const strUtils = {
 };
 exports.strUtils = strUtils;
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4161,7 +4173,7 @@ function assertForAllRegisters(fn, input, expected) {
   assertExactTranslation(fn, input.toProperCase(), expected.toProperCase());
 }
 
-},{"../../../lib/js/diff/diff_match_patch.js":11,"./stringUtils.js":28,"./testUtils.js":30}],30:[function(require,module,exports){
+},{"../../../lib/js/diff/diff_match_patch.js":12,"./stringUtils.js":29,"./testUtils.js":31}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4353,7 +4365,7 @@ function testSuite(desc, optional, testPayload, inherited) {
   }
 }
 
-},{"./testAssertions.js":29}],31:[function(require,module,exports){
+},{"./testAssertions.js":30}],32:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4383,4 +4395,4 @@ function addRunTestsOnClick(button, statusElement, output, successOutput, failOu
   });
 }
 
-},{"../../../node_modules/@juliakramr/latynka/index.js":10}]},{},[1]);
+},{"../../../node_modules/@juliakramr/latynka/index.js":11}]},{},[1]);
